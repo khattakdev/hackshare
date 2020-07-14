@@ -2,50 +2,49 @@ import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import './App.css';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import Profile from './Pages/Profile';
-import Experts from './Pages/Experts';
-import Learners from './Pages/Learners';
+import Profile from './pages/Profile';
+import Experts from './pages/Experts';
+import Learners from './pages/Learners';
+import Landing from './pages/Landing';
 
-function App() {
+const LoginButton = (props) => {
+  return (
+    <button onClick={props.onclick}>{props.children}</button>
+  )
+}
+
+
+const App = (props) => {
   const {
-    isLoading,
     isAuthenticated,
     error,
     user,
     loginWithRedirect,
     logout,
   } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Oops... {JSON.stringify(error)}</div>;
-  }
-
-  if (isAuthenticated) {
+  const handleLogout = () => logout({ returnTo: window.location.origin })
+  const handleLogin = () => loginWithRedirect()
     return (
       <div>
-        Hello {user.name} {/* @TODO: Switch to React Router */}
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log out
-        </button>
+        {isAuthenticated ? <LoginButton onclick={handleLogout}>Log out</LoginButton> : <LoginButton onclick={handleLogin}>Log in</LoginButton> }
+        { error && <div>Oops, Somethign went wrong... {JSON.stringify(error)}</div> }
+        { user && user.name }
+        { props.children }
       </div>
     );
-  } else {
-    return <button onClick={loginWithRedirect}>Log in</button>;
-  }
 }
 
-export default function BasicExample() {
+export default function Routing() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/experts" component={Experts} />
-        <Route path="/learners" component={Learners} />
-      </Switch>
-    </Router>
+    <App>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/experts" component={Experts} />
+          <Route path="/learners" component={Learners} />
+        </Switch>
+      </Router>
+    </App>
   );
 }
