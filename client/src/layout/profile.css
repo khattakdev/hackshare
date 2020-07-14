@@ -1,0 +1,169 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;   
+  }
+
+body{
+    background-color: #121212;
+}
+
+.intro{
+    padding-top: 50px;    
+ }
+
+.profile-image{    
+    display: flex;
+    justify-content: center;
+ }
+
+#myphoto{
+    border-radius: 100%;
+    filter:grayscale(30%);
+    align-self: center;
+    width: 200px;
+    height: 200px;    
+ }
+
+#myname{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    color: aliceblue;
+ }
+
+nav{
+    padding-top: 30px;
+    padding-left: 20px;    
+    border-bottom: 1px solid aliceblue;
+}
+
+.nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+ .nav li {
+    display: inline-block;
+    font-size: 20px;
+    width: 80px;
+    border-bottom: none;
+    height: 30px;
+}
+
+.nav a{    
+    margin-bottom: 0;
+    color: #6E6E6E;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: white;
+}
+   
+.nav a#active {
+    color: white;
+  }
+   
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    color: white;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px; 
+}
+
+.card_title{
+    color: #6E6E6E;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.card{
+    background-color: #1D1D1D;
+    margin : 25px;
+    margin-top: 0px;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+#skills{
+    margin-top: 25px;
+}
+
+#badge, #skills{
+    height: min-content;
+}
+
+.skill-name{
+    padding-bottom: 10px;
+}
+
+.meetings,.skill{
+    margin: 10px;
+    padding: 10px;
+    border-bottom:1px solid #6E6E6E;
+}
+
+.meeting-detail{
+    font-size: 15px;
+}
+
+.popup-overlay {    
+    position:fixed; 
+    top: calc(50% - 25px); 
+    left: calc(50% - 200px); 
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    color: #121212;
+    box-shadow: #121212;
+  } 
+   
+.popup-overlay.active {
+    visibility: visible;
+    text-align: center;
+    display: block;
+}
+  
+.popup-content {
+    visibility: hidden;
+    margin: 0 auto;
+    top: 25%;
+    position: relative;
+}
+  
+.popup-content.active {
+    visibility: visible;
+}
+
+@media screen and (min-width: 700px) {
+    #myname{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 40px;
+        color: aliceblue;
+    }
+    nav{
+        padding-top: 40px;
+        padding-left: 50px;
+    }
+
+    .nav li {
+        display: inline-block;
+        font-size: 30px;
+        width: 120px;
+        border-bottom: none;
+        height: 40px;
+      }
+    
+    #skills{
+        margin-top: 0px;
+    }
+}
+  

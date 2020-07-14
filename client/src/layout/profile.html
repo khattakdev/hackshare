@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HackShare</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="./profile.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>     
+    </head>
+    <body>     
+        <!-- Profile Header Start -->    
+        <section id="profile-header">
+            <div class="prfile-overlay"></div>
+                <div class="intro">
+                    <div class="profile-image">
+                        <img id="myphoto" src="https://dummyimage.com/500/09f/fff.png" alt="Mock Name">
+                    </div>
+                    <h1 id="myname">Mock Name</h1>
+                </div>
+        </section>
+        <!-- Profile Header End -->
+
+        <!-- Navigation Start -->
+        <nav class="profile-nav">        
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#home" class="item" id="active" panel-id="profile">Profile</a></li>
+                <li><a href="#services" class="item" panel-id="meeting">Meeting</a></li>
+            </ul>
+        </nav>
+        <!-- Navigation End -->        
+
+        <!--Profile-->
+        <div id="profile">
+            <section class="cards">
+                <div class = "card" id = "about">
+                    <h1 class="card_title">About Me</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit nulla, convallis rhoncus neque sit amet, porta porttitor magna. Aenean suscipit urna vel ante posuere, nec pulvinar tellus facilisis. Nullam ultrices imperdiet arcu, eget iaculis enim faucibus eget. Sed nibh nibh, elementum sed finibus et, lacinia quis metus. Etiam eget hendrerit tellus. Ut accumsan tincidunt felis quis hendrerit. Curabitur auctor venenatis ante ac venenatis.</p>
+                </div>               
+            </section>
+            <section class="cards">
+                <div class = "card" id = "badge">
+                    <h1 class="card_title">Badge</h1>
+                    <div>
+                        <img src="https://img.icons8.com/plasticine/100/000000/warranty.png"/>
+                    </div>
+                </div>
+                <div class = "card" id = "skills">
+                    <h1 class="card_title">Skills </h1>
+                    <div class ="skill">
+                        <p class="skill-name">Python</p>
+                        <h6>Endorsed by ABC and 5 others</h6>                            
+                    </div>                    
+                </div>                
+        </section>
+        </div>
+        <!--End of Profile-->
+
+        <!--Meeting-->
+        <div id="meeting" style="display: none;">
+            <section class="cards">
+
+                <div class = "card" id = "badge">
+                    <h1 class="card_title">Upcoming Meeting</h1>
+                    <div class ="meetings">
+                        <button style="float: right;" class="open">Reshedule</button>
+                        <p class="meeting-info">Meeting with XYZ on JavaScript</p>
+                        <button style="float: right; ">Cancel</button>
+                        <p class="meeting-detail">Date: 2020/07/03</p>
+                        <p class="meeting-detail">Time: 5:30 AM</p>
+                    </div> 
+                </div>
+
+                <div class = "card" id = "meeting">
+                    <h1 class="card_title">Recent Meetings</h1>
+                    <div class ="meetings">                            
+                        <button style="float: right; ">Endorse</button>
+                        <p class="meeting-info">Meeting with XYZ on JavaScript</p>
+                    </div>                    
+                </div>                
+        </section>
+        </div>
+        <!--End of Meeting-->
+
+        <!--Reschedule popup-->
+        <div class="popup-overlay">
+            <div class="popup-content">
+                <button class="close" style="float: right;"><icon>&#10005</icon></button>
+                <form>
+                    <label for="start">Date:</label>
+                    <input type="date">
+                    <label for="start">Time:</label>
+                    <input type="time">
+                    <input type="submit">
+                </form>
+                
+            </div>
+        </div>
+        <!--End of Popup-->
+
+        <script>
+            $(document).ready(function(){
+                $(".item").click(function(event) {
+                    event.preventDefault();             
+                    $('.item').removeAttr('id','active');
+                    $(this).attr('id','active');
+                    var panel = $(this).attr('panel-id');
+                    if(panel === "meeting"){
+                        $('#meeting').show();
+                        $('#profile').hide();
+                    }else{
+                        $('#profile').show();
+                        $('#meeting').hide();                        
+                    }               
+                });
+            });
+            $(".open").on("click", function(){
+                $(".popup, .popup-content").addClass("active");
+                $(".popup, .popup-overlay").addClass("active");
+            });
+            $(".close, .popup").on("click", function(){
+                $(".popup, .popup-content").removeClass("active");
+                $(".popup, .popup-overlay").removeClass("active");
+            });
+        </script> 
+            
+    </body>
+
+    
+</html>
