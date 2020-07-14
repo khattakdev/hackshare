@@ -1,13 +1,11 @@
+require("dotenv").config();
 const express = require("express");
-const userRoute = require("./Routes/user");
 const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
-require("dotenv").config();
 const userRoute = require("./routes/user");
 const connectDB = require("./helper/db");
 const app = express();
 
-require("dotenv").config();
 
 app.use("/user", userRoute);
 
