@@ -99,7 +99,6 @@ exports.removeExpertise = async (req, res) => {
 
   const { error } = schema.validate({
     topic,
-    level,
   });
 
   if (error) {
