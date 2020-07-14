@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+// TODO: use react router :)
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
@@ -24,6 +25,3 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-/**
- * "XPs3fjoMjytPXIBGp4ChGWDUtvdEmfJl"
- */
