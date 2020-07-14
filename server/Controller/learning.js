@@ -16,7 +16,6 @@ exports.addLearning = async (req, res) => {
       level,
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(400).json({
       error: error.message,
     });
@@ -59,7 +58,6 @@ exports.updateLearning = async (req, res) => {
       topic,
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(400).json({
       error: error.message,
     });
