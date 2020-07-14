@@ -1,20 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
-import Profile from './Components/Pages/Profile';
-import Experts from './Components/Pages/Experts';
-import Learners from './Components/Pages/Learners';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
+import App from "./App";
 
-const routing = (
-  <Router>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/experts" component={Experts} />
-      <Route path="/learners" component={Learners} />
-    </div>
-  </Router>
-)
+ReactDOM.render(
+  <React.StrictMode>
+    <Auth0Provider
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_CLIENT_ID}
+      redirectUri={window.location.origin}
+    >
+      <App />
+    </Auth0Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
-ReactDOM.render(routing, document.getElementById('root'))
