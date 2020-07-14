@@ -26,3 +26,7 @@ All the routes (Endpoints) are available here. This folder helps keeping `app.js
 
 - `/addProfile`
 - `/editProfile`
+
+#### Env
+
+Create `.env` file with keys from `.env.example`.
