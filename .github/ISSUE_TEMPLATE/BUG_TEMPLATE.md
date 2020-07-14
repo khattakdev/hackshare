@@ -9,5 +9,6 @@ labels: problem
 
 Problem description
 
-**Difficulty**: /10
-**Priority**: /10
+**Difficulty**: Easy / Medium / Hard
+
+**Priority**: Low / Medium / High
