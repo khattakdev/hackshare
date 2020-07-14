@@ -7,7 +7,7 @@ labels: feature
 
 ### Feature Title
 
-### Feature description
+Feature description
 
 **Difficulty**: Easy / Medium / Hard
 
