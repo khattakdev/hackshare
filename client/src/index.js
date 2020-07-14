@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
-import Profile from './Profile';
-import Experts from './Experts';
-import Learners from './Learners';
+import Profile from './Components/Pages/Profile';
+import Experts from './Components/Pages/Experts';
+import Learners from './Components/Pages/Learners';
 
 const routing = (
   <Router>
