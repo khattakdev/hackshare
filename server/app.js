@@ -2,6 +2,9 @@ const express = require("express");
 const userRoute = require("./Routes/user");
 const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
+require("dotenv").config();
+const userRoute = require("./routes/user");
+const connectDB = require("./helper/db");
 const app = express();
 
 require("dotenv").config();
@@ -23,4 +26,6 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.listen(8000);
+connectDB(() => {
+  app.listen(8080);
+});
