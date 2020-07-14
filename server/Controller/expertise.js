@@ -43,7 +43,7 @@ exports.addExpertise = async (req, res) => {
   }
 };
 
-exports.removeExpertise = async (req, res) => {
+exports.updateExpertise = async (req, res) => {
   const { Nickname } = req.user;
   const { topic, level } = req.body;
 
@@ -77,6 +77,45 @@ exports.removeExpertise = async (req, res) => {
       level,
     };
     await newExpertise.save();
+
+    return res.status(200).json({
+      msg: "Expertise Updated",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
+};
+
+exports.removeExpertise = async (req, res) => {
+  const { Nickname } = req.user;
+  const { topic } = req.body;
+
+  const schema = Joi.object().keys({
+    topic: Joi.string().required(),
+  });
+
+  const { error } = schema.validate({
+    topic,
+    level,
+  });
+
+  if (error) {
+    return res.status(400).json({ error: error.details });
+  }
+  try {
+    const user = userDB.findOne({ github_username: Nickname });
+    const expertise = expertiseDB.findOne({ topic, user_id: user._id });
+
+    if (!expertise) {
+      return res.status(402).json({
+        msg: "Expertise not Found!",
+      });
+    }
+
+    await expertise.remove();
 
     return res.status(200).json({
       msg: "Expertise Updated",
