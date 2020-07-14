@@ -11,7 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 - [NodeJs](https://nodejs.org/)
-- [Mongo Compass](https://www.mongodb.com/products/compass) - Optional
 
 ### Installing
 
@@ -29,6 +28,7 @@ This will grab a local copy of repo
 
 ```
 cd client
+npm install
 npm start
 ```
 
@@ -51,6 +51,7 @@ To create a production build, use yarn build.
 
 ```
 cd server
+npm install
 npm start
 ```
 
@@ -82,10 +83,10 @@ To be Added
 
 ## Authors
 
-- **Anshul Goyal** - [Githhub](https://github.com/anshulrgoyal)
-- **Arsalan Khattak** - [Githhub](https://github.com/eKhattak)
-- **Drew Alexandar** - [Githhub](https://github.com/Drewbi)
-- **Rashika Karki** - [Githhub](https://github.com/RashikaKarki)
+- **Anshul Goyal** - [Github](https://github.com/anshulrgoyal)
+- **Arsalan Khattak** - [Github](https://github.com/eKhattak)
+- **Drew Alexandar** - [Github](https://github.com/Drewbi)
+- **Rashika Karki** - [Github](https://github.com/RashikaKarki)
 -
 
 See also the list of [contributors](https://github.com/ekhattak/hackshare/contributors) who participated in this project.
