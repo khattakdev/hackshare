@@ -7,7 +7,8 @@ labels: feature
 
 ### Feature Title
 
-Feature description
+### Feature description
 
-**Difficulty**: /10
-**Priority**: /10
+**Difficulty**: Easy / Medium / Hard
+
+**Priority**: Low / Medium / High
