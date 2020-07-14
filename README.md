@@ -1,21 +1,21 @@
 # HackShare
 
-A web app where fellows can teach other fellows the skills they believe they are good at.
+A web app where fellows can share their knowledge with other fellows.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Requirements
 
 What things you need to install the software and how to install them
 
 - [NodeJs](https://nodejs.org/)
 - [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
-### Installing
+### Installation Guidelines
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of how to get a development env running
 
 - Open Terminal and run
 
@@ -65,8 +65,6 @@ This will start NodeJs Application
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node app.js`
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Deployment
 
