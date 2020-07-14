@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const challangeSchema = new Schema(
+const challengeSchema = new Schema(
   {
     expertise_id: {
       type: Schema.Types.ObjectId,
@@ -33,4 +33,4 @@ const challangeSchema = new Schema(
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-module.exports = mongoose.model("challenge", challangeSchema);
+module.exports = mongoose.model("challenge", challengeSchema);
