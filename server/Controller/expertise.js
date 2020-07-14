@@ -85,7 +85,7 @@ exports.updateExpertise = async (req, res) => {
       topic,
       level,
     };
-    await newExpertise.save();
+    await expertise.save();
 
     return res.status(200).json({
       msg: "Expertise Updated",
@@ -110,7 +110,6 @@ exports.removeExpertise = async (req, res) => {
   try {
     await schema.validateAsync({
       topic,
-      level,
     });
   } catch (error) {
     console.log(error.message);
