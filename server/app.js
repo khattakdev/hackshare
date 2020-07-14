@@ -2,12 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
-const userRoute = require("./routes/user");
+const routes = require("./routes");
 const connectDB = require("./helper/db");
+const bodyParser = require("body-parser");
 const app = express();
 
-
-app.use("/user", userRoute);
+app.use(bodyParser.json());
 
 app.use(
   jwt({
@@ -20,9 +20,9 @@ app.use(
     algorithms: ["RS256"],
   })
 );
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
+
+app.use("/user", routes.user);
+app.use("/learning", routes.learning);
 
 connectDB(() => {
   app.listen(8080);
