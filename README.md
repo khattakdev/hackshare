@@ -1,12 +1,3 @@
-# hackshare
-
-### How to Use
-
-- Download the Repo to your local drive
-- Open `client` in terminal and type `npm start`
-- Open `server` in terminal and type `npm start`
-- Visit `localhost:3000`
-
 # HackShare
 
 A web app where fellows can teach other fellows the skills they believe they are good at.
@@ -77,7 +68,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Deployment
 
-TBA
+To be Added
 
 ## Built With
 
@@ -87,18 +78,18 @@ TBA
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+To be Added
 
 ## Authors
 
-- **Billie Thompson** - _Initial work_ - [PurpleBooth](https://github.com/PurpleBooth)
+- **Anshul Goyal** - [Githhub](https://github.com/anshulrgoyal)
+- **Arsalan Khattak** - [Githhub](https://github.com/eKhattak)
+- **Drew Alexandar** - [Githhub](https://github.com/Drewbi)
+- **Rashika Karki** - [Githhub](https://github.com/RashikaKarki)
+-
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ekhattak/hackshare/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
