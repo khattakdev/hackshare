@@ -2,7 +2,7 @@ const { expertiseDB, userDB } = require("../Model/index");
 const Joi = require("@hapi/joi");
 
 exports.addExpertise = async (req, res) => {
-  const { Nickname } = req.user;
+  const { nickname } = req.user;
   const { topic, level } = req.body;
 
   const schema = Joi.object().keys({
@@ -10,16 +10,21 @@ exports.addExpertise = async (req, res) => {
     level: Joi.number().min(1).max(3).required(),
   });
 
-  const { error } = schema.validate({
-    topic,
-    level,
-  });
-
-  if (error) {
-    return res.status(400).json({ error: error.details });
-  }
+  // Schema Validation
   try {
-    const user = userDB.findOne({ github_username: Nickname });
+    await schema.validateAsync({
+      topic,
+      level,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+
+  try {
+    const user = userDB.findOne({ authO_ref: nickname });
     if (!user) {
       return res.status(402).json({
         msg: "User not Found!",
@@ -36,7 +41,6 @@ exports.addExpertise = async (req, res) => {
       msg: "Expertise Added",
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json({
       error: "Server Error!",
     });
@@ -44,7 +48,7 @@ exports.addExpertise = async (req, res) => {
 };
 
 exports.updateExpertise = async (req, res) => {
-  const { Nickname } = req.user;
+  const { nickname } = req.user;
   const { topic, level } = req.body;
 
   const schema = Joi.object().keys({
@@ -53,16 +57,21 @@ exports.updateExpertise = async (req, res) => {
     level: Joi.number().min(1).max(3).required(),
   });
 
-  const { error } = schema.validate({
-    topic,
-    level,
-  });
-
-  if (error) {
-    return res.status(400).json({ error: error.details });
-  }
+  // Schema Validation
   try {
-    const user = userDB.findOne({ github_username: Nickname });
+    await schema.validateAsync({
+      topic,
+      level,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+
+  try {
+    const user = userDB.findOne({ authO_ref: nickname });
     const expertise = expertiseDB.findOne({ topic, user_id: user._id });
 
     if (!expertise) {
@@ -90,22 +99,28 @@ exports.updateExpertise = async (req, res) => {
 };
 
 exports.removeExpertise = async (req, res) => {
-  const { Nickname } = req.user;
+  const { nickname } = req.user;
   const { topic } = req.body;
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
   });
 
-  const { error } = schema.validate({
-    topic,
-  });
-
-  if (error) {
-    return res.status(400).json({ error: error.details });
-  }
+  // Schema Validation
   try {
-    const user = userDB.findOne({ github_username: Nickname });
+    await schema.validateAsync({
+      topic,
+      level,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+
+  try {
+    const user = userDB.findOne({ authO_ref: nickname });
     const expertise = expertiseDB.findOne({ topic, user_id: user._id });
 
     if (!expertise) {
