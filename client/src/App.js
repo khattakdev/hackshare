@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import './App.css';
@@ -26,7 +27,8 @@ function App() {
   if (isAuthenticated) {
     return (
       <div>
-        Hello {user.name}{" "}
+        Hello {user.name} {/* @TODO: Switch to React Router */}
+
         <button onClick={() => logout({ returnTo: window.location.origin })}>
           Log out
         </button>
@@ -35,6 +37,7 @@ function App() {
   } else {
     return <button onClick={loginWithRedirect}>Log in</button>;
   }
+
 }
 
 export default function BasicExample() {
@@ -48,4 +51,5 @@ export default function BasicExample() {
       </Switch>
     </Router>
   );
+
 }
