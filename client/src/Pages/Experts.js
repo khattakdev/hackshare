@@ -1,12 +1,11 @@
 import React from 'react';
 
-class Experts extends React.Component {
-    render() {
-      return (
-        <div>
-          <h1>Experts</h1>
-        </div>
-      )
-    }
-  }
+const Experts = () => {
+  return (
+    <>
+      <h1>Experts</h1>
+    </>
+  )
+}
+
 export default Experts;

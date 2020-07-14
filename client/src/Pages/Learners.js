@@ -1,13 +1,11 @@
 import React from 'react';
 
-class Learners extends React.Component {
-    render() {
-      return (
-        <div>
-          <h1>Learners</h1>
-        </div>
-      )
-    }
-  }
+const Learners = () => {
+  return (
+    <>
+      <h1>Learners</h1>
+    </>
+  )
+}
 
 export default Learners;
