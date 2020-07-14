@@ -15,6 +15,7 @@ const App = (props) => {
     loginWithRedirect,
     logout,
   } = useAuth0();
+ // @TODO: Change window.location to react router
   const handleLogout = () => logout({ returnTo: window.location.origin })
   const handleLogin = () => loginWithRedirect()
     return (
