@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import './App.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Profile from './Pages/Profile';
 import Experts from './Pages/Experts';
 import Learners from './Pages/Learners';
@@ -40,12 +40,12 @@ function App() {
 export default function BasicExample() {
   return (
     <Router>
-      <div>
+      <Switch>
         <Route exact path="/" component={App} />
         <Route path="/profile" component={Profile} />
         <Route path="/experts" component={Experts} />
         <Route path="/learners" component={Learners} />
-      </div>
+      </Switch>
     </Router>
   );
 }
