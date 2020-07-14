@@ -8,12 +8,12 @@ const challenge = require("./challenge");
 const achievement = require("./achievement");
 
 module.exports = {
-  user,
-  task,
-  meeting,
-  learning,
-  expertise,
-  endorsement,
-  challenge,
-  achievement,
+  userDB: user,
+  taskDB: task,
+  meetingDB: meeting,
+  learningDB: learning,
+  expertiseDB: expertise,
+  endorsementDB: endorsement,
+  challengeDB: challenge,
+  achievementDB: achievement,
 };

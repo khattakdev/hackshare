@@ -1,17 +1,90 @@
+const { expertiseDB, userDB } = require("../Model/index");
+const Joi = require("@hapi/joi");
+
 exports.addExpertise = async (req, res) => {
-  // User_ID
-  // TOPIC
-  // LEVEL - 1 / 2 / 3git
-  // eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlM0ckpESUpPQ2FkWGF1d3duMGdEVyJ9.eyJuaWNrbmFtZSI6ImFuc2h1bHJnb3lhbCIsIm5hbWUiOiJBbnNodWwgR295YWwiLCJwaWN0dXJlIjoiaHR0cHM6Ly9hdmF0YXJzMi5naXRodWJ1c2VyY29udGVudC5jb20vdS8zMjA2ODA3NT92PTQiLCJ1cGRhdGVkX2F0IjoiMjAyMC0wNy0xNFQwODoyMDoxMS41NThaIiwiaXNzIjoiaHR0cHM6Ly9jcm9zcy1wb2RzLmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJnaXRodWJ8MzIwNjgwNzUiLCJhdWQiOiJYUHMzZmpvTWp5dFBYSUJHcDRDaEdXRFV0dmRFbWZKbCIsImlhdCI6MTU5NDcxNDgxMywiZXhwIjoxNTk0NzUwODEzLCJub25jZSI6IlVGaEZkVEpaYzNOMU5
+  const { Nickname } = req.user;
+  const { topic, level } = req.body;
 
-  // @TODO: Add Validation
-
-  const { sub } = req.user;
-
-  try {
-  } catch (error) {}
-
-  res.status(200).json({
-    msg: "You Registered!",
+  const schema = Joi.object().keys({
+    topic: Joi.string().required(),
+    level: Joi.number().min(1).max(3).required(),
   });
+
+  const { error } = schema.validate({
+    topic,
+    level,
+  });
+
+  if (error) {
+    return res.status(400).json({ error: error.details });
+  }
+  try {
+    const user = userDB.findOne({ github_username: Nickname });
+    if (!user) {
+      return res.status(402).json({
+        msg: "User not Found!",
+      });
+    }
+    const newExpertise = new expertiseDB({
+      user_id,
+      topic,
+      level,
+    });
+    await newExpertise.save();
+
+    return res.status(200).json({
+      msg: "Expertise Added",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
+};
+
+exports.removeExpertise = async (req, res) => {
+  const { Nickname } = req.user;
+  const { topic, level } = req.body;
+
+  const schema = Joi.object().keys({
+    // topic is Require and must be String
+    topic: Joi.string().required(),
+    level: Joi.number().min(1).max(3).required(),
+  });
+
+  const { error } = schema.validate({
+    topic,
+    level,
+  });
+
+  if (error) {
+    return res.status(400).json({ error: error.details });
+  }
+  try {
+    const user = userDB.findOne({ github_username: Nickname });
+    const expertise = expertiseDB.findOne({ topic, user_id: user._id });
+
+    if (!expertise) {
+      return res.status(402).json({
+        msg: "Expertise not Found!",
+      });
+    }
+
+    expertise = {
+      ...expertise,
+      topic,
+      level,
+    };
+    await newExpertise.save();
+
+    return res.status(200).json({
+      msg: "Expertise Updated",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
 };
