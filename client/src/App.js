@@ -26,7 +26,7 @@ function App() {
   if (isAuthenticated) {
     return (
       <div>
-        Hello {user.name}{" "}
+        Hello {user.name} {/* @TODO: Switch to React Router */}
         <button onClick={() => logout({ returnTo: window.location.origin })}>
           Log out
         </button>
