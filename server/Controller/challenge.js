@@ -3,6 +3,17 @@ const Joi = require("@hapi/joi");
 
 exports.getAllChallenges = async (req, res) => {
   const expertise_id = req.params.expertise_id;
+
+  try {
+    let challenges = await challengeDB.find({ expertise_id: expertise_id });
+    res.status(200).json({
+      msg: challenges,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
 };
 exports.addChallenge = async (req, res) => {
   const { sub } = req.user;
@@ -51,7 +62,7 @@ exports.addChallenge = async (req, res) => {
         msg: "Expertise not Found!",
       });
     }
-    const newChallenge = new challengeDB({
+    let newChallenge = new challengeDB({
       expertise_id: expertise._id,
       topic,
       difficulty,
@@ -106,7 +117,7 @@ exports.updateChallenge = async (req, res) => {
   }
 
   try {
-    const challenge = challengeDB.findById(challenge_id);
+    let challenge = challengeDB.findById(challenge_id);
 
     if (!challenge) {
       return res.status(402).json({
@@ -154,7 +165,7 @@ exports.removeChallenge = async (req, res) => {
   }
 
   try {
-    const challenge = learningDB.findById(challenge_id);
+    let challenge = learningDB.findById(challenge_id);
 
     if (!challenge) {
       return res.status(402).json({
