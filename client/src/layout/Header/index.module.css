@@ -3,13 +3,14 @@ header {
   display: flex;
   width: 100vw;
   align-items: center;
-  background-color: #fafafa;
+  background-color: #303030;
 }
 
 .logo {
   margin: 0 5px;
   font-size: 20px;
   font-weight: bold;
+  color: #fff;
 }
 
 .link {
