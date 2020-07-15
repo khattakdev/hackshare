@@ -1,11 +1,12 @@
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.module.css";
+import classes from "./index.module.css";
 
 class Badges extends React.Component{
     render(){
         return(
-            <div class = "card" id = "badge">
-                    <h1 class="card-title">Badge</h1>
+            <div className = {classes.card} id = "badge">
+                    <h1 className = {classes.cardtitle}>Badge</h1>
                     <div>
                         <img alt="Name Of Accomplishment" src="https://img.icons8.com/plasticine/100/000000/warranty.png"/>
                     </div>
@@ -17,10 +18,10 @@ class Badges extends React.Component{
 class Skills extends React.Component{
     render(){
         return(
-            <div class = "card" id = "skills">
-                    <h1 class="card-title">Skills </h1>
-                    <div class ="skill">
-                        <p class="skill-name">Python</p>
+            <div className = {classes.card} id = "skills">
+                    <h1 className = {classes.cardtitle}>Skills </h1>
+                    <div className = {classes.skill}>
+                        <p className = {classes.skillname}>Python</p>
                         <h6>Endorsed by ABC and 5 others</h6>                            
                     </div>                    
                 </div> 
@@ -32,13 +33,13 @@ class ProfileContent extends React.Component {
     render(){
         return(
             <div id="profile">
-            <section class="cards">
-                <div class = "card" id = "about">
-                    <h1 class="card-title">About Me</h1>
+            <section className = {classes.cards}>
+                <div className = {classes.card} id = "about">
+                    <h1 className = {classes.cardtitle}>About Me</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit nulla, convallis rhoncus neque sit amet, porta porttitor magna. Aenean suscipit urna vel ante posuere, nec pulvinar tellus facilisis. Nullam ultrices imperdiet arcu, eget iaculis enim faucibus eget. Sed nibh nibh, elementum sed finibus et, lacinia quis metus. Etiam eget hendrerit tellus. Ut accumsan tincidunt felis quis hendrerit. Curabitur auctor venenatis ante ac venenatis.</p>
                 </div>               
             </section>
-            <section class="cards">
+            <section className = {classes.cards}>
                 <Badges/>
                 <Skills/>
                                
@@ -51,14 +52,14 @@ class ProfileContent extends React.Component {
 class UpcomingMeet extends React.Component{
     render(){
         return(
-            <div class = "card" id = "upcoming-meeting">
-                    <h1 class="card-title" >Upcoming Meeting</h1>
-                    <div class ="meetings" onClick = {this.props.action}>
-                        <button  class="open">Reshedule</button>
-                        <p class="meeting-info">Meeting with XYZ on JavaScript</p>
+            <div className = {classes.card} id = "upcomingmeeting">
+                    <h1 className = {classes.cardtitle} >Upcoming Meeting</h1>
+                    <div className = {classes.meetings} onClick = {this.props.action}>
+                        <button  className = {classes.open}>Reshedule</button>
+                        <p className = {classes.meetinginfo}>Meeting with XYZ on JavaScript</p>
                         <button >Cancel</button>
-                        <p class="meeting-detail">Date: 2020/07/03</p>
-                        <p class="meeting-detail">Time: 5:30 AM</p>
+                        <p className = {classes.meetingdetail}>Date: 2020/07/03</p>
+                        <p className = {classes.meetingdetail}>Time: 5:30 AM</p>
                     </div> 
             </div>
         )
@@ -68,11 +69,11 @@ class UpcomingMeet extends React.Component{
 class RecentMeet extends React.Component{
     render(){
         return(
-            <div class = "card" id = "recent-meeting">
-                    <h1 class="card-title">Recent Meetings</h1>
-                    <div class ="meetings">                            
+            <div className = {classes.card} id = "recentmeeting">
+                    <h1 className = {classes.cardtitle}>Recent Meetings</h1>
+                    <div className = {classes.meetings}>                            
                         <button >Endorse</button>
-                        <p class="meeting-info">Meeting with XYZ on JavaScript</p>
+                        <p className = {classes.meetinginfo}>Meeting with XYZ on JavaScript</p>
                     </div>                    
             </div>
         )
@@ -82,9 +83,9 @@ class RecentMeet extends React.Component{
 class Popup extends React.Component {
     render(){
         return(
-            <div class="popup-overlay">
-                <div class="popup-content">
-                    <button class="close" onClick = {this.props.action}><icon>Close</icon></button>
+            <div className = {classes.popupoverlay}>
+                <div className = {classes.popupcontent}>
+                    <button className = {classes.close} onClick = {this.props.action}><icon>Close</icon></button>
                     <form>
                         <label for="start">Date:</label>
                         <input type="date"></input>
@@ -115,11 +116,11 @@ class MeetingContent extends React.Component {
     render(){
         return(
             <div id="meeting" >
-            <section class="cards">                
-            <UpcomingMeet action ={this.ResheduleActive}/>
-            <RecentMeet/>                     
-            </section>
-            {this.state.showRegister && <Popup action = {this.ResheduleInActive}/>}
+                <section className = {classes.cards}>                
+                <UpcomingMeet action ={this.ResheduleActive}/>
+                <RecentMeet/>                     
+                </section>
+                {this.state.showRegister && <Popup action = {this.ResheduleInActive}/>}
             </div>
         )
     }
@@ -128,13 +129,13 @@ class MeetingContent extends React.Component {
 class ProfileHeader extends React.Component{
     render(){
         return(
-            <div id="profile-header">
-                <div class="prfile-overlay"></div>
-                    <div class="intro">
-                        <div class="profile-image">
-                            <img id="myphoto" src="https://dummyimage.com/500/09f/fff.png" alt="Mock Name"></img>
+            <div id="profileheader">
+                <div className = {classes.prfileoverlay}></div>
+                    <div className = {classes.intro}>
+                        <div className = {classes.profileimage}>
+                            <img className = {classes.bannerphoto} src="https://dummyimage.com/500/09f/fff.png" alt="Mock Name"></img>
                         </div>
-                        <h1 id="myname">Mock Name</h1>
+                        <h1 className = {classes.bannername}>Mock Name</h1>
                     </div>
             </div>
         )
@@ -144,7 +145,7 @@ class ProfileHeader extends React.Component{
 class NavItem extends React.Component{
     render(){
         return(
-            <li><a class="item" id = {this.props.activeProfile && "active"} onClick={this.props.action}>{this.props.children}</a></li> 
+            <li><a href="#" className = {classes.item} id = {this.props.activeProfile && "active"} onClick={this.props.action}>{this.props.children}</a></li> 
         )
     }
 }
@@ -166,8 +167,8 @@ class Profile extends React.Component {
       return (
         <div>  
             <ProfileHeader/> 
-            <nav class="profile-nav">        
-                <ul class="nav navbar-nav navbar-left">
+            <nav className = {classes.profilenav}>        
+                <ul className = {classes.nav}>
                     <NavItem action={this.clickProfile} activeProfile = {this.state.activeProfile}>Profile</NavItem>
                     <NavItem action={this.clickMeeting} activeProfile = {!this.state.activeProfile}>Meeting</NavItem>
                 </ul>

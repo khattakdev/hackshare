@@ -13,12 +13,12 @@ body{
     padding-top: 50px;    
  }
 
-.profile-image{    
+.profileimage{    
     display: flex;
     justify-content: center;
  }
 
-#myphoto{
+.bannerphoto{
     border-radius: 100%;
     filter:grayscale(30%);
     align-self: center;
@@ -26,7 +26,7 @@ body{
     height: 200px;    
  }
 
-#myname{
+.bannername{
     margin-top: 20px;
     text-align: center;
     font-size: 30px;
@@ -60,14 +60,13 @@ nav{
     text-decoration: none;
 }
 
-.nav a:hover {
+a#active{
     color: white;
 }
-   
-.nav a#active {
+
+.nav a:hover {
     color: white;
-  }
-   
+}   
 
 .cards {
     display: grid;
@@ -78,7 +77,7 @@ nav{
     margin-bottom: 25px; 
 }
 
-.card-title{
+.cardtitle{
     color: #6E6E6E;
     text-decoration: underline;
     margin-bottom: 10px;
@@ -100,7 +99,7 @@ nav{
     height: min-content;
 }
 
-.skill-name{
+.skillname{
     padding-bottom: 10px;
 }
 
@@ -114,11 +113,11 @@ nav{
     border-bottom:1px solid #6E6E6E;
 }
 
-.meeting-detail{
+.meetingdetail{
     font-size: 15px;
 }
 
-.popup-overlay {    
+.popupoverlay {    
     position:fixed; 
     top: calc(50% - 25px); 
     left: calc(50% - 200px); 
@@ -129,7 +128,7 @@ nav{
     text-align: center;
   }  
   
-.popup-content {
+.popupcontent {
     margin: 0 auto;
     top: 25%;
     position: relative;
@@ -140,7 +139,7 @@ button{
 }
 
 @media screen and (min-width: 700px) {
-    #myname{
+    .bannername{
         margin-top: 20px;
         text-align: center;
         font-size: 40px;
