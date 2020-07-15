@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from "react-dom";
-import './profile.css';
+import './index.css';
 
 class ProfileContent extends React.Component {
     render(){
