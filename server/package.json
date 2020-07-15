@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "debug": "nodemon app.js"
   },
   "keywords": [],
   "author": "Arsalan Khattak <akkhattak65@gmail.com>",

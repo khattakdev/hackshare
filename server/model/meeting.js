@@ -21,6 +21,10 @@ const meetingSchema = new Schema(
       type: Date,
       required: true,
     },
+    duration: {
+      type: Number,
+      required: true,
+    },
     meeting_url: {
       type: String,
       required: true,
