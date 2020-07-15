@@ -1,4 +1,4 @@
-const { learningDB, userDB } = require("../Model/index");
+const { learningDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
 exports.addLearning = async (req, res) => {

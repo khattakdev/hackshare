@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const freeSlotSchema = new Schema(
   {
-    user_id: {
+    userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
