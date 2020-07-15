@@ -1,7 +1,7 @@
 const { expertiseDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
-exports.getAllExpertise = async (req, res) => {
+exports.getUserExpertise = async (req, res) => {
   const user_id = req.params.user_id;
 
   try {

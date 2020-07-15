@@ -1,7 +1,7 @@
 const { learningDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
-exports.getAllLearnings = async (req, res) => {
+exports.getUserLearnings = async (req, res) => {
   const user_id = req.params.user_id;
 
   try {

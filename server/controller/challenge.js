@@ -1,11 +1,11 @@
 const { challengeDB } = require("../Model/index");
 const Joi = require("@hapi/joi");
 
-exports.getAllChallenges = async (req, res) => {
+exports.getExpertiseChallenges = async (req, res) => {
   const expertise_id = req.params.expertise_id;
 
   try {
-    let challenges = await challengeDB.find({ expertise_id: expertise_id });
+    let challenges = await challengeDB.find({ expertise_id });
     res.status(200).json({
       msg: challenges,
     });
