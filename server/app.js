@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 // );
 
 app.use("/user", routes.user);
+app.use("/expertise", routes.expertise);
 app.use("/learning", routes.learning);
 app.use("/challenge", routes.challenge);
 
