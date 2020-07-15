@@ -12,7 +12,7 @@ const learningSchema = new Schema(
       type: String,
       required: true,
     },
-    auth0_ref: {
+    auth0Ref: {
       type: String,
       required: true,
     },

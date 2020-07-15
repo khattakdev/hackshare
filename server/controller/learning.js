@@ -40,7 +40,7 @@ exports.addLearning = async (req, res) => {
   }
 
   try {
-    const user = await userDB.findOne({ auth0_ref: sub });
+    const user = await userDB.findOne({ auth0Ref: sub });
     if (!user) {
       return res.status(404).json({
         msg: "User not Found!",
@@ -50,7 +50,7 @@ exports.addLearning = async (req, res) => {
       user_id: user._id,
       topic,
       level,
-      auth0_ref: sub,
+      auth0Ref: sub,
     });
     await newLearning.save();
 
@@ -88,23 +88,24 @@ exports.updateLearning = async (req, res) => {
   }
 
   try {
-    let learning = await learningDB.findOne({
-      _id: learning_id,
-      auth0_ref: sub,
-    });
+    let learning = await learningDB.findOneAndUpdate(
+      {
+        _id: learning_id,
+        auth0Ref: sub,
+      },
+      {
+        $set: {
+          topic,
+          level,
+        },
+      }
+    );
 
     if (!learning) {
       return res.status(404).json({
         msg: "Language/Skill not Found!",
       });
     }
-
-    learning = {
-      ...learning,
-      topic,
-      level,
-    };
-    await learning.save();
 
     return res.status(200).json({
       msg: "Language/Skill Updated",
@@ -136,9 +137,9 @@ exports.removeLearning = async (req, res) => {
   }
 
   try {
-    const learning = await learningDB.findOne({
+    const learning = await learningDB.findOneAndDelete({
       _id: learning_id,
-      auth0_ref: sub,
+      auth0Ref: sub,
     });
 
     if (!learning) {

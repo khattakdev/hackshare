@@ -1,4 +1,4 @@
-const { challengeDB } = require("../Model/index");
+const { challengeDB, expertiseDB } = require("../Model/index");
 const Joi = require("@hapi/joi");
 
 exports.getExpertiseChallenges = async (req, res) => {
@@ -55,8 +55,11 @@ exports.addChallenge = async (req, res) => {
   }
 
   try {
-    // Find an Expertise with topic [expertise] and auth0_ref [sub]
-    const expertise = expertise.findOne({ topic: expertise, auth0_ref: sub });
+    // Find an Expertise with topic [expertise] and auth0Ref [sub]
+    const expertise = await expertiseDB.findOne({
+      topic: expertise,
+      auth0Ref: sub,
+    });
     if (!expertise) {
       return res.status(404).json({
         msg: "Expertise not Found!",
@@ -117,27 +120,28 @@ exports.updateChallenge = async (req, res) => {
   }
 
   try {
-    let challenge = await challengeDB.findOne({
-      _id: challenge_id,
-      auth0_ref: sub,
-    });
+    let challenge = await challengeDB.findOneAndUpdate(
+      {
+        _id: challenge_id,
+        auth0Ref: sub,
+      },
+      {
+        $set: {
+          topic,
+          difficulty,
+          description,
+          repo_url,
+          assets,
+          cover_photo,
+        },
+      }
+    );
 
     if (!challenge) {
       return res.status(404).json({
         msg: "Challenge not Found!",
       });
     }
-
-    challenge = {
-      ...challenge,
-      topic,
-      difficulty,
-      description,
-      repo_url,
-      assets,
-      cover_photo,
-    };
-    await challenge.save();
 
     return res.status(200).json({
       msg: "Challenge Updated",
@@ -168,15 +172,13 @@ exports.removeChallenge = async (req, res) => {
   }
 
   try {
-    let challenge = learningDB.findById(challenge_id);
+    let challenge = await challengeDB.findOneAndDelete({ _id: challenge_id });
 
     if (!challenge) {
       return res.status(404).json({
         msg: "Language/Skill not Found!",
       });
     }
-
-    await challenge.remove();
 
     return res.status(200).json({
       msg: "Challenge Removed",

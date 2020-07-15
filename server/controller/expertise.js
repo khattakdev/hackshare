@@ -39,7 +39,7 @@ exports.addExpertise = async (req, res) => {
   }
 
   try {
-    const user = await userDB.findOne({ auth0_ref: sub });
+    const user = await userDB.findOne({ auth0Ref: sub });
     if (!user) {
       return res.status(404).json({
         msg: "User not Found!",
@@ -49,7 +49,7 @@ exports.addExpertise = async (req, res) => {
       user_id: user._id,
       topic,
       level,
-      auth0_ref: sub,
+      auth0Ref: sub,
     });
     await newExpertise.save();
 
@@ -89,23 +89,24 @@ exports.updateExpertise = async (req, res) => {
   }
 
   try {
-    let expertise = await expertiseDB.findOne({
-      _id: expertise_id,
-      auth0_ref: sub,
-    });
+    let expertise = await expertiseDB.findOneAndUpdate(
+      {
+        _id: expertise_id,
+        auth0Ref: sub,
+      },
+      {
+        $set: {
+          topic,
+          level,
+        },
+      }
+    );
 
     if (!expertise) {
       return res.status(404).json({
         msg: "Expertise not Found!",
       });
     }
-
-    expertise = {
-      ...expertise,
-      topic,
-      level,
-    };
-    await expertise.save();
 
     return res.status(200).json({
       msg: "Expertise Updated",
@@ -141,9 +142,9 @@ exports.removeExpertise = async (req, res) => {
   }
 
   try {
-    const expertise = expertiseDB.findOne({
+    const expertise = expertiseDB.findOneAndDelete({
       _id: expertise_id,
-      auth0_ref: sub,
+      auth0Ref: sub,
     });
 
     if (!expertise) {

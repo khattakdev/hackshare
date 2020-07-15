@@ -16,7 +16,7 @@ const expertiseSchema = new Schema(
       type: Number,
       required: true,
     },
-    auth0_ref: {
+    auth0Ref: {
       type: String,
       required: true,
     },
