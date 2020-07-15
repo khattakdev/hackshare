@@ -23,7 +23,6 @@ exports.addLearning = async (req, res) => {
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
     level: Joi.number().min(1).max(2).required(),
-    user_id: Joi.string().required(),
   });
 
   // Schema Validation
@@ -48,7 +47,7 @@ exports.addLearning = async (req, res) => {
       });
     }
     const newLearning = new learningDB({
-      user_id,
+      user_id: user._id,
       topic,
       level,
       auth0_ref: sub,
@@ -89,7 +88,10 @@ exports.updateLearning = async (req, res) => {
   }
 
   try {
-    let learning = await learningDB.findById(learning_id);
+    let learning = await learningDB.findOne({
+      _id: learning_id,
+      auth0_ref: sub,
+    });
 
     if (!learning) {
       return res.status(402).json({
@@ -115,6 +117,7 @@ exports.updateLearning = async (req, res) => {
 };
 
 exports.removeLearning = async (req, res) => {
+  const { sub } = req.user;
   const { learning_id } = req.body;
 
   const schema = Joi.object().keys({
@@ -133,7 +136,10 @@ exports.removeLearning = async (req, res) => {
   }
 
   try {
-    const learning = await learningDB.findById(learning_id);
+    const learning = await learningDB.findOne({
+      _id: learning_id,
+      auth0_ref: sub,
+    });
 
     if (!learning) {
       return res.status(402).json({

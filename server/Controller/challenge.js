@@ -117,7 +117,10 @@ exports.updateChallenge = async (req, res) => {
   }
 
   try {
-    let challenge = challengeDB.findById(challenge_id);
+    let challenge = await challengeDB.findOne({
+      _id: challenge_id,
+      auth0_ref: sub,
+    });
 
     if (!challenge) {
       return res.status(402).json({
