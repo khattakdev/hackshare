@@ -42,7 +42,7 @@ exports.addLearning = async (req, res) => {
   try {
     const user = await userDB.findOne({ auth0_ref: sub });
     if (!user) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "User not Found!",
       });
     }
@@ -94,7 +94,7 @@ exports.updateLearning = async (req, res) => {
     });
 
     if (!learning) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "Language/Skill not Found!",
       });
     }
@@ -142,7 +142,7 @@ exports.removeLearning = async (req, res) => {
     });
 
     if (!learning) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "Language/Skill not Found!",
       });
     }

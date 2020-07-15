@@ -58,7 +58,7 @@ exports.addChallenge = async (req, res) => {
     // Find an Expertise with topic [expertise] and auth0_ref [sub]
     const expertise = expertise.findOne({ topic: expertise, auth0_ref: sub });
     if (!expertise) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "Expertise not Found!",
       });
     }
@@ -123,7 +123,7 @@ exports.updateChallenge = async (req, res) => {
     });
 
     if (!challenge) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "Challenge not Found!",
       });
     }
@@ -171,7 +171,7 @@ exports.removeChallenge = async (req, res) => {
     let challenge = learningDB.findById(challenge_id);
 
     if (!challenge) {
-      return res.status(402).json({
+      return res.status(404).json({
         msg: "Language/Skill not Found!",
       });
     }
