@@ -41,7 +41,7 @@ const userSchema = new Schema(
       required: true,
       default: 0,
     },
-    authO_ref: {
+    auth0_ref: {
       type: String,
       required: true,
     },

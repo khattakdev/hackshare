@@ -12,6 +12,10 @@ const learningSchema = new Schema(
       type: String,
       required: true,
     },
+    auth0_ref: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

@@ -55,8 +55,8 @@ exports.addChallenge = async (req, res) => {
   }
 
   try {
-    // Find an Expertise wuth topic [expertise] and auth0_ref [sub]
-    const expertise = expertise.findOne({ topic: expertise, authO_ref: sub });
+    // Find an Expertise with topic [expertise] and auth0_ref [sub]
+    const expertise = expertise.findOne({ topic: expertise, auth0_ref: sub });
     if (!expertise) {
       return res.status(402).json({
         msg: "Expertise not Found!",
