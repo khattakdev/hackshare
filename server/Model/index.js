@@ -9,13 +9,13 @@ const achievement = require("./achievement");
 const freeSlot = require("./freeSlot");
 
 module.exports = {
-  user,
-  task,
-  meeting,
-  learning,
-  expertise,
-  endorsement,
-  challenge,
-  achievement,
-  freeSlot,
+  userDB: user,
+  taskDB: task,
+  meetingDB: meeting,
+  learningDB: learning,
+  expertiseDB: expertise,
+  endorsementDB: endorsement,
+  challengeDB: challenge,
+  achievementDB: achievement,
+  freeSlotDB: freeSlot,
 };
