@@ -78,7 +78,7 @@ nav{
     margin-bottom: 25px; 
 }
 
-.card_title{
+.card-title{
     color: #6E6E6E;
     text-decoration: underline;
     margin-bottom: 10px;
@@ -127,15 +127,13 @@ nav{
     color: #121212;
     box-shadow: #121212;
     text-align: center;
-  } 
-   
+  }  
   
 .popup-content {
     margin: 0 auto;
     top: 25%;
     position: relative;
-}
-  
+}  
 
 button{
     float: right;
@@ -165,7 +163,3 @@ button{
         margin-top: 0px;
     }
 }
-
-
-
-  
