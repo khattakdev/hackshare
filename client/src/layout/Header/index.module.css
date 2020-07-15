@@ -1,19 +1,20 @@
-header {
-  height: 50px;
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  background-color: #fafafa;
+.header {
+  background-color: #303030 !important;
+  box-shadow: none !important;
+  padding: 0 50px;
 }
 
 .logo {
-  margin: 0 5px;
-  font-size: 20px;
-  font-weight: bold;
+  width: 150px;
 }
 
 .link {
   margin: 0 20px;
+  font-weight: bold;
+}
+
+.link:hover {
+  color: blue;
 }
 
 .spacer {
