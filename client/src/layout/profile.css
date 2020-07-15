@@ -104,6 +104,10 @@ nav{
     padding-bottom: 10px;
 }
 
+#meeting{
+    display: hide;
+}
+
 .meetings,.skill{
     margin: 10px;
     padding: 10px;
@@ -119,27 +123,22 @@ nav{
     top: calc(50% - 25px); 
     left: calc(50% - 200px); 
     position: absolute;
-    visibility: hidden;
     background-color: white;
     color: #121212;
     box-shadow: #121212;
+    text-align: center;
   } 
    
-.popup-overlay.active {
-    visibility: visible;
-    text-align: center;
-    display: block;
-}
   
 .popup-content {
-    visibility: hidden;
     margin: 0 auto;
     top: 25%;
     position: relative;
 }
   
-.popup-content.active {
-    visibility: visible;
+
+button{
+    float: right;
 }
 
 @media screen and (min-width: 700px) {
@@ -166,4 +165,7 @@ nav{
         margin-top: 0px;
     }
 }
+
+
+
   
