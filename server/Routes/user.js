@@ -1,7 +1,14 @@
 const express = require("express");
-const userController = require("../controller/user");
+const userController = require("../Controller/user");
 const router = express.Router();
 
-router.get("/register", userController.register);
+router
+  .route("/")
+  .post(userController.register)
+  .put(userController.edit)
+  .get(userController.whoami);
+router
+  .post("/freeSlot", userController.freeSlots)
+  .get("/freeSlot/:userId", userController.getFreeSlots);
 
 module.exports = router;

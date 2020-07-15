@@ -1,11 +1,11 @@
-import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import './App.css';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import Profile from './pages/Profile';
-import Experts from './pages/Experts';
-import Learners from './pages/Learners';
-import Landing from './pages/Landing';
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import "./App.css";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Profile from "./Pages/Profile";
+import Experts from "./Pages/Experts";
+import Learners from "./Pages/Learners";
+import Landing from "./Pages/Landing";
 
 const App = (props) => {
   const {
@@ -15,18 +15,30 @@ const App = (props) => {
     loginWithRedirect,
     logout,
   } = useAuth0();
- // @TODO: Change window.location to react router
-  const handleLogout = () => logout({ returnTo: window.location.origin })
-  const handleLogin = () => loginWithRedirect()
-    return (
-      <div>
-        {isAuthenticated ? <button onClick={handleLogout}>Log out</button> : <button onClick={handleLogin}>Log in</button> }
-        { error && <div>Oops, Somethign went wrong... {JSON.stringify(error)}</div> }
-        { user && user.name }
-        { props.children }
-      </div>
-    );
-}
+  // @TODO: Change window.location to react router
+  const handleLogout = React.useCallback(
+    () => logout({ returnTo: window.location.origin }),
+    [logout]
+  );
+  const handleLogin = React.useCallback(
+    () => loginWithRedirect({ connection: "github" }),
+    [loginWithRedirect]
+  );
+  return (
+    <div>
+      {isAuthenticated ? (
+        <button onClick={handleLogout}>Log out</button>
+      ) : (
+        <button onClick={handleLogin}>Log in</button>
+      )}
+      {error && (
+        <div>Oops, Somethign went wrong... {JSON.stringify(error)}</div>
+      )}
+      {user && user.name}
+      {props.children}
+    </div>
+  );
+};
 
 export default function Routing() {
   return (
