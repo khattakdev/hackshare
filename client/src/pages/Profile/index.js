@@ -1,8 +1,8 @@
-import React from "react";
+import React,{Component} from "react";
 import "./index.module.css";
 import classes from "./index.module.css";
 
-class Badges extends React.Component{
+class Badges extends Component{
     render(){
         return(
             <div className = {classes.card} id = {classes.badge}>
@@ -15,7 +15,7 @@ class Badges extends React.Component{
     }
 }
 
-class Skills extends React.Component{
+class Skills extends Component{
     render(){
         return(
             <div className = {classes.card} id = {classes.skills}>
@@ -29,7 +29,7 @@ class Skills extends React.Component{
     }
 }
 
-class ProfileContent extends React.Component {
+class ProfileContent extends Component {
     render(){
         return(
             <div>
@@ -49,7 +49,7 @@ class ProfileContent extends React.Component {
     }
 }
 
-class UpcomingMeet extends React.Component{
+class UpcomingMeet extends Component{
     render(){
         return(
             <div className = {classes.card}>
@@ -66,7 +66,7 @@ class UpcomingMeet extends React.Component{
     }
 }
 
-class RecentMeet extends React.Component{
+class RecentMeet extends Component{
     render(){
         return(
             <div className = {classes.card}>
@@ -80,7 +80,7 @@ class RecentMeet extends React.Component{
     }
 }
 
-class Popup extends React.Component {
+class Popup extends Component {
     render(){
         return(
             <div className = {classes.popupoverlay}>
@@ -100,7 +100,7 @@ class Popup extends React.Component {
     }
 }
 
-class MeetingContent extends React.Component {
+class MeetingContent extends Component {
     constructor(props) {
         super(props)
         this.ResheduleInActive = this.ResheduleInActive.bind(this)
@@ -126,7 +126,7 @@ class MeetingContent extends React.Component {
     }
 }
 
-class ProfileHeader extends React.Component{
+class ProfileHeader extends Component{
     render(){
         return(
             <div>
@@ -142,7 +142,7 @@ class ProfileHeader extends React.Component{
     }
 }
 
-class NavItem extends React.Component{
+class NavItem extends Component{
     render(){
         return(
             <li><span className = {classes.item} id = {this.props.activeProfile && "active"} onClick={this.props.action}>{this.props.children}</span></li> 
@@ -150,7 +150,7 @@ class NavItem extends React.Component{
     }
 }
 
-class Profile extends React.Component {
+class Profile extends Component {
     constructor(props) {
         super(props)
         this.clickProfile = this.clickProfile.bind(this);
