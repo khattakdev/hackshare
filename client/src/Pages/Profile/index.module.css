@@ -54,17 +54,17 @@ nav{
     height: 30px;
 }
 
-.nav a{    
+.nav span{    
     margin-bottom: 0;
     color: #6E6E6E;
     text-decoration: none;
 }
 
-a#active{
+#active{
     color: white;
 }
 
-.nav a:hover {
+.nav span:hover {
     color: white;
 }   
 

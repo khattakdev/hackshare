@@ -145,7 +145,7 @@ class ProfileHeader extends React.Component{
 class NavItem extends React.Component{
     render(){
         return(
-            <li><a href="#" className = {classes.item} id = {this.props.activeProfile && "active"} onClick={this.props.action}>{this.props.children}</a></li> 
+            <li><span className = {classes.item} id = {this.props.activeProfile && "active"} onClick={this.props.action}>{this.props.children}</span></li> 
         )
     }
 }
