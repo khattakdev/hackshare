@@ -1,0 +1,33 @@
+header {
+  height: 50px;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.logo {
+  margin: 0 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.link {
+  margin: 0 20px;
+}
+
+.spacer {
+  margin: 0 auto;
+}
+
+.login {
+  background-color: #fff;
+  border: 1px solid #899cd0;
+  border-radius: 3px;
+  padding: 5px 20px;
+  margin: 0 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

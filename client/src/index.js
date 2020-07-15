@@ -1,19 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-// TODO: use react router :)
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
-      domain={process.env.REACT_APP_AUTH0_DOMAIN}
-      clientId={process.env.REACT_APP_CLIENT_ID}
-      redirectUri={window.location.origin}
-    >
-      <App />
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0Provider
+        domain={process.env.REACT_APP_AUTH0_DOMAIN}
+        clientId={process.env.REACT_APP_CLIENT_ID}
+        redirectUri={window.location.origin}
+      >
+        <App />
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
@@ -22,4 +24,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
