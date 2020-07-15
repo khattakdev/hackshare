@@ -5,5 +5,6 @@ const router = express.Router();
 router.get("/register", userController.addLearning);
 router.get("/remove", userController.removeLearning);
 router.get("/update", userController.updateLearning);
+router.get("/:user_id", userController.getAllLearnings);
 
 module.exports = router;
