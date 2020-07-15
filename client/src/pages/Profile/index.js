@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.module.css";
 import classes from "./index.module.css";
 
 class Badges extends React.Component {
