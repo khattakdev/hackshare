@@ -6,6 +6,7 @@ const expertise = require("./expertise");
 const endorsement = require("./endorsement");
 const challenge = require("./challenge");
 const achievement = require("./achievement");
+const freeSlot = require("./freeSlot");
 
 module.exports = {
   userDB: user,
@@ -16,4 +17,5 @@ module.exports = {
   endorsementDB: endorsement,
   challengeDB: challenge,
   achievementDB: achievement,
+  freeSlotDB: freeSlot,
 };

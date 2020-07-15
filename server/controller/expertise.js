@@ -1,4 +1,4 @@
-const { expertiseDB, userDB } = require("../Model/index");
+const { expertiseDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
 exports.addExpertise = async (req, res) => {
