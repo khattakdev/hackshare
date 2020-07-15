@@ -7,8 +7,6 @@ const connectDB = require("./helper/db");
 const bodyParser = require("body-parser");
 const app = express();
 
-app.use(bodyParser.json());
-
 app.use(
   jwt({
     secret: jwks.expressJwtSecret({
@@ -20,10 +18,15 @@ app.use(
     algorithms: ["RS256"],
   })
 );
+app.use(bodyParser.json());
 
 app.use("/user", routes.user);
 app.use("/expertise", routes.expertise);
 app.use("/learning", routes.learning);
+
+app.use(function (err, req, res, next) {
+  res.status(500).json({ err: err.message || err });
+});
 
 connectDB(() => {
   app.listen(8080);

@@ -15,33 +15,33 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    time_zone: {
+    timeZone: {
       type: String,
     },
-    country_code: {
+    countrCcode: {
       type: String,
     },
-    expert_meeting: {
+    expertMeeting: {
       type: Number,
       required: true,
       default: 0,
     },
-    learner_meeting: {
+    learnerMeeting: {
       type: Number,
       required: true,
       default: 0,
     },
-    challeneges_added: {
+    challenegesAdded: {
       type: Number,
       required: true,
       default: 0,
     },
-    challenges_complete: {
+    challengesComplete: {
       type: Number,
       required: true,
       default: 0,
     },
-    authO_ref: {
+    auth0Ref: {
       type: String,
       required: true,
     },
