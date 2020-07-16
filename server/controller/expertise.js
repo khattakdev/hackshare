@@ -1,6 +1,19 @@
 const { expertiseDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
+exports.getAllExpertise = async (req, res) => {
+  try {
+    let expertise = await expertiseDB.find();
+    res.status(200).json({
+      msg: expertise,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
+};
+
 exports.getUserExpertise = async (req, res) => {
   const user_id = req.params.user_id;
 
