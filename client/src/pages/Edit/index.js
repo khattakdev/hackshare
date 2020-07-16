@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import classes from "./index.module.css";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
+import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
 
 const CssTextField = withStyles({
     root: {
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'white',
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "white",
         }
     }
 }
@@ -41,36 +41,36 @@ class MediaCard extends Component{
                     label="Profile Picture URL"
                     defaultValue="https://dummyimage.com/500/09f/fff.png"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:600, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:600, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 <CssTextField
                     id="outlinedreadonlyinput"
                     label="Email id"
                     defaultValue="rashikakarki9841@gmail.com"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:600, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:600, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 <CssTextField
                     id="outlinedreadonlyinput"
                     label="Linkedin Profile"
                     defaultValue="https://www.linkedin.com/in/rashikakarki/"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:600, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:600, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 <CssTextField
                     id="outlinedreadonlyinput"
                     label="GitHub Profile"
                     defaultValue="https://github.com/RashikaKarki/"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:600, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:600, margin: "20px 20px 20px 20px", color: "white"}}
                 />               
                 
             </form>
@@ -92,27 +92,27 @@ class MediaCard extends Component{
                     label="Your First Name"
                     defaultValue="RashiKa"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:200, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:200, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 <CssTextField
                     id="outlinedreadonlyinput"
                     label="Your Middle Name"
                     defaultValue=" "
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:200, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:200, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 <CssTextField
                     id="outlinedreadonlyinput"
                     label="Your Last Name"
                     defaultValue="Karki"
                     variant="outlined"
-                    InputLabelProps={{style: { color: '#fff' },}}
-                    inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                    style={{ flex: 1, alignSelf:'center', width:200, margin: '20px 20px 20px 20px', color: 'white'}}
+                    InputLabelProps={{style: { color: "#fff" },}}
+                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                    style={{ flex: 1, alignSelf:"center", width:200, margin: "20px 20px 20px 20px", color: "white"}}
                 />
                 </div>
                 <div class = {classes.formbasic}>
@@ -122,9 +122,9 @@ class MediaCard extends Component{
                             defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elit nulla, convallis rhoncus neque sit amet, porta porttitor magna. Aenean suscipit urna vel ante posuere, nec pulvinar tellus facilisis. Nullam ultrices imperdiet arcu, eget iaculis enim faucibus eget. Sed nibh nibh, elementum sed finibus et, lacinia quis metus. Etiam eget hendrerit tellus. Ut accumsan tincidunt felis quis hendrerit. Curabitur auctor venenatis ante ac venenatis."
                             variant="outlined"
                             multiline = "true"
-                            InputLabelProps={{style: { color: '#fff' },}}
-                            inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                            style={{ flex: 1, alignSelf:'center', width:660,  margin: '20px 20px 20px 20px', color: 'white'}}
+                            InputLabelProps={{style: { color: "#fff" },}}
+                            inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                            style={{ flex: 1, alignSelf:"center", width:660,  margin: "20px 20px 20px 20px", color: "white"}}
                         />
                 </div>
                 <div class = {classes.formbasic}>
@@ -134,9 +134,9 @@ class MediaCard extends Component{
                             defaultValue="Nepal"
                             variant="outlined"
                             multiline = "true"
-                            InputLabelProps={{style: { color: '#fff' },}}
-                            inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                            style={{ flex: 1, alignSelf:'center', width:320,  margin: '20px 20px 20px 20px', color: 'white'}}
+                            InputLabelProps={{style: { color: "#fff" },}}
+                            inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                            style={{ flex: 1, alignSelf:"center", width:320,  margin: "20px 20px 20px 20px", color: "white"}}
                         />
                         <CssTextField
                             id="outlinedreadonlyinput"
@@ -144,9 +144,9 @@ class MediaCard extends Component{
                             defaultValue="NPT"
                             variant="outlined"
                             multiline = "true"
-                            InputLabelProps={{style: { color: '#fff' },}}
-                            inputProps={{ style: { fontFamily: 'Arial', color: 'white'}}}
-                            style={{ flex: 1, alignSelf:'center', width:320,  margin: '20px 20px 20px 20px', color: 'white'}}
+                            InputLabelProps={{style: { color: "#fff" },}}
+                            inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
+                            style={{ flex: 1, alignSelf:"center", width:320,  margin: "20px 20px 20px 20px", color: "white"}}
                         />
                         </div>
                 </form>
@@ -173,20 +173,20 @@ class EditDetails extends Component {
   }
 
   class SubmitForm extends React.Component {
-    state = { term: '' };  handleSubmit = (e) => {
+    state = { term: "" };  handleSubmit = (e) => {
       e.preventDefault();
-      if(this.state.term === '') return;
+      if(this.state.term === "") return;
       this.props.onFormSubmit(this.state.term);
-      this.setState({ term: '' });
+      this.setState({ term: "" });
     }  
     render() {
       return(
         <form onSubmit={this.handleSubmit}>
           <input
             style = {{width:400,height:30}} 
-            type='text'
+            type="text"
             className={classes.input}
-            placeholder='Enter Item'
+            placeholder="Enter Item"
             value={this.state.term}
             onChange={(e) => this.setState({term: e.target.value})}
           />
@@ -224,7 +224,7 @@ class EditDetails extends Component {
   class LearnerCard extends Component{
     constructor(props){
         super(props);
-        this.state = { allskill: ['Python', 'JavaScript', 'Java'] };
+        this.state = { allskill: ["Python", "JavaScript", "Java"] };
       }
     handleDelete = (index) => {
         const newArr = [...this.state.allskill];
@@ -250,7 +250,7 @@ class EditDetails extends Component {
 class ExpertiseCard extends Component{
     constructor(props){
         super(props);
-        this.state = { allskill: ['React', 'Julia', 'Node'] };
+        this.state = { allskill: ["React", "Julia", "Node"] };
       }
     handleDelete = (index) => {
         const newArr = [...this.state.allskill];
