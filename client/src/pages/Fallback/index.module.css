@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  position: fixed;
+  top: calc(50% - 25px);
+  left: calc(50% - 200px);
+  position: absolute;
+  color: white;
+  box-shadow: #121212;
+  text-align: center;
+}

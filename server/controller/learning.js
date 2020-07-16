@@ -1,6 +1,18 @@
 const { learningDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
+exports.getAllLearnings = async (req, res) => {
+  try {
+    let learnings = await learningDB.find();
+    res.status(200).json({
+      msg: learnings,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
+};
 exports.getUserLearnings = async (req, res) => {
   const user_id = req.params.user_id;
 
@@ -22,7 +34,7 @@ exports.addLearning = async (req, res) => {
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
-    level: Joi.number().min(1).max(2).required(),
+    level: Joi.number().min(1).max(3).required(),
   });
 
   // Schema Validation
@@ -31,7 +43,6 @@ exports.addLearning = async (req, res) => {
     await schema.validateAsync({
       topic,
       level,
-      user_id,
     });
   } catch (error) {
     return res.status(400).json({
@@ -48,6 +59,7 @@ exports.addLearning = async (req, res) => {
     }
     const newLearning = new learningDB({
       user_id: user._id,
+      name: user.name,
       topic,
       level,
       auth0Ref: sub,
@@ -56,6 +68,7 @@ exports.addLearning = async (req, res) => {
 
     return res.status(200).json({
       msg: "Language/Skill Added",
+      responseData: newLearning,
     });
   } catch (error) {
     return res.status(500).json({
@@ -70,7 +83,7 @@ exports.updateLearning = async (req, res) => {
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
-    level: Joi.number().required(),
+    level: Joi.number().min(1).max(3).required(),
     learning_id: Joi.string().required(),
   });
 
@@ -98,6 +111,9 @@ exports.updateLearning = async (req, res) => {
           topic,
           level,
         },
+      },
+      {
+        new: true,
       }
     );
 
@@ -109,6 +125,7 @@ exports.updateLearning = async (req, res) => {
 
     return res.status(200).json({
       msg: "Language/Skill Updated",
+      responseData: learning,
     });
   } catch (error) {
     return res.status(500).json({
@@ -152,6 +169,7 @@ exports.removeLearning = async (req, res) => {
 
     return res.status(200).json({
       msg: "Language/Skill Removed",
+      responseData: learning,
     });
   } catch (error) {
     return res.status(500).json({
