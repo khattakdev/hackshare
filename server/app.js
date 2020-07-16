@@ -25,9 +25,6 @@ app.use("/expertise", routes.expertise);
 app.use("/learning", routes.learning);
 app.use("/challenge", routes.challenge);
 
-app.get("/test", (req, res) => {
-  res.send(req.user);
-});
 app.use(function (err, req, res, next) {
   res.status(500).json({ err: err.message || err });
 });
