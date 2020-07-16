@@ -62,6 +62,7 @@ exports.addExpertise = async (req, res) => {
     }
     const newExpertise = new expertiseDB({
       user_id: user._id,
+      name: user.name,
       topic,
       level,
       tags,
