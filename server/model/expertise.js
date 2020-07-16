@@ -16,6 +16,12 @@ const expertiseSchema = new Schema(
       type: Number,
       required: true,
     },
+    tags: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     auth0Ref: {
       type: String,
       required: true,
@@ -24,4 +30,4 @@ const expertiseSchema = new Schema(
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-module.exports = mongoose.model("expertise", expertiseSchema);
+module.exports = expertiseSchema;

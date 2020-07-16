@@ -15,6 +15,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    picture: {
+      type: String,
+    },
     timeZone: {
       type: String,
     },
@@ -49,4 +52,4 @@ const userSchema = new Schema(
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = userSchema;

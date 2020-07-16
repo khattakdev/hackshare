@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  width: 200px;
+  padding-left: 40px;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.avatar {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.nickname {
+  font-weight: 300;
+}
+
+.menuroot {
+  position: relative;
+  top: 2000px !important;
+}
+
+.menu {
+  color: #fff !important;
+  background-color: #404040 !important;
+}
+
+.menuitem:hover {
+  color: #fafafa !important;
+  background-color: #505050 !important;
+}
