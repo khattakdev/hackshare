@@ -183,7 +183,6 @@ class Profile extends Component {
   }
   clickProfile(props) {
     this.setState({
-      ...this.state,
       activeProfile: true,
       isProfile: true,
       isMeeting: false,
