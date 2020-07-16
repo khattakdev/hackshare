@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -35,8 +35,8 @@ const skills = [
 
 function ControllableStates() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(skills[0]);
-  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = useState(skills[0]);
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <div class={classes.searchbar}>
@@ -69,6 +69,7 @@ function ControllableStates() {
 
 class SkillCard extends Component {
   render() {
+    const exp = this.props.expertise;
     return (
       <div className={classes.card}>
         <div>
@@ -76,11 +77,11 @@ class SkillCard extends Component {
             <div className={classes.profileimage}>
               <img
                 className={classes.bannerphoto}
-                src="https://dummyimage.com/500/09f/fff.png"
+                src={exp.photo}
                 alt="Mock Name"
               ></img>
             </div>
-            <p className={classes.bannername}>Rashika Karki</p>
+            <p className={classes.bannername}>{exp.name}</p>
             <div className={classes.bannerdetail}>
               <p>Endorsed by Syne and 4 others</p>
               <Button
@@ -98,6 +99,7 @@ class SkillCard extends Component {
 }
 
 const Experts = () => {
+  const [allExpertise, setAllExpertise] = useState([]);
   const { getIdTokenClaims } = useAuth0();
   useEffect(async () => {
     const token = (await getIdTokenClaims()).__raw;
@@ -117,10 +119,14 @@ const Experts = () => {
       </div>
       <br />
       <div className={classes.cards}>
+        {allExpertise.length > 0 ? (
+          allExpertise.map((expertise) => <SkillCard />)
+        ) : (
+          <p>No Experts Available</p>
+        )}
+        {/* <SkillCard />
         <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
+        <SkillCard /> */}
       </div>
     </div>
   );
