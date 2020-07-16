@@ -132,17 +132,15 @@ exports.updateExpertise = async (req, res) => {
 
 exports.removeExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { topic, expertise_id } = req.body;
+  const { expertise_id } = req.body;
 
   const schema = Joi.object().keys({
-    topic: Joi.string().required(),
     expertise_id: Joi.string().required(),
   });
 
   // Schema Validation
   try {
     await schema.validateAsync({
-      topic,
       expertise_id,
     });
   } catch (error) {
@@ -153,7 +151,7 @@ exports.removeExpertise = async (req, res) => {
   }
 
   try {
-    const expertise = expertiseDB.findOneAndDelete({
+    const expertise = await expertiseDB.findOneAndDelete({
       _id: expertise_id,
       auth0Ref: sub,
     });
@@ -164,10 +162,9 @@ exports.removeExpertise = async (req, res) => {
       });
     }
 
-    await expertise.remove();
-
     return res.status(200).json({
-      msg: "Expertise Updated",
+      msg: "Expertise Removed",
+      responseData: expertise,
     });
   } catch (error) {
     console.log(error.message);
