@@ -41,11 +41,17 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-        {user && <ProfileMenu logout={handleLogout} user={user}></ProfileMenu>}
+        {user && (
+          <ProfileMenu
+            logout={handleLogout}
+            user={user}
+            edge="end"
+          ></ProfileMenu>
+        )}
         {!isAuthenticated && (
           <Button
-            className={styles.login}
-            color="inherit"
+            classes={{ root: styles.login }}
+            variant="outlined"
             onClick={loginWithRedirect}
           >
             Log in

@@ -14,7 +14,7 @@
 }
 
 .link:hover {
-  color: blue;
+  color: #fafafa;
 }
 
 .spacer {
@@ -22,13 +22,11 @@
 }
 
 .login {
-  background-color: #fff;
-  border: 1px solid #899cd0;
-  border-radius: 3px;
-  padding: 5px 20px;
-  margin: 0 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+.login:hover {
+  color: #303030 !important;
+  background-color: #fff !important;
 }

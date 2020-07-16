@@ -1,7 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  padding: 10px;
   height: 60px;
   width: 200px;
 }
@@ -18,4 +17,19 @@
 
 .nickname {
   font-weight: 300;
+}
+
+.menuroot {
+  position: relative;
+  top: 2000px !important;
+}
+
+.menu {
+  color: #fff !important;
+  background-color: #404040 !important;
+}
+
+.menuitem:hover {
+  color: #fafafa !important;
+  background-color: #505050 !important;
 }
