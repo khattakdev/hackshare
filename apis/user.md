@@ -7,8 +7,6 @@
 **input:** 
 ```
 {
-	"firstName": "Arsalan",
-	"lastName": "Khattak",
 	"email":"akkhattak65@gmail.com",
 	"timeZone": "GMT +5",
 	"countryCode": "92"
@@ -46,7 +44,7 @@ All fields are required
 **input:** 
 ```
 {
-	"lastName": "Khan"
+	"email": "akkhattak6566@gmail.com"
 }
 ```
 User must send atleast one field, else validation will fail
@@ -55,7 +53,7 @@ User must send atleast one field, else validation will fail
 ```
     "msg": "User Updated",
     "responseData": {
-        "lastName": "Khann"
+        "email": "akkhattak6566@gmail.com"
     }
 ```
 
