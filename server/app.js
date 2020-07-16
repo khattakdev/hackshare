@@ -7,6 +7,9 @@ const connectDB = require("./helper/db");
 const bodyParser = require("body-parser");
 const app = express();
 
+app.get("/test", (req, res) => {
+  res.send("HELLO WORLD!!!");
+});
 app.use(
   jwt({
     secret: jwks.expressJwtSecret({
