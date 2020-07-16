@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import User from "./utils/User.js";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -13,7 +14,9 @@ ReactDOM.render(
         clientId={process.env.REACT_APP_CLIENT_ID}
         redirectUri={window.location.origin}
       >
-        <App />
+        <User>
+          <App />
+        </User>
       </Auth0Provider>
     </BrowserRouter>
   </React.StrictMode>,

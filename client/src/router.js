@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/index";
 import Experts from "./pages/Experts";
 import Learners from "./pages/Learners";
 import Landing from "./pages/Landing";

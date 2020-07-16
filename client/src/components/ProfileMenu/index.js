@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -9,56 +8,62 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 import styles from "./index.module.css";
 
-const ProfileMenu = ({ user, logout }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const isShown = Boolean(anchorEl);
-  const handleOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const menuId = "primary-menu";
-
-  const renderMenu = (
+const DropdownMenu = (props) => {
+  return (
     <Menu
-      classes={{ root: styles.menuroot, paper: styles.menu }}
-      anchorEl={anchorEl}
+      classes={{ paper: styles.menu }}
+      anchorEl={props.anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
+      id={props.menuId}
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isShown}
-      onClose={handleClose}
+      open={props.isShown}
+      onClose={props.handleClose}
     >
-      <MenuItem className={styles.menuitem} onClick={handleClose}>
+      <MenuItem className={styles.menuitem} onClick={props.handleClose}>
         <Link to="/profile">Profile</Link>
       </MenuItem>
-      <MenuItem className={styles.menuitem} onClick={logout}>
+      <MenuItem className={styles.menuitem} onClick={props.logout}>
         Log Out
       </MenuItem>
     </Menu>
   );
+};
+
+const ProfileMenu = ({ user, logout }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const menuId = "primary-menu";
+
   return (
     <>
       <div
         className={styles.container}
         aria-controls={menuId}
         aria-haspopup="true"
-        onClick={handleOpen}
+        onClick={handleClick}
       >
         <Avatar className={styles.avatar} alt={user.name} src={user.picture} />
         <p className={styles.nickname}>{user.nickname}</p>
-        <ArrowDropDownIcon />
+        <ArrowDropDownIcon ref={anchorEl} />
       </div>
-      {renderMenu}
+      <DropdownMenu
+        anchorEl={anchorEl}
+        logout={logout}
+        isShown={Boolean(anchorEl)}
+        handleClose={handleClose}
+        menuId={menuId}
+      />
     </>
   );
-};
-
-ProfileMenu.propTypes = {
-  user: PropTypes.element.isRequired,
-  logout: PropTypes.element.isRequired,
 };
 
 export default ProfileMenu;
