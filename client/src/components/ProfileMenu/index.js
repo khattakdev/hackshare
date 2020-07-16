@@ -39,7 +39,6 @@ const ProfileMenu = ({ user, logout }) => {
       </MenuItem>
     </Menu>
   );
-  console.log(user);
   return (
     <>
       <div

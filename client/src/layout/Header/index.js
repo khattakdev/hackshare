@@ -6,6 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 
+import { ReactComponent as Logo } from "../../assets/Logo.svg";
 import ProfileMenu from "../../components/ProfileMenu";
 import styles from "./index.module.css";
 
@@ -29,7 +30,7 @@ const Header = () => {
   return (
     <AppBar position="static" className={styles.header}>
       <Toolbar>
-        <img className={styles.logo} src="/Logo.svg"></img>
+        <Logo className={styles.logo}></Logo>
         <div className={styles.spacer}></div>
         {isAuthenticated &&
           linkData.map((link, i) => (
