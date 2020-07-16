@@ -3,7 +3,7 @@ const Joi = require("@hapi/joi");
 
 exports.getAllExpertise = async (req, res) => {
   try {
-    let expertise = await expertiseDB.find();
+    let expertise = await expertiseDB.find().populate("user_id");
     res.status(200).json({
       msg: expertise,
     });
@@ -62,7 +62,6 @@ exports.addExpertise = async (req, res) => {
     }
     const newExpertise = new expertiseDB({
       user_id: user._id,
-      name: user.name,
       topic,
       level,
       tags,
