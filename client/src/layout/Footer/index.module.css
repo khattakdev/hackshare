@@ -1,9 +1,15 @@
 footer {
+
+  flex-shrink: 0;
+  height: 60px;
   width: 100vw;
+  position: fixed;
+  bottom: 0;
   background-color: #303030;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  text-align:center;
+  padding: 20px;
+  margin-top: 50px;
+
 }
 
 .icon {

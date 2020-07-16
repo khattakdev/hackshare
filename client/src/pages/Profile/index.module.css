@@ -36,7 +36,7 @@ body {
 nav {
   padding-top: 30px;
   padding-left: 20px;
-  border-bottom: 1px solid aliceblue;
+  
 }
 
 .nav ul {
@@ -54,6 +54,10 @@ nav {
   height: 30px;
 }
 
+#active{
+  color: white;
+  border-bottom: 2px solid aliceblue;
+}
 .nav span {
   margin-bottom: 0;
   color: #6e6e6e;
@@ -81,6 +85,7 @@ nav {
   color: #6e6e6e;
   text-decoration: underline;
   margin-bottom: 10px;
+  font-size: 30px;
 }
 
 .card {
@@ -116,28 +121,56 @@ nav {
 }
 
 .meetingdetail {
+  margin-top: 10px;
   font-size: 15px;
+}
+
+.open{
+  float: right;
+  padding: 10px;
+}
+
+.cancelmeet{
+  float: right;
+  padding: 10px;
+}
+
+.close{
+  margin-bottom: 30px;
 }
 
 .popupoverlay {
   position: fixed;
-  top: calc(50% - 25px);
+  top: calc(50% - 150px);
   left: calc(50% - 200px);
   position: absolute;
   background-color: white;
   color: #121212;
   box-shadow: #121212;
   text-align: center;
+  padding: 20px;
+  align-content: center;
+  border-radius: 25px;
 }
-
 .popupcontent {
   margin: 0 auto;
   top: 25%;
   position: relative;
+  padding: 20px;
+}
+
+.datetime{
+  margin:20px;
 }
 
 button {
   float: right;
+}
+
+.meetbutton{
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  font-size: 10px !important;
 }
 
 @media screen and (min-width: 700px) {
