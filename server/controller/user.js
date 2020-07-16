@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 
 const registerSchema = joi
   .object({
-    firstName: joi.string().required(),
-    lastName: joi.string().required(),
     email: joi.string().email().required(),
     timeZone: joi.string().required(),
     countryCode: joi.string().required(),
@@ -17,9 +15,19 @@ exports.register = async (req, res) => {
   try {
     const userData = await registerSchema.validateAsync(req.body);
     if (!(await userDB.findOne({ auth0Ref: req.user.sub }))) {
-      const newUser = new userDB({ ...userData, auth0Ref: req.user.sub });
+      const [firstName, lastName] = req.user.name;
+      const newUser = new userDB({
+        ...userData,
+        firstName,
+        lastName,
+        auth0Ref: req.user.sub,
+        picture: req.user.picture,
+      });
       await newUser.save();
-      res.status(200).json(newUser);
+      res.status(200).json({
+        msg: "User Registered",
+        responseData: newUser,
+      });
     } else {
       res.status(500).json({ err: "username already exists" });
     }
@@ -30,20 +38,21 @@ exports.register = async (req, res) => {
 
 const editSchema = joi
   .object({
-    firstName: joi.string(),
-    lastName: joi.string(),
     timeZone: joi.string(),
     countryCode: joi.string(),
   })
   .required()
-  .or("firstName", "lastName", "timeZone", "countryCode");
+  .or("timeZone", "countryCode");
 
 exports.edit = async (req, res) => {
   try {
     const userData = await editSchema.validateAsync(req.body);
     if (await userDB.findOne({ auth0Ref: req.user.sub })) {
       await userDB.updateOne({ auth0Ref: req.user.sub }, { $set: userData });
-      res.status(200).json(userData);
+      res.status(200).json({
+        msg: "User Updated",
+        responseData: userData,
+      });
     } else {
       res.status(500).json({ err: "username doesn't exists" });
     }
@@ -103,7 +112,9 @@ exports.getFreeSlots = async (req, res) => {
 exports.whoami = async (req, res) => {
   try {
     const userData = await userDB.findOne({ auth0Ref: req.user.sub });
-    res.json(userData);
+    res.json({
+      responseData: userData,
+    });
   } catch (err) {
     res.status(500).json({ err: err.message || err });
   }
