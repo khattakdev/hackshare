@@ -11,10 +11,6 @@ import styles from "./index.module.css";
 
 const linkData = [
   {
-    name: "Profile",
-    route: "/profile",
-  },
-  {
     name: "Experts",
     route: "/experts",
   },
