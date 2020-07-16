@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV || process.env.NODE_ENV === "local") {
+  require("dotenv").config();
+}
 const express = require("express");
 const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
@@ -7,9 +9,7 @@ const connectDB = require("./helper/db");
 const bodyParser = require("body-parser");
 const app = express();
 
-app.get("/test", (req, res) => {
-  res.send("HELLO WORLD!!!");
-});
+app.use(require("cors")());
 app.use(
   jwt({
     secret: jwks.expressJwtSecret({
@@ -33,5 +33,5 @@ app.use(function (err, req, res, next) {
 });
 
 connectDB(() => {
-  app.listen(8080);
+  app.listen(process.env.PORT);
 });
