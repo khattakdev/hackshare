@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { string } = require("@hapi/joi");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -43,6 +44,9 @@ const userSchema = new Schema(
     auth0Ref: {
       type: String,
       required: true,
+    },
+    socialLink: {
+      type: String,
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
