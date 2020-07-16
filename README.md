@@ -1,21 +1,21 @@
-# HackShare!
+# HackShare
 
-A web app where fellows can share their knowledge with other fellows.
+HackShare is a web application where fellows can help each other learn new skills.
 
-## Getting Started!
+## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will you get this project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#-Deployment)** for notes on how to deploy the project on a live system.
 
 ### Requirements
 
-What things you need to install the software and how to install them
+Make sure that you have the following requirements already installed in your system.
 
 - [NodeJs](https://nodejs.org/)
 - [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
 ### Installation Guidelines
 
-A step by step series of how to get a development env running
+A step by step guide on getting a development environment running
 
 - Open Terminal and run
 
