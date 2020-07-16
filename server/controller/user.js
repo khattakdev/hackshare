@@ -8,6 +8,7 @@ const registerSchema = joi
     email: joi.string().email().required(),
     timeZone: joi.string().required(),
     countryCode: joi.string().required(),
+    socialLink: joi.string(),
   })
   .required();
 
@@ -38,9 +39,10 @@ const editSchema = joi
   .object({
     timeZone: joi.string(),
     countryCode: joi.string(),
+    socialLink: joi.string(),
   })
   .required()
-  .or("timeZone", "countryCode");
+  .or("timeZone", "countryCode", "socialLink");
 
 exports.edit = async (req, res) => {
   try {
@@ -165,6 +167,15 @@ exports.learner = async (req, res) => {
       },
     ]);
     res.json(learner.map((value) => value._id));
+  } catch (err) {
+    res.status(500).json({ err: err.message || err });
+  }
+};
+exports.user = async (req, res) => {
+  try {
+    const user = req.params.userId;
+    const userData = await userDB.findOne({ _id: mongoose.Types.ObjectId(user) });
+    res.json(userData);
   } catch (err) {
     res.status(500).json({ err: err.message || err });
   }
