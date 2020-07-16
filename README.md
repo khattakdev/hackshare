@@ -23,7 +23,7 @@ A step by step series of how to get a development env running
 git clone https://github.com/eKhattak/hackshare.git
 ```
 
-This will grab a local copy of repo
+This will grab a local copy of repository
 
 - Open project directory in terminal
 
@@ -76,7 +76,7 @@ To be Added
 - [Nodejs](https://nodejs.org/) - An open-source, cross-platform, JavaScript runtime environment
 - [MongoDB](http://mongodb.com/) - A cross-platform document-oriented database program
 
-## Contributing
+## Contribution Guidelines
 
 To be Added
 
@@ -86,7 +86,6 @@ To be Added
 - **Arsalan Khattak** - [Github](https://github.com/eKhattak)
 - **Drew Alexandar** - [Github](https://github.com/Drewbi)
 - **Rashika Karki** - [Github](https://github.com/RashikaKarki)
--
 
 See also the list of [contributors](https://github.com/ekhattak/hackshare/contributors) who participated in this project.
 
