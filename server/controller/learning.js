@@ -59,6 +59,7 @@ exports.addLearning = async (req, res) => {
     }
     const newLearning = new learningDB({
       user_id: user._id,
+      name: user.name,
       topic,
       level,
       auth0Ref: sub,

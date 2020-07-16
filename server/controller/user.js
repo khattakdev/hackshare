@@ -15,11 +15,9 @@ exports.register = async (req, res) => {
   try {
     const userData = await registerSchema.validateAsync(req.body);
     if (!(await userDB.findOne({ auth0Ref: req.user.sub }))) {
-      const [firstName, lastName] = req.user.name;
       const newUser = new userDB({
         ...userData,
-        firstName,
-        lastName,
+        name: req.user.name,
         auth0Ref: req.user.sub,
         picture: req.user.picture,
       });
