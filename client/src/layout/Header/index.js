@@ -31,7 +31,7 @@ const Header = () => {
     <AppBar position="static" className={styles.header}>
       <Toolbar>
         <Link to="/">
-          <Logo className={styles.logo}></Logo>
+          <Logo className={styles.logo}/>
         </Link>
         <div className={styles.spacer}></div>
         {isAuthenticated &&
