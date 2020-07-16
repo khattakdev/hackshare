@@ -10,6 +10,7 @@ const App = () => {
       <Header />
       <main>
         <Components />
+        <div className="footer-push"></div>
       </main>
       <Footer />
     </>
