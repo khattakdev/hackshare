@@ -1,6 +1,18 @@
 const { learningDB, userDB } = require("../model");
 const Joi = require("@hapi/joi");
 
+exports.getAllLearnings = async (req, res) => {
+  try {
+    let learnings = await learningDB.find();
+    res.status(200).json({
+      msg: learnings,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: "Server Error!",
+    });
+  }
+};
 exports.getUserLearnings = async (req, res) => {
   const user_id = req.params.user_id;
 
