@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Card from "../../components/ProfileCard";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -83,7 +84,7 @@ class SkillCard extends Component {
             </div>
             <p className={classes.bannername}>Rashika Karki</p>
             <div className={classes.bannerdetail}>
-              <p>Endorsed by Syne and 4 others</p>
+              <p>Endorsed by 5 people</p>
               <Button
                 classes={{ root: classes.meetingrequest }}
                 variant="outlined"
@@ -99,9 +100,10 @@ class SkillCard extends Component {
 }
 
 const Experts = () => {
+  const [allExpertise, setAllExpertise] = useState([1, 2, 3, 4, 6, 7, 8, 9]);
   const { getIdTokenClaims } = useAuth0();
   useEffect(async () => {
-    const token = (await getIdTokenClaims()).__raw;
+    const token = (await getIdTokenClaims())?.__raw;
 
     axios.get("/expertise", {
       headers: {
@@ -113,13 +115,14 @@ const Experts = () => {
 
   return (
     <div className={classes.expert}>
+      <h1 className={classes.hero_text}>Experts</h1>
       <div className={classes.searchbar}>
         <ControllableStates />
       </div>
       <br />
       <div className={classes.cards}>
         {allExpertise.length > 0 ? (
-          allExpertise.map((expertise) => <SkillCard />)
+          allExpertise.map((expertise) => <Card expert />)
         ) : (
           <p>No Experts Available</p>
         )}
