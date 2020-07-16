@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }
 ));
 
-const skills = ["Python","JavaScript","Java","Julia","C++","React","Django","Node"];
+const skills = ["All","Python","JavaScript","Java","Julia","C++","React","Django","Node"];
 
 function ControllableStates() {
   const classes = useStyles();
@@ -78,8 +78,8 @@ class SkillCard extends Component{
     )
   }
 }
-class Experts extends Component {
-  
+
+class Experts extends Component {  
   render(){
     return(
       <div className = {classes.expert}>

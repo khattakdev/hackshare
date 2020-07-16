@@ -129,6 +129,12 @@ nav {
   float: right;
   padding: 10px;
 }
+
+.cancelmeet{
+  float: right;
+  padding: 10px;
+}
+
 .close{
   margin-bottom: 30px;
 }
@@ -146,7 +152,6 @@ nav {
   align-content: center;
   border-radius: 25px;
 }
-
 .popupcontent {
   margin: 0 auto;
   top: 25%;
@@ -154,8 +159,18 @@ nav {
   padding: 20px;
 }
 
+.datetime{
+  margin:20px;
+}
+
 button {
   float: right;
+}
+
+.meetbutton{
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  font-size: 10px !important;
 }
 
 @media screen and (min-width: 700px) {

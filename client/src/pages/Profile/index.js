@@ -69,12 +69,12 @@ class UpcomingMeet extends Component {
     return (
       <div className={classes.card}>
         <p className={classes.cardtitle}>Upcoming Meeting</p>
-        <div className={classes.meetings} onClick={this.props.action}>
-        <Button color="primary" className={classes.open}>Reshedule</Button> 
+        <div className={classes.meetings} >
+        <Button color="primary" className={classes.open} classes={{ root: classes.meetbutton }} onClick={this.props.action}>Reshedule</Button> 
           <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>                   
           <p className={classes.meetingdetail}>Date: 2020/07/03</p>
-          <Button color="primary" className={classes.open}>Cancel</Button>
-          <p className={classes.meetingdetail}>Time: 5:30 AM</p>
+          <Button color="primary" className={classes.cancelmeet} classes={{ root: classes.meetbutton }}>Cancel</Button>
+          <p className={classes.meetingdetail} >Time: 5:30 AM</p>
         </div>
       </div>
     );
@@ -100,34 +100,36 @@ class Popup extends Component {
     return (
       <div className={classes.popupoverlay}>
         <div className={classes.popupcontent}>
-          <Button className={classes.close} onClick={this.props.action}>
-            <CloseIcon/>
-          </Button>
-          <br/>
-          <EventAvailableIcon style={{ fontSize: 60, margin: 20}}/>
+          <EventAvailableIcon style={{ fontSize: 80, margin: 20}}/>
           <form>
-              <TextField
-              id="date"
-              label="Date"
-              type="date"
-              defaultValue="2020-07-16"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <br/>
-            <TextField
-              id="time"
-              label="Time"
-              type="time"
-              defaultValue="07:30"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}/>
+            <div class={classes.datatime}>
+                <TextField
+                id="date"
+                label="Date"
+                type="date"
+                defaultValue="2020-07-1"
+                style = {{width:300}}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </div>
+            <div class={classes.datatime}>
+                <TextField
+                  id="time"
+                  label="Time"
+                  type="time"
+                  defaultValue="07:30"
+                  style = {{width:300}}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                }}/>
+              </div>
               <br/>
-            <Button>Send Request</Button>
+            <Button className={classes.close} onClick={this.props.action}>Close</Button>  
+            <Button>Send Request</Button>                    
           </form>
         </div>
       </div>
