@@ -6,6 +6,7 @@ import Experts from "./pages/Experts";
 import Learners from "./pages/Learners";
 import Landing from "./pages/Landing";
 import Fallback from "./pages/Fallback";
+import Edit from "./pages/Edit";
 
 const Router = () => {
   const routes = [
@@ -20,6 +21,10 @@ const Router = () => {
     {
       path: "/learners",
       component: Learners,
+    },
+    {
+      path: "/edit",
+      component: Edit,
     },
   ];
 

@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #121212;
+}
+
+nav {
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  display: inline-block;
+  font-size: 20px;
+  border-bottom: none;
+  height: 30px;
+  margin-left: 50px;
+}
+
+#active {
+  color: white;
+  border-bottom: 2px solid aliceblue;
+}
+.nav span {
+  margin-bottom: 0;
+  color: #6e6e6e;
+  text-decoration: none;
+}
+
+.nav span:hover {
+  color: white;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  color: white;
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.cardtitle {
+  color: #6e6e6e;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.card {
+  background-color: #1d1d1d;
+  margin: 25px;
+  margin-top: 0px;
+  border-radius: 25px;
+  padding: 20px;
+}
+.profileimage {
+  display: flex;
+  justify-content: center;
+}
+
+.formfield {
+  justify-content: center !important;
+}
+
+.formbasic {
+  display: flex;
+}
+.changecolor {
+  color: #fff !important;
+  border-bottom-color: #fff !important;
+  text-decoration-color: #fff !important;
+}
+.bannerphoto {
+  border-radius: 100%;
+  filter: grayscale(30%);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 30px;
+}
+.skillform {
+  display: flex;
+  padding: 10px;
+}
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Cpath fill="%239C92AC" fill-opacity="0.4" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"%3E%3C/path%3E%3C/svg%3E');
+}
+.input {
+  margin-right: 10px;
+}
+.frame {
+  width: 40vw;
+  max-width: 400px;
+}
+.header {
+  display: inline;
+  text-align: center;
+}
+.listwrapper {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.skillname {
+  padding-bottom: 10px;
+}
+
+.skillnamecontainer {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #6e6e6e;
+}
+
+.delete {
+  float: right;
+}
+
+.submitform {
+  background-color: #e7e7e7;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 25px;
+}
+
+.meetbutton {
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  font-size: 20px !important;
+  margin-bottom: 60px !important;
+  justify-content: center !important;
+}

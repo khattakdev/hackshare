@@ -23,7 +23,10 @@ const DropdownMenu = (props) => {
       <MenuItem className={styles.menuitem} onClick={props.handleClose}>
         <Link to="/profile">Profile</Link>
       </MenuItem>
-      <MenuItem className={styles.menuitem} onClick={props.logout}>
+      <MenuItem className={styles.menuitem} onClick={handleClose}>
+        <Link to="/edit">Edit Profile</Link>
+      </MenuItem>
+      <MenuItem className={styles.menuitem} onClick={logout}>
         Log Out
       </MenuItem>
     </Menu>

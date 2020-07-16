@@ -63,10 +63,6 @@ nav {
   text-decoration: none;
 }
 
-#active {
-  color: white;
-}
-
 .nav span:hover {
   color: white;
 }
