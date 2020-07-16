@@ -3,10 +3,9 @@ const userController = require("../controller/user");
 const router = express.Router();
 
 router
-  .route("/")
-  .post(userController.register)
-  .put(userController.edit)
-  .get(userController.whoami);
+  .post("/register", userController.register)
+  .put("/edit", userController.edit)
+  .get("/whoami", userController.whoami);
 router
   .post("/freeSlot", userController.freeSlots)
   .get("/freeSlot/:userId", userController.getFreeSlots);
