@@ -120,7 +120,7 @@ class MeetingContent extends Component {
     this.state = { showRegister: false };
   }
   ResheduleInActive() {
-    this.setState({ ...this.state, showRegister: false });
+    this.setState({ showRegister: false });
   }
   ResheduleActive() {
     this.setState({ showRegister: true });
