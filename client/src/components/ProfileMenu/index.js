@@ -9,7 +9,7 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 import styles from "./index.module.css";
 
-const ProfileMenu = ({ user, logout }) => {
+const ProfileMenu = ({ user, edit, logout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const isShown = Boolean(anchorEl);
   const handleOpen = (event) => {
@@ -33,6 +33,9 @@ const ProfileMenu = ({ user, logout }) => {
     >
       <MenuItem className={styles.menuitem} onClick={handleClose}>
         <Link to="/profile">Profile</Link>
+      </MenuItem>
+      <MenuItem className={styles.menuitem} onClick={handleClose}>
+        <Link to="/edit">Edit Profile</Link>
       </MenuItem>
       <MenuItem className={styles.menuitem} onClick={logout}>
         Log Out
@@ -58,6 +61,7 @@ const ProfileMenu = ({ user, logout }) => {
 
 ProfileMenu.propTypes = {
   user: PropTypes.element.isRequired,
+  edit : PropTypes.element.isRequired,
   logout: PropTypes.element.isRequired,
 };
 
