@@ -56,7 +56,7 @@ const renderSections = landingSections.map((section, i) => {
         {section.button && <LoginButton />}
       </div>
       {i % 2 !== 0 && (
-        <Illustration className={styles.illustration}></Illustration>
+        <Illustration className={styles.illustration}/>
       )}
     </div>
   );
