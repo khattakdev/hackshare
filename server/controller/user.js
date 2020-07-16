@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
       await newUser.save();
       res.status(200).json({
         msg: "User Registered",
-        user: newUser,
+        responseData: newUser,
       });
     } else {
       res.status(500).json({ err: "username already exists" });
@@ -52,7 +52,7 @@ exports.edit = async (req, res) => {
       await userDB.updateOne({ auth0Ref: req.user.sub }, { $set: userData });
       res.status(200).json({
         msg: "User Updated",
-        user: userData,
+        responseData: userData,
       });
     } else {
       res.status(500).json({ err: "username doesn't exists" });
@@ -113,7 +113,9 @@ exports.getFreeSlots = async (req, res) => {
 exports.whoami = async (req, res) => {
   try {
     const userData = await userDB.findOne({ auth0Ref: req.user.sub });
-    res.json(userData);
+    res.json({
+      responseData: userData,
+    });
   } catch (err) {
     res.status(500).json({ err: err.message || err });
   }

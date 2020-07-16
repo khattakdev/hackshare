@@ -16,6 +16,12 @@ const expertiseSchema = new Schema(
       type: Number,
       required: true,
     },
+    tags: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     auth0Ref: {
       type: String,
       required: true,

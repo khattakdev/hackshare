@@ -18,11 +18,12 @@ exports.getUserExpertise = async (req, res) => {
 
 exports.addExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level } = req.body;
+  const { topic, level, tags } = req.body;
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
     level: Joi.number().min(1).max(3).required(),
+    tags: Joi.array().max(3).required(),
   });
 
   // Schema Validation
@@ -30,6 +31,7 @@ exports.addExpertise = async (req, res) => {
     await schema.validateAsync({
       topic,
       level,
+      tags,
     });
   } catch (error) {
     console.log(error.message);
@@ -49,12 +51,14 @@ exports.addExpertise = async (req, res) => {
       user_id: user._id,
       topic,
       level,
+      tags,
       auth0Ref: sub,
     });
     await newExpertise.save();
 
     return res.status(200).json({
       msg: "Expertise Added",
+      responseData: newExpertise,
     });
   } catch (error) {
     return res.status(500).json({
@@ -65,13 +69,14 @@ exports.addExpertise = async (req, res) => {
 
 exports.updateExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level, expertise_id } = req.body;
+  const { topic, level, expertise_id, tags } = req.body;
 
   const schema = Joi.object().keys({
     // topic is Require and must be String
     topic: Joi.string().required(),
     level: Joi.number().min(1).max(3).required(),
     expertise_id: Joi.string().required(),
+    tags: Joi.array().max(3).required(),
   });
 
   // Schema Validation
@@ -80,6 +85,7 @@ exports.updateExpertise = async (req, res) => {
       topic,
       level,
       expertise_id,
+      tags,
     });
   } catch (error) {
     console.log(error.message);
@@ -98,7 +104,11 @@ exports.updateExpertise = async (req, res) => {
         $set: {
           topic,
           level,
+          tags,
         },
+      },
+      {
+        new: true,
       }
     );
 
@@ -110,6 +120,7 @@ exports.updateExpertise = async (req, res) => {
 
     return res.status(200).json({
       msg: "Expertise Updated",
+      responseData: expertise,
     });
   } catch (error) {
     console.log(error.message);
