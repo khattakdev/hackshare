@@ -100,9 +100,8 @@ response:
 
 input
 ```
-{
-	"expertise_id": "5f10118ba50d7f31e0ab8e5b"
-}
+No input, send user_id in URL
+/expertise/5f1008036cc91503f472b061
 ```
 
 response:
