@@ -20,7 +20,7 @@ All fields are required
 ```
 {
   msg: "User Registered",
-  user: {
+  responseData: {
     "expertMeeting": 0,
     "learnerMeeting": 0,
     "challenegesAdded": 0,
@@ -54,7 +54,7 @@ User must send atleast one field, else validation will fail
 **Response:**
 ```
     "msg": "User Updated",
-    "user": {
+    "responseData": {
         "lastName": "Khann"
     }
 ```
@@ -70,20 +70,22 @@ Find who's currently logged in
 **Response:**
 ```
 {
-    "expertMeeting": 0,
-    "learnerMeeting": 0,
-    "challenegesAdded": 0,
-    "challengesComplete": 0,
-    "_id": "5f1008036cc91503f472b061",
-    "firstName": "Arsalan",
-    "lastName": "Khann",
-    "email": "akkhattak65@gmail.com",
-    "timeZone": "GMT +5",
-    "auth0Ref": "github|37709578",
-    "picture": "https://avatars3.githubusercontent.com/u/37709578?v=4",
-    "created_at": "2020-07-16T07:55:47.613Z",
-    "updated_at": "2020-07-16T08:25:30.611Z",
-    "__v": 0
+   responseData: {
+	    "expertMeeting": 0,
+	    "learnerMeeting": 0,
+	    "challenegesAdded": 0,
+	    "challengesComplete": 0,
+	    "_id": "5f1008036cc91503f472b061",
+	    "firstName": "Arsalan",
+	    "lastName": "Khann",
+	    "email": "akkhattak65@gmail.com",
+	    "timeZone": "GMT +5",
+	    "auth0Ref": "github|37709578",
+	    "picture": "https://avatars3.githubusercontent.com/u/37709578?v=4",
+	    "created_at": "2020-07-16T07:55:47.613Z",
+	    "updated_at": "2020-07-16T08:25:30.611Z",
+	    "__v": 0
+    }
 }
 ```
 
