@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Icon from "@material-ui/core/Icon";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 import styles from "./index.module.css";
 
@@ -50,7 +50,7 @@ const ProfileMenu = ({ user, logout }) => {
       >
         <Avatar className={styles.avatar} alt={user.name} src={user.picture} />
         <p className={styles.nickname}>{user.nickname}</p>
-        <Icon></Icon>
+        <ArrowDropDownIcon />
       </div>
       {renderMenu}
     </>

@@ -3,6 +3,7 @@
   align-items: center;
   height: 60px;
   width: 200px;
+  padding-left: 100px;
 }
 
 .container:hover {
