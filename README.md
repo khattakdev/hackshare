@@ -4,7 +4,7 @@ HackShare is a web application where fellows can help each other learn new skill
 
 ## Getting Started
 
-These instructions will you get this project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#-Deployment)** for notes on how to deploy the project on a live system.
+These instructions will you get this project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#Deployment)** for notes on how to deploy the project on a live system.
 
 ### Requirements
 
