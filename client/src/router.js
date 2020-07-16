@@ -34,16 +34,16 @@ const Router = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing} />
-      {routes.map((route, i) =>
+      {routes.map((route) =>
         isAuthenticated ? (
-          <Route {...route} key={i} />
+          <Route {...route} key={route.path} />
         ) : (
           <Redirect
             to={{
               pathname: "/",
               state: { from: location },
             }}
-            key={i}
+            key={route.path}
           />
         )
       )}

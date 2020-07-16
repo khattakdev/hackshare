@@ -26,12 +26,14 @@ const Header = () => {
 
   // @TODO: Change window.location to react router
   const handleLogout = () => logout({ returnTo: window.location.origin });
+  const handleLogin = () =>
+    loginWithRedirect({ redirectUri: window.location.origin });
 
   return (
     <AppBar position="static" className={styles.header}>
       <Toolbar>
         <Link to="/">
-          <Logo className={styles.logo}/>
+          <Logo className={styles.logo} />
         </Link>
         <div className={styles.spacer}></div>
         {isAuthenticated &&
@@ -51,7 +53,7 @@ const Header = () => {
           <Button
             classes={{ root: styles.login }}
             variant="outlined"
-            onClick={loginWithRedirect}
+            onClick={handleLogin}
           >
             Log in
           </Button>

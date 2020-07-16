@@ -3,6 +3,7 @@ import "./index.module.css";
 import classes from "./index.module.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import CloseIcon from "@material-ui/icons/Close";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 
 class Badges extends Component {
@@ -260,5 +261,3 @@ class Profile extends Component {
     );
   }
 }
-
-export default Profile;

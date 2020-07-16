@@ -31,12 +31,14 @@ const landingSections = [
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
+  const handleLogin = () =>
+    loginWithRedirect({ redirectUri: window.location.origin });
 
   return (
     <Button
       classes={{ root: styles.button }}
       variant="contained"
-      onClick={loginWithRedirect}
+      onClick={handleLogin}
     >
       Get Started
     </Button>
@@ -47,17 +49,13 @@ const renderSections = landingSections.map((section, i) => {
   const Illustration = section.illustrationComponent;
   return (
     <div className={styles.section} key={i}>
-      {i % 2 === 0 && (
-        <Illustration className={styles.illustration}/>
-      )}
+      {i % 2 === 0 && <Illustration className={styles.illustration} />}
       <div className={styles.textblock}>
         <h2 className={styles.textheader}>{section.header}</h2>
         <p className={styles.textbody}>{section.body}</p>
         {section.button && <LoginButton />}
       </div>
-      {i % 2 !== 0 && (
-        <Illustration className={styles.illustration}/>
-      )}
+      {i % 2 !== 0 && <Illustration className={styles.illustration} />}
     </div>
   );
 });

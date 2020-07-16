@@ -1,42 +1,29 @@
-import React from "react";
-// import React, { Component, useState, useEffect } from "react";
-// import axios from 'axios';
+import React, { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../utils/UserProvider";
+import Register from "../../components/Register";
 
-// import classes from "./index.module.css";
+import classes from "./index.module.css";
 
 const Profile = () => {
-  // const [ isLoading, setLoading ] = useState(true);
-  // const [ user, setUser ] = useState({});
+  const { user } = useContext(UserContext);
+  const [dialogOpen, showDialog] = useState(false);
 
-  // useEffect(async () => {
-  //   const result = await axios(
-  //     'localhost:8080/whoami',
-  //   );
+  const handleOpen = () => {
+    showDialog(true);
+  };
 
-  //   setUser(result.data);
-  // });
+  const handleClose = () => {
+    showDialog(false);
+  };
+
+  useEffect(() => {
+    if (!user.registered) handleOpen();
+  }, []);
 
   return (
     <div>
-      {/* <ProfileHeader />
-      <nav className={classes.profilenav}>
-        <ul className={classes.nav}>
-          <NavItem
-            action={this.clickProfile}
-            activeProfile={this.state.activeProfile}
-          >
-            Profile
-          </NavItem>
-          <NavItem
-            action={this.clickMeeting}
-            activeProfile={!this.state.activeProfile}
-          >
-            Meeting
-          </NavItem>
-        </ul>
-      </nav>
-      {this.state.isMeeting && <MeetingContent />}
-      {this.state.isProfile && <ProfileContent />} */}
+      {user && user.email}
+      <Register open={dialogOpen} onClose={handleClose}></Register>
     </div>
   );
 };
