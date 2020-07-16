@@ -1,0 +1,68 @@
+.expert{
+    padding:20px;
+} 
+.searchbar{
+    display: block;
+    align-content: left;
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    color: white;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .cardtitle {
+    color: #6e6e6e;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    font-size: 30px;
+  }
+  
+  .card {
+    background-color: #1d1d1d;
+    margin: 25px;
+    margin-top: 0px;
+    border-radius: 25px;
+    padding: 20px;
+  }
+
+  .intro {
+    padding-top: 50px;
+  }
+  
+  .profileimage {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .bannerphoto {
+    border-radius: 100%;
+    filter: grayscale(30%);
+    align-self: center;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .bannername {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+  }
+
+.bannerdetail{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.meetingrequest {
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  font-size: 10px !important;
+  margin:30px !important;
+  margin-bottom: 10px !important;
+}

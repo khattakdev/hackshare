@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import "./index.module.css";
 import classes from "./index.module.css";
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
+import CloseIcon from '@material-ui/icons/Close';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 class Badges extends Component {
   render() {
     return (
       <div className={classes.card} id={classes.badge}>
-        <h1 className={classes.cardtitle}>Badge</h1>
+        <p className={classes.cardtitle}>Badge</p>
         <div>
           <img
             alt="Name Of Accomplishment"
@@ -22,7 +26,7 @@ class Skills extends Component {
   render() {
     return (
       <div className={classes.card} id={classes.skills}>
-        <h1 className={classes.cardtitle}>Skills </h1>
+        <p className={classes.cardtitle}>Skills </p>
         <div className={classes.skill}>
           <p className={classes.skillname}>Python</p>
           <h6>Endorsed by ABC and 5 others</h6>
@@ -38,7 +42,7 @@ class ProfileContent extends Component {
       <div>
         <section className={classes.cards}>
           <div className={classes.card}>
-            <h1 className={classes.cardtitle}>About Me</h1>
+            <p className={classes.cardtitle}>About Me</p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               elit nulla, convallis rhoncus neque sit amet, porta porttitor
@@ -64,12 +68,12 @@ class UpcomingMeet extends Component {
   render() {
     return (
       <div className={classes.card}>
-        <h1 className={classes.cardtitle}>Upcoming Meeting</h1>
+        <p className={classes.cardtitle}>Upcoming Meeting</p>
         <div className={classes.meetings} onClick={this.props.action}>
-          <button className={classes.open}>Reshedule</button>
-          <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>
-          <button>Cancel</button>
+        <Button color="primary" className={classes.open}>Reshedule</Button> 
+          <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>                   
           <p className={classes.meetingdetail}>Date: 2020/07/03</p>
+          <Button color="primary" className={classes.open}>Cancel</Button>
           <p className={classes.meetingdetail}>Time: 5:30 AM</p>
         </div>
       </div>
@@ -81,9 +85,9 @@ class RecentMeet extends Component {
   render() {
     return (
       <div className={classes.card}>
-        <h1 className={classes.cardtitle}>Recent Meetings</h1>
+        <p className={classes.cardtitle}>Recent Meetings</p>
         <div className={classes.meetings}>
-          <button>Endorse</button>
+          <Button>Endorse</Button>
           <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>
         </div>
       </div>
@@ -96,15 +100,34 @@ class Popup extends Component {
     return (
       <div className={classes.popupoverlay}>
         <div className={classes.popupcontent}>
-          <button className={classes.close} onClick={this.props.action}>
-            <icon>Close</icon>
-          </button>
+          <Button className={classes.close} onClick={this.props.action}>
+            <CloseIcon/>
+          </Button>
+          <br/>
+          <EventAvailableIcon style={{ fontSize: 60, margin: 20}}/>
           <form>
-            <label for="start">Date:</label>
-            <input type="date"></input>
-            <label for="start">Time:</label>
-            <input type="time"></input>
-            <input type="submit"></input>
+              <TextField
+              id="date"
+              label="Date"
+              type="date"
+              defaultValue="2020-07-16"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <br/>
+            <TextField
+              id="time"
+              label="Time"
+              type="time"
+              defaultValue="07:30"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}/>
+              <br/>
+            <Button>Send Request</Button>
           </form>
         </div>
       </div>
@@ -142,7 +165,6 @@ class ProfileHeader extends Component {
   render() {
     return (
       <div>
-        <div className={classes.prfileoverlay}></div>
         <div className={classes.intro}>
           <div className={classes.profileimage}>
             <img
@@ -151,7 +173,7 @@ class ProfileHeader extends Component {
               alt="Mock Name"
             ></img>
           </div>
-          <h1 className={classes.bannername}>Mock Name</h1>
+          <p className={classes.bannername}>Mock Name</p>
         </div>
       </div>
     );
@@ -164,7 +186,7 @@ class NavItem extends Component {
       <li>
         <span
           className={classes.item}
-          id={this.props.activeProfile && "active"}
+          id={this.props.activeProfile && classes.active}
           onClick={this.props.action}
         >
           {this.props.children}
