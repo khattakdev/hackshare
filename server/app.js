@@ -9,6 +9,7 @@ const connectDB = require("./helper/db");
 const bodyParser = require("body-parser");
 const app = express();
 
+app.use(require("cors")());
 app.use(
   jwt({
     secret: jwks.expressJwtSecret({
