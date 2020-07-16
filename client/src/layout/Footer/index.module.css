@@ -1,7 +1,11 @@
 footer {
-  height: 60px;
   width: 100vw;
-  position: absolute;
-  bottom: 0;
   background-color: #303030;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon {
+  color: #606060;
 }

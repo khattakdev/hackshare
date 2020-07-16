@@ -100,9 +100,9 @@ class Popup extends Component {
             <icon>Close</icon>
           </button>
           <form>
-            <label for="start">Date:</label>
+            <label htmlFor="start">Date:</label>
             <input type="date"></input>
-            <label for="start">Time:</label>
+            <label htmlFor="start">Time:</label>
             <input type="time"></input>
             <input type="submit"></input>
           </form>

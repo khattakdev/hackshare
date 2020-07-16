@@ -1,32 +1,32 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1858.527 320.167">
   <defs>
     <style>
-      .cls-1, .cls-3 {
+      .log-1, .log-2, .log-3, .log-4 {
         fill: #fff;
       }
 
-      .cls-2, .cls-3 {
+      .log-2, .log-3 {
         isolation: isolate;
       }
 
-      .cls-3 {
+      .log-3 {
         font-size: 274.948px;
         font-family: SourceSansPro-Bold, Source Sans Pro;
         font-weight: 700;
       }
 
-      .cls-4 {
+      .log-4 {
         letter-spacing: -0.01em;
       }
 
-      .cls-5 {
+      .log-5 {
         letter-spacing: 0em;
       }
     </style>
   </defs>
   <title>HackShareLogo1</title>
-  <path class="cls-1" d="M479.29,340.966H94.191A32.136,32.136,0,0,0,62.056,373.1V606.158a32.135,32.135,0,0,0,32.135,32.135h385.1a32.135,32.135,0,0,0,32.135-32.135V373.1A32.135,32.135,0,0,0,479.29,340.966ZM158.208,582.912c-9.936-9.938-20.4-20.4-31.1-31.1,21.041-21.03,42.216-42.193,63.768-63.735l-63.639-63.6,31.313-31.285c31.549,31.547,63.327,63.324,94.691,94.688ZM442.224,503.65H394.156v48.069H363.01V503.65H314.941V472.505H363.01V424.436h31.146v48.069h48.068Z" transform="translate(-62.056 -340.966)"/>
-  <g id="HackShare" class="cls-2">
-    <text class="cls-3" transform="translate(545.389 233.557)">HackSha<tspan class="cls-4" x="1064.037" y="0">r</tspan><tspan class="cls-5" x="1170.717" y="0">e</tspan></text>
+  <path class="log-1" d="M479.29,340.966H94.191A32.136,32.136,0,0,0,62.056,373.1V606.158a32.135,32.135,0,0,0,32.135,32.135h385.1a32.135,32.135,0,0,0,32.135-32.135V373.1A32.135,32.135,0,0,0,479.29,340.966ZM158.208,582.912c-9.936-9.938-20.4-20.4-31.1-31.1,21.041-21.03,42.216-42.193,63.768-63.735l-63.639-63.6,31.313-31.285c31.549,31.547,63.327,63.324,94.691,94.688ZM442.224,503.65H394.156v48.069H363.01V503.65H314.941V472.505H363.01V424.436h31.146v48.069h48.068Z" transform="translate(-62.056 -340.966)"/>
+  <g id="HackShare" class="log-2">
+    <text class="log-3" transform="translate(545.389 233.557)">HackShare</text>
   </g>
 </svg>
