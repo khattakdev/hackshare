@@ -101,10 +101,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"%3E%3Cpath fill="%239C92AC" fill-opacity="0.4" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"%3E%3C/path%3E%3C/svg%3E');
   }
   .input {
-    margin-right: 10px;
+    margin: 10px !important;
+    width:550px !important;
+    height:40px !important;
+    border-radius:5px;
+    justify-self: center !important;
+
   }
   .frame {
     width: 40vw;
@@ -132,7 +136,7 @@
     float: right;
   }
 
-  .submitform{
+.submitform{
   background-color: #e7e7e7;
   border: none;
   color: black;
@@ -144,10 +148,27 @@
   border-radius: 25px;
   }
 
-  .meetbutton{
-    color: #fff !important;
+  .button{
+    color: black !important;
     border: 2px solid #fff !important;
     font-size: 20px !important;
     margin-bottom: 60px !important;
     justify-content: center !important;
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin: 10px;
+  }
+
+  .meetbutton{
+    color: #fff !important;
+    border: 2px solid #fff !important;
+    font-size: 20px !important;
+    margin-right: 40px !important;
+    margin-bottom: 60px !important;
+    padding: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    
   }
