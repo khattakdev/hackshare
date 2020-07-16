@@ -48,7 +48,7 @@ const renderSections = landingSections.map((section, i) => {
   return (
     <div className={styles.section} key={i}>
       {i % 2 === 0 && (
-        <Illustration className={styles.illustration}></Illustration>
+        <Illustration className={styles.illustration}/>
       )}
       <div className={styles.textblock}>
         <h2 className={styles.textheader}>{section.header}</h2>
