@@ -1,5 +1,5 @@
 const joi = require("@hapi/joi");
-const { userDB, freeSlotDB } = require("../model");
+const { userDB, freeSlotDB, expertiseDB, learningDB } = require("../model");
 const { differenceInMinutes, addMinutes } = require("date-fns");
 const mongoose = require("mongoose");
 
@@ -113,6 +113,58 @@ exports.whoami = async (req, res) => {
     res.json({
       responseData: userData,
     });
+  } catch (err) {
+    res.status(500).json({ err: err.message || err });
+  }
+};
+
+exports.expert = async (req, res) => {
+  try {
+    const experts = await expertiseDB.aggregate([
+      {
+        $group: {
+          _id: "$user_id",
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "_id",
+        },
+      },
+      {
+        $unwind: "$_id",
+      },
+    ]);
+    res.json(experts.map((value) => value._id));
+  } catch (err) {
+    res.status(500).json({ err: err.message || err });
+  }
+};
+
+exports.learner = async (req, res) => {
+  try {
+    const learner = await learningDB.aggregate([
+      {
+        $group: {
+          _id: "$user_id",
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "_id",
+        },
+      },
+      {
+        $unwind: "$_id",
+      },
+    ]);
+    res.json(learner.map((value) => value._id));
   } catch (err) {
     res.status(500).json({ err: err.message || err });
   }

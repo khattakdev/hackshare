@@ -10,4 +10,7 @@ router
   .post("/freeSlot", userController.freeSlots)
   .get("/freeSlot/:userId", userController.getFreeSlots);
 
+router.get("/expert", userController.expert);
+router.get("/learner", userController.learner);
+
 module.exports = router;
