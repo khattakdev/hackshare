@@ -15,6 +15,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    picture: {
+      type: String,
+    },
     timeZone: {
       type: String,
     },

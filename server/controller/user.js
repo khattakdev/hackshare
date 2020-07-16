@@ -17,9 +17,16 @@ exports.register = async (req, res) => {
   try {
     const userData = await registerSchema.validateAsync(req.body);
     if (!(await userDB.findOne({ auth0Ref: req.user.sub }))) {
-      const newUser = new userDB({ ...userData, auth0Ref: req.user.sub });
+      const newUser = new userDB({
+        ...userData,
+        auth0Ref: req.user.sub,
+        picture: req.user.picture,
+      });
       await newUser.save();
-      res.status(200).json(newUser);
+      res.status(200).json({
+        msg: "User Registered",
+        user: newUser,
+      });
     } else {
       res.status(500).json({ err: "username already exists" });
     }
@@ -43,7 +50,10 @@ exports.edit = async (req, res) => {
     const userData = await editSchema.validateAsync(req.body);
     if (await userDB.findOne({ auth0Ref: req.user.sub })) {
       await userDB.updateOne({ auth0Ref: req.user.sub }, { $set: userData });
-      res.status(200).json(userData);
+      res.status(200).json({
+        msg: "User Updated",
+        user: userData,
+      });
     } else {
       res.status(500).json({ err: "username doesn't exists" });
     }
