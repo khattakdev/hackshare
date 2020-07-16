@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 
 const registerSchema = joi
   .object({
-    firstName: joi.string().required(),
-    lastName: joi.string().required(),
     email: joi.string().email().required(),
     timeZone: joi.string().required(),
     countryCode: joi.string().required(),
@@ -17,8 +15,11 @@ exports.register = async (req, res) => {
   try {
     const userData = await registerSchema.validateAsync(req.body);
     if (!(await userDB.findOne({ auth0Ref: req.user.sub }))) {
+      const [firstName, lastName] = req.user.name;
       const newUser = new userDB({
         ...userData,
+        firstName,
+        lastName,
         auth0Ref: req.user.sub,
         picture: req.user.picture,
       });
@@ -37,13 +38,11 @@ exports.register = async (req, res) => {
 
 const editSchema = joi
   .object({
-    firstName: joi.string(),
-    lastName: joi.string(),
     timeZone: joi.string(),
     countryCode: joi.string(),
   })
   .required()
-  .or("firstName", "lastName", "timeZone", "countryCode");
+  .or("timeZone", "countryCode");
 
 exports.edit = async (req, res) => {
   try {
