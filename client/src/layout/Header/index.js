@@ -30,7 +30,9 @@ const Header = () => {
   return (
     <AppBar position="static" className={styles.header}>
       <Toolbar>
-        <Logo className={styles.logo}></Logo>
+        <Link to="/">
+          <Logo className={styles.logo}></Logo>
+        </Link>
         <div className={styles.spacer}></div>
         {isAuthenticated &&
           linkData.map((link, i) => (
