@@ -77,11 +77,11 @@ class SkillCard extends Component {
             <div className={classes.profileimage}>
               <img
                 className={classes.bannerphoto}
-                src={exp.photo}
+                src="https://dummyimage.com/500/09f/fff.png"
                 alt="Mock Name"
               ></img>
             </div>
-            <p className={classes.bannername}>{exp.name}</p>
+            <p className={classes.bannername}>Rashika Karki</p>
             <div className={classes.bannerdetail}>
               <p>Endorsed by Syne and 4 others</p>
               <Button
@@ -99,7 +99,6 @@ class SkillCard extends Component {
 }
 
 const Experts = () => {
-  const [allExpertise, setAllExpertise] = useState([]);
   const { getIdTokenClaims } = useAuth0();
   useEffect(async () => {
     const token = (await getIdTokenClaims()).__raw;
