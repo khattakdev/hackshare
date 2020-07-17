@@ -42,7 +42,7 @@ const Register = ({ onClose, open }) => {
     const data = {
       name: name,
       email: email,
-      timeZone: `GMT +${timezone}`,
+      timeZone: `GMT${timezone}`,
       countryCode: country,
     };
     axios.defaults.headers.common["Authorization"] = `Bearer ${claims.__raw}`;
@@ -101,7 +101,7 @@ const Register = ({ onClose, open }) => {
                 position="start"
                 classes={{ positionStart: styles.adornment }}
               >
-                GMT +
+                GMT
               </InputAdornment>
             ),
           }}
