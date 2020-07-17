@@ -12,11 +12,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Skills = (props) => {
   return (
     <div className={classes.card} id={classes.skills}>
-      <p className={classes.cardtitle}>Skills </p>
+      <p className={classes.cardtitle}>{props.title}</p>
       <div className={classes.skill}>
-        {props.skills.map((skill, index) => (
+        {props.topics.map((topic, index) => (
           <p key={index} className={classes.skillname}>
-            {skill}
+            {topic}
           </p>
         ))}
       </div>
@@ -27,6 +27,7 @@ const Skills = (props) => {
 const Profile = ({ match: { params } }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [userSkills, setUserSkills] = useState({});
+  const [userLearnings, setUserLearnings] = useState({});
   const [dialogOpen, showDialog] = useState(false);
   const { getIdTokenClaims } = useAuth0();
 
@@ -73,13 +74,29 @@ const Profile = ({ match: { params } }) => {
       });
     }
 
+    async function fetchUserLearning(id) {
+      const token = (await getIdTokenClaims())?.__raw;
+      return await axiosInstance.get(`/learning/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
     returnData().then(async (res) => {
       if (!res) return handleOpen();
       const skills = (await fetchUserSkills(res._id)).data.msg.map((exp) => {
         return exp.topic;
       });
+      const learnings = (await fetchUserLearning(res._id)).data.msg.map(
+        (exp) => {
+          return exp.topic;
+        }
+      );
       setUserProfile(res);
       setUserSkills(skills);
+      setUserLearnings(learnings);
     });
   }, [getIdTokenClaims, params]);
 
@@ -121,7 +138,14 @@ const Profile = ({ match: { params } }) => {
           <div>
             <section className={classes.cards}>
               {userSkills.length > 0 ? (
-                <Skills skills={userSkills} />
+                <Skills title="Skills" topics={userSkills} />
+              ) : (
+                <p>No Skills</p>
+              )}
+            </section>
+            <section className={classes.cards}>
+              {userLearnings.length > 0 ? (
+                <Skills title="Learning" topics={userLearnings} />
               ) : (
                 <p>No Skills</p>
               )}

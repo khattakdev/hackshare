@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import styles from './index.module.css'
 import Card from "../../components/ProfileCard";
+import Loader from "../../components/Loader";
 import classes from "./index.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "../../axios";
@@ -33,13 +34,15 @@ const Learners = () => {
       {fetchedLearnings ? (
         <div className={classes.cards}>
           {allLearners.length > 0 ? (
-            allLearners.map((leaners) => <Card data={leaners} />)
+            allLearners.map((learners) => <Card data={learners} />)
           ) : (
             <p>No Experts Available</p>
           )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className={classes.loadercontainer}>
+          <Loader />
+        </div>
       )}
     </>
   );

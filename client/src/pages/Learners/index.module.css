@@ -11,3 +11,10 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
+.loadercontainer {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
