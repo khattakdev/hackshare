@@ -1,0 +1,25 @@
+.root {
+  color: #fff !important;
+  background-color: #505050 !important;
+}
+
+.content > * {
+  color: #fff !important;
+}
+
+.content > * > * {
+  color: #fff !important;
+}
+
+.content > * > * > * {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+.adornment > * {
+  color: #fff !important;
+}
+
+.actions > * {
+  color: #fff !important;
+}
