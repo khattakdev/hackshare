@@ -57,18 +57,13 @@ const Edit = () => {
         }
       );
 
-      const modifiedExpertise = expertise.data.msg
-        .map((exp) => {
-          return exp.topic;
-        })
-        .join(",");
+      const modifiedExpertise = expertise.data.msg.map((exp) => {
+        return exp.topic;
+      });
 
-      const modifiedLearning = learning.data.msg
-        .map((exp) => {
-          return exp.topic;
-        })
-        .join(",");
-
+      const modifiedLearning = learning.data.msg.map((exp) => {
+        return exp.topic;
+      });
       setUserProfile(profile.data.responseData);
       setUserExpertise(modifiedExpertise);
       setUserLearning(modifiedLearning);
@@ -107,6 +102,7 @@ const Edit = () => {
   return (
     <div>
       {/* Social Cards */}
+
       <div className={classes.cards}>
         <div className={classes.card}>
           <form className>
@@ -171,6 +167,14 @@ const Edit = () => {
           </form>
         </div>
       </div>
+      <div className={classes.submitbutton} onClick={onSubmitHandler}>
+        <Button
+          className={classes.submitbutton}
+          classes={{ root: classes.meetbutton }}
+        >
+          {loading ? <Loader /> : "Update Profile"}
+        </Button>
+      </div>
       {/* // Expertise */}
       <div className={classes.cards}>
         <SkillsCard
@@ -183,11 +187,6 @@ const Edit = () => {
           skills={userLearning}
           updateSkills={setUserLearning}
         />
-      </div>
-      <div className={classes.submitbutton} onClick={onSubmitHandler}>
-        <Button classes={{ root: classes.meetbutton }}>
-          {loading ? <Loader /> : "Update Profile"}
-        </Button>
       </div>
     </div>
   );
@@ -249,7 +248,12 @@ function SkillsCard(props) {
             {props.skills.map((skill, index) => (
               <div className={classes.skillname} id={index}>
                 <p>{skill}</p>
-                <h2 onClick={() => removeSkillHandler(skill._id)}>X</h2>
+                <h2
+                  className={classes.remove_icon}
+                  onClick={() => removeSkillHandler(skill._id)}
+                >
+                  X
+                </h2>
               </div>
             ))}
             <div className={classes.new_skill}>

@@ -176,6 +176,13 @@ nav {
 .new_skill {
   display: flex;
 }
+.remove_icon {
+  cursor: pointer;
+}
+.submitbutton {
+  display: block;
+  margin-bottom: 140px;
+}
 .meetbutton {
   color: #fff !important;
   border: 2px solid #fff !important;
