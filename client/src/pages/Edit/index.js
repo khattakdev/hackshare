@@ -20,8 +20,8 @@ const CssTextField = withStyles({
 
 const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
-  const [userExpertise, setUserExpertise] = useState([]);
-  const [userLearning, setUserLearning] = useState([]);
+  const [userExpertise, setUserExpertise] = useState("");
+  const [userLearning, setUserLearning] = useState("");
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const { getIdTokenClaims } = useAuth0();
