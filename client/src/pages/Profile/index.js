@@ -9,29 +9,13 @@ import Register from "../../components/Register";
 import axiosInstance from "../../axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
-class Badges extends Component {
-  render() {
-    return (
-      <div className={classes.card} id={classes.badge}>
-        <p className={classes.cardtitle}>Badge</p>
-        <div>
-          <img
-            alt="Name Of Accomplishment"
-            src="https://img.icons8.com/plasticine/100/000000/warranty.png"
-          />
-        </div>
-      </div>
-    );
-  }
-}
-
 const Skills = (props) => {
   return (
     <div className={classes.card} id={classes.skills}>
       <p className={classes.cardtitle}>Skills </p>
       <div className={classes.skill}>
         {props.skills.map((skill, index) => (
-          <p id={index} className={classes.skillname}>
+          <p key={index} className={classes.skillname}>
             {skill}
           </p>
         ))}
