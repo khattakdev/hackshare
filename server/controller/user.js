@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const registerSchema = joi
   .object({
     email: joi.string().email().required(),
-    name: joi.string().require(),
+    name: joi.string().required(),
     timeZone: joi.string().required(),
     countryCode: joi.string().required(),
     socialLink: joi.string(),
