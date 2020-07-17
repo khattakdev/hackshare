@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "./index.module.css";
 import classes from "./index.module.css";
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import axiosInstance from "../../axios";
+import { withAuth0 } from "@auth0/auth0-react";
 
 class Badges extends Component {
   render() {
@@ -21,189 +23,33 @@ class Badges extends Component {
   }
 }
 
-class Skills extends Component {
-  render() {
-    return (
-      <div className={classes.card} id={classes.skills}>
-        <p className={classes.cardtitle}>Skills </p>
-        <div className={classes.skill}>
-          <p className={classes.skillname}>Python</p>
-          <h6>Endorsed by ABC and 5 others</h6>
-        </div>
+const Skills = (props) => {
+  return (
+    <div className={classes.card} id={classes.skills}>
+      <p className={classes.cardtitle}>Skills </p>
+      <div className={classes.skill}>
+        {props.skills.map((skill, index) => (
+          <p id={index} className={classes.skillname}>
+            {skill}
+          </p>
+        ))}
       </div>
-    );
-  }
-}
-
-class ProfileContent extends Component {
-  render() {
-    return (
-      <div>
-        <section className={classes.cards}>
-          <div className={classes.card}>
-            <p className={classes.cardtitle}>About Me</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              elit nulla, convallis rhoncus neque sit amet, porta porttitor
-              magna. Aenean suscipit urna vel ante posuere, nec pulvinar tellus
-              facilisis. Nullam ultrices imperdiet arcu, eget iaculis enim
-              faucibus eget. Sed nibh nibh, elementum sed finibus et, lacinia
-              quis metus. Etiam eget hendrerit tellus. Ut accumsan tincidunt
-              felis quis hendrerit. Curabitur auctor venenatis ante ac
-              venenatis.
-            </p>
-          </div>
-        </section>
-        <section className={classes.cards}>
-          <Badges />
-          <Skills />
-        </section>
-      </div>
-    );
-  }
-}
-
-class UpcomingMeet extends Component {
-  render() {
-    return (
-      <div className={classes.card}>
-        <p className={classes.cardtitle}>Upcoming Meeting</p>
-        <div className={classes.meetings} >
-        <Button color="primary" className={classes.open} classes={{ root: classes.meetbutton }} onClick={this.props.action}>Reshedule</Button> 
-          <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>                   
-          <p className={classes.meetingdetail}>Date: 2020/07/03</p>
-          <Button color="primary" className={classes.cancelmeet} classes={{ root: classes.meetbutton }}>Cancel</Button>
-          <p className={classes.meetingdetail} >Time: 5:30 AM</p>
-        </div>
-      </div>
-    );
-  }
-}
-
-class RecentMeet extends Component {
-  render() {
-    return (
-      <div className={classes.card}>
-        <p className={classes.cardtitle}>Recent Meetings</p>
-        <div className={classes.meetings}>
-          <Button>Endorse</Button>
-          <p className={classes.meetinginfo}>Meeting with XYZ on JavaScript</p>
-        </div>
-      </div>
-    );
-  }
-}
-
-class Popup extends Component {
-  render() {
-    return (
-      <div className={classes.popupoverlay}>
-        <div className={classes.popupcontent}>
-          <EventAvailableIcon style={{ fontSize: 80, margin: 20}}/>
-          <form>
-
-            <div class={classes.datatime}>
-                <TextField
-                id="date"
-                label="Date"
-                type="date"
-                defaultValue="2020-07-1"
-                style = {{width:300}}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </div>
-            <div class={classes.datatime}>
-                <TextField
-                  id="time"
-                  label="Time"
-                  type="time"
-                  defaultValue="07:30"
-                  style = {{width:300}}
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                }}/>
-              </div>
-              <br/>
-            <Button className={classes.close} onClick={this.props.action}>Close</Button>  
-            <Button>Send Request</Button>                    
-          </form>
-        </div>
-      </div>
-    );
-  }
-}
-
-class MeetingContent extends Component {
-  constructor(props) {
-    super(props);
-    this.ResheduleInActive = this.ResheduleInActive.bind(this);
-    this.ResheduleActive = this.ResheduleActive.bind(this);
-    this.state = { showRegister: false };
-  }
-  ResheduleInActive() {
-    this.setState({ showRegister: false });
-  }
-  ResheduleActive() {
-    this.setState({ showRegister: true });
-  }
-  render() {
-    return (
-      <div id={classes.meeting}>
-        <section className={classes.cards}>
-          <UpcomingMeet action={this.ResheduleActive} />
-          <RecentMeet />
-        </section>
-        {this.state.showRegister && <Popup action={this.ResheduleInActive} />}
-      </div>
-    );
-  }
-}
-
-class ProfileHeader extends Component {
-  render() {
-    return (
-      <div>
-        <div className={classes.intro}>
-          <div className={classes.profileimage}>
-            <img
-              className={classes.bannerphoto}
-              src="https://dummyimage.com/500/09f/fff.png"
-              alt="Mock Name"
-            ></img>
-          </div>
-          <p className={classes.bannername}>Mock Name</p>
-        </div>
-      </div>
-    );
-  }
-}
-
-class NavItem extends Component {
-  render() {
-    return (
-      <li>
-        <span
-          className={classes.item}
-          id={this.props.activeProfile && classes.active}
-          onClick={this.props.action}
-        >
-          {this.props.children}
-        </span>
-      </li>
-    );
-  }
-}
+    </div>
+  );
+};
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.clickProfile = this.clickProfile.bind(this);
     this.clickMeeting = this.clickMeeting.bind(this);
-    this.state = { activeProfile: true, isProfile: true, isMeeting: false };
+    this.state = {
+      activeProfile: true,
+      isProfile: true,
+      isMeeting: false,
+      profileData: undefined,
+      userSkills: undefined,
+    };
   }
   clickProfile(props) {
     this.setState({
@@ -219,31 +65,132 @@ class Profile extends Component {
       isMeeting: true,
     });
   }
+
+  componentDidMount() {
+    const {
+      match: { params },
+    } = this.props;
+
+    const { getIdTokenClaims } = this.props.auth0;
+
+    async function returnData() {
+      const token = (await getIdTokenClaims())?.__raw;
+
+      if (params.id) {
+        return (
+          await axiosInstance.get(`/user/${params.id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Access-Control-Allow-Origin": "*",
+            },
+          })
+        ).data;
+      } else {
+        return (
+          await axiosInstance.get(`/user/whoami`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Access-Control-Allow-Origin": "*",
+            },
+          })
+        ).data.responseData;
+      }
+    }
+
+    async function fetchUserSkills(id) {
+      const token = (await getIdTokenClaims())?.__raw;
+      return await axiosInstance.get(`/expertise/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
+    returnData().then(async (res) => {
+      const skills = (await fetchUserSkills(res._id)).data.msg.map((exp) => {
+        return exp.topic;
+      });
+
+      this.setState({
+        profileData: res,
+        userSkills: skills,
+      });
+    });
+  }
   render() {
     return (
       <div>
-        <ProfileHeader />
-        <nav className={classes.profilenav}>
-          <ul className={classes.nav}>
-            <NavItem
-              action={this.clickProfile}
-              activeProfile={this.state.activeProfile}
-            >
-              Profile
-            </NavItem>
-            <NavItem
-              action={this.clickMeeting}
-              activeProfile={!this.state.activeProfile}
-            >
-              Meeting
-            </NavItem>
-          </ul>
-        </nav>
-        {this.state.isMeeting && <MeetingContent />}
-        {this.state.isProfile && <ProfileContent />}
+        {this.state.profileData ? (
+          <>
+            <div>
+              <div className={classes.intro}>
+                <div className={classes.profileimage}>
+                  <img
+                    className={classes.bannerphoto}
+                    src={this.state.profileData.picture}
+                    alt={this.state.profileData.name}
+                  ></img>
+                </div>
+                <p className={classes.bannername}>
+                  {this.state.profileData.name}
+                </p>
+              </div>
+            </div>
+            <div>
+              <section className={classes.cards}>
+                <div className={classes.card}>
+                  <p className={classes.cardtitle}>Basic Information</p>
+                  <div className={classes.infos}>
+                    <p>
+                      <span>Time Zone:</span> {this.state.profileData.timeZone}
+                    </p>
+                    <p>
+                      <a href={`mailto:${this.state.profileData.email}`}>
+                        <Button
+                          color="primary"
+                          className={classes.open}
+                          classes={{ root: classes.meetbutton }}
+                          onClick={this.props.action}
+                        >
+                          Email
+                        </Button>
+                      </a>
+                    </p>
+                    <p>
+                      <a href={this.state.profileData.socialLink}>
+                        <Button
+                          color="primary"
+                          className={classes.open}
+                          classes={
+                            this.state.profileData.socialLink
+                              ? { root: classes.meetbutton }
+                              : { root: classes.disable_btn }
+                          }
+                          onClick={this.props.action}
+                        >
+                          Meeting Request
+                        </Button>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <section className={classes.cards}>
+                {this.state.userSkills.length > 0 ? (
+                  <Skills skills={this.state.userSkills} />
+                ) : (
+                  <p>No Skills</p>
+                )}
+              </section>
+            </div>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     );
   }
 }
 
-export default Profile;
+export default withAuth0(Profile);
