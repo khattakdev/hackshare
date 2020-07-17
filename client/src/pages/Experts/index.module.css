@@ -27,6 +27,13 @@
   font-size: 30px;
 }
 
+.loadercontainer {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .intro {
   padding-top: 50px;
 }

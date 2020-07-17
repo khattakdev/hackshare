@@ -3,6 +3,7 @@ import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Card from "../../components/ProfileCard";
+import Loader from "../../components/Loader";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "../../axios";
@@ -107,7 +108,9 @@ const Experts = () => {
           )}
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className={classes.loadercontainer}>
+          <Loader />
+        </div>
       )}
     </div>
   );
