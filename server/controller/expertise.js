@@ -57,22 +57,16 @@ exports.addExpertise = async (req, res) => {
       });
     }
 
-    let newExpertise = [];
-
-    for (let i = 0; i < topic.length; i++) {
-      newExpertise.push(
-        new expertiseDB({
-          user_id: user._id,
-          name: user.name,
-          topic: topic[i],
-          auth0Ref: sub,
-        })
-      );
-    }
-    await expertiseDB.insertMany(newExpertise);
+    const newExpertise = new expertiseDB({
+      user_id: user._id,
+      topic,
+      auth0Ref: sub,
+    });
+    await newExpertise.save();
 
     return res.status(200).json({
       msg: "Expertise Added",
+      responseData: newExpertise,
     });
   } catch (error) {
     return res.status(500).json({

@@ -118,6 +118,7 @@ const Edit = () => {
       <div className={classes.cards}>
         <div className={classes.card}>
           <form className>
+            <h2>Basic Information</h2>
             <div className={classes.formbasic}>
               <CssTextField
                 name="calendly"
@@ -174,57 +175,22 @@ const Edit = () => {
                   color: "white",
                 }}
               />
-              <CssTextField
-                name="expertise"
-                id="outlinedreadonlyinput"
-                label="Expertise"
-                defaultValue=""
-                placeholder="Javascript, NodeJs, Python, DJango"
-                variant="outlined"
-                disabled={loading}
-                value={userExpertise}
-                onChange={(e) => {
-                  setUserExpertise(e.target.value);
-                }}
-                InputLabelProps={{ style: { color: "#fff" } }}
-                inputProps={{
-                  style: { fontFamily: "Arial", color: "white" },
-                }}
-                style={{
-                  flex: 1,
-                  alignSelf: "center",
-                  width: 300,
-                  margin: "20px 20px 20px 20px",
-                  color: "white",
-                }}
-              />
-              <CssTextField
-                name="learning"
-                id="outlinedreadonlyinput"
-                label="Learning"
-                defaultValue=""
-                disabled={loading}
-                value={userLearning}
-                placeholder="Javascript, NodeJs, Python, DJango"
-                variant="outlined"
-                onChange={(e) => {
-                  setUserLearning(e.target.value);
-                }}
-                InputLabelProps={{ style: { color: "#fff" } }}
-                inputProps={{
-                  style: { fontFamily: "Arial", color: "white" },
-                }}
-                style={{
-                  flex: 1,
-                  alignSelf: "center",
-                  width: 300,
-                  margin: "20px 20px 20px 20px",
-                  color: "white",
-                }}
-              />
             </div>
           </form>
         </div>
+      </div>
+      {/* // Expertise */}
+      <div className={classes.cards}>
+        <SkillsCard
+          heading={"Expertise"}
+          skills={userExpertise}
+          updateSkills={setUserExpertise}
+        />
+        <SkillsCard
+          heading={"Learnings"}
+          skills={userLearning}
+          updateSkills={setUserLearning}
+        />
       </div>
       <div className={classes.submitbutton} onClick={onSubmitHandler}>
         <Button classes={{ root: classes.meetbutton }}>
@@ -234,5 +200,24 @@ const Edit = () => {
     </div>
   );
 };
+
+function SkillsCard(props) {
+  return (
+    <div className={classes.card}>
+      <form className>
+        <h2>{props.heading}</h2>
+        <div className={classes.formbasic}>
+          <div className={classes.skill}>
+            {props.skills.map((skill, index) => (
+              <p id={index} className={classes.skillname}>
+                {skill}
+              </p>
+            ))}
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
 
 export default Edit;
