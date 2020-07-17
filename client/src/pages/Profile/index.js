@@ -28,7 +28,7 @@ const Profile = ({ match: { params } }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [userSkills, setUserSkills] = useState({});
   const [userLearnings, setUserLearnings] = useState({});
-  const [dialogOpen, showDialog] = useState(false);
+  const [dialogOpen, showDialog] = useState(true);
   const { getIdTokenClaims } = useAuth0();
 
   const handleOpen = () => {

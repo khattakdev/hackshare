@@ -14,6 +14,7 @@ import styles from "./index.module.css";
 const Register = ({ onClose, open }) => {
   const { logout, getIdTokenClaims } = useAuth0();
   const [claims, setClaims] = useState({});
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
   const [timezone, setTimezone] = useState("");
@@ -30,6 +31,7 @@ const Register = ({ onClose, open }) => {
       const res = await getIdTokenClaims();
       if (res) {
         setClaims(res);
+        setName(res.name);
         setEmail(res.email);
       }
     };
@@ -38,6 +40,7 @@ const Register = ({ onClose, open }) => {
 
   const submitData = async () => {
     const data = {
+      name: name,
       email: email,
       timeZone: `GMT +${timezone}`,
       countryCode: country,
@@ -45,9 +48,7 @@ const Register = ({ onClose, open }) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${claims.__raw}`;
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = `*`;
     const res = await axios.post("/user/register", {
-      email: email,
-      timeZone: `GMT +${timezone}`,
-      countryCode: country,
+      ...data,
     });
     if (res.status === 200) handleClose();
   };
@@ -61,6 +62,16 @@ const Register = ({ onClose, open }) => {
           autoFocus
           margin="normal"
           id="name"
+          label="Name"
+          type="text"
+          variant="outlined"
+          value={name}
+          onChange={handleChange(setName)}
+        />
+        <br />
+        <TextField
+          margin="normal"
+          id="email"
           label="Email Address"
           type="email"
           variant="outlined"
