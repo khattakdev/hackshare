@@ -168,6 +168,13 @@ nav {
   border-bottom: 1px solid #6e6e6e;
   padding-bottom: 10px;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.new_skill {
+  display: flex;
 }
 .meetbutton {
   color: #fff !important;

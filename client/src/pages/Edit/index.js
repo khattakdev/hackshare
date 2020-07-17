@@ -20,8 +20,8 @@ const CssTextField = withStyles({
 
 const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
-  const [userExpertise, setUserExpertise] = useState("");
-  const [userLearning, setUserLearning] = useState("");
+  const [userExpertise, setUserExpertise] = useState([]);
+  const [userLearning, setUserLearning] = useState([]);
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const { getIdTokenClaims } = useAuth0();
@@ -95,15 +95,6 @@ const Edit = () => {
         "Access-Control-Allow-Origin"
       ] = `*`;
       await axiosInstance.put("/user/edit", data);
-      const topics = userExpertise.split(",");
-      const topicPromises = topics.map((topic) =>
-        axiosInstance.post("/expertise/add", { topic, level: 1, tags: [] })
-      );
-      const learnings = userLearning.split(",");
-      const learningPromises = learnings.map((topic) =>
-        axiosInstance.post("/learning/add", { topic, level: 1 })
-      );
-      await Promise.all([...topicPromises, ...learningPromises]);
       setLoading(false);
       setProfileUpdated(true);
     } catch (err) {
@@ -203,6 +194,52 @@ const Edit = () => {
 };
 
 function SkillsCard(props) {
+  const [skill, setSkill] = useState("");
+  const { getIdTokenClaims } = useAuth0();
+  const addSkillHandler = async () => {
+    const token = (await getIdTokenClaims())?.__raw;
+
+    const newSkills = [...props.skills];
+    newSkills.push(skill);
+    props.updateSkills(newSkills);
+
+    try {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Access-Control-Allow-Origin"
+      ] = `*`;
+      // await axiosInstance.put("/user/edit", data);
+      await axiosInstance.post("/expertise/add", {
+        data: JSON.stringify({ topic: skill }),
+      });
+      const newSkills = [...props.skills];
+      newSkills.push(skill);
+      props.updateSkills(newSkills);
+    } catch (err) {}
+  };
+
+  const removeSkillHandler = async (id) => {
+    const token = (await getIdTokenClaims())?.__raw;
+
+    try {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Access-Control-Allow-Origin"
+      ] = `*`;
+      // await axiosInstance.put("/user/edit", data);
+      await axiosInstance.post("/expertise/add", {
+        data: JSON.stringify({ expertise_id: id }),
+      });
+      const newSkills = props.skills.filter((skill) => {
+        return skill._id !== id;
+      });
+      props.updateSkills(newSkills);
+    } catch (err) {}
+  };
   return (
     <div className={classes.card}>
       <form className>
@@ -210,10 +247,42 @@ function SkillsCard(props) {
         <div className={classes.formbasic}>
           <div className={classes.skill}>
             {props.skills.map((skill, index) => (
-              <p id={index} className={classes.skillname}>
-                {skill}
-              </p>
+              <div className={classes.skillname} id={index}>
+                <p>{skill}</p>
+                <h2 onClick={() => removeSkillHandler(skill._id)}>X</h2>
+              </div>
             ))}
+            <div className={classes.new_skill}>
+              <CssTextField
+                name="newSkill"
+                id="outlinedreadonlyinput"
+                label="Add New Skill"
+                defaultValue=""
+                placeholder="Python"
+                variant="outlined"
+                value={skill}
+                onChange={(e) => {
+                  setSkill(e.target.value);
+                }}
+                InputLabelProps={{ style: { color: "#fff" } }}
+                inputProps={{
+                  style: { fontFamily: "Arial", color: "white" },
+                }}
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 300,
+                  margin: "20px 20px 20px 20px",
+                  color: "white",
+                }}
+              />
+            </div>
+            <Button
+              onClick={addSkillHandler}
+              classes={{ root: classes.meetbutton }}
+            >
+              Add {props.heading}
+            </Button>
           </div>
         </div>
       </form>
