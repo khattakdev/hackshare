@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  color: #69c19c !important;
+}

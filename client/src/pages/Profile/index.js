@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import "./index.module.css";
 import classes from "./index.module.css";
+import Loader from "../../components/Loader";
 import Button from "@material-ui/core/Button";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import TodayIcon from "@material-ui/icons/Today";
 import TextField from "@material-ui/core/TextField";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import Tooltip from "@material-ui/core/Tooltip";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import axiosInstance from "../../axios";
 import { withAuth0 } from "@auth0/auth0-react";
 
@@ -136,6 +140,25 @@ class Profile extends Component {
                   {this.state.profileData.name}
                 </p>
               </div>
+              <div className={classes.links}>
+                <Tooltip title={this.state.profileData.timeZone}>
+                  <AccessTimeIcon />
+                </Tooltip>
+                {this.state.profileData.socialLink && (
+                  <a
+                    href={this.state.profileData.socialLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Tooltip title="Contact Link">
+                      <TodayIcon />
+                    </Tooltip>
+                  </a>
+                )}
+                <Tooltip title={this.state.profileData.email}>
+                  <MailOutlineIcon />
+                </Tooltip>
+              </div>
             </div>
             <div>
               <section className={classes.cards}>
@@ -186,7 +209,9 @@ class Profile extends Component {
             </div>
           </>
         ) : (
-          <p>Loading...</p>
+          <div className={classes.loadercontainer}>
+            <Loader />
+          </div>
         )}
       </div>
     );

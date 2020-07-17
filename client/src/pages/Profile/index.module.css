@@ -89,6 +89,13 @@ nav {
   justify-content: space-around;
 }
 
+.loadercontainer {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   background-color: #1d1d1d;
   margin: 25px;
@@ -205,4 +212,13 @@ button {
   #skills {
     margin-top: 0px;
   }
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+.links > * {
+  margin: 20px;
 }
