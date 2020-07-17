@@ -1,10 +1,10 @@
 # HackShare
 
-HackShare is a web application where fellows can help each other learn new skills.
+HackShare is the ultimate knowledge sharing platform for fellows where they can help each other learn new skills.
 
 ## Getting Started
 
-These instructions will you get this project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#Deployment)** for notes on how to deploy the project on a live system.
+This guide will help you get the project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#Deployment)** for notes on how to deploy the project on a live system.
 
 ### Requirements
 
@@ -15,9 +15,9 @@ Make sure that you have the following requirements already installed in your sys
 
 ### Installation Guidelines
 
-A step by step guide on getting a development environment running
+A step by step guide on getting a development environment up and running
 
-- Open Terminal and run
+- Open terminal and run
 
 ```
 git clone https://github.com/eKhattak/hackshare.git
@@ -70,15 +70,17 @@ This will start NodeJs Application
 
 To be Added
 
-## Built With
+## Built with
 
 - [ReactJs](https://reactjs.org/) - An open-source JavaScript library for building user interfaces
 - [Nodejs](https://nodejs.org/) - An open-source, cross-platform, JavaScript runtime environment
 - [MongoDB](http://mongodb.com/) - A cross-platform document-oriented database program
 
-## Contribution Guidelines
+## Contributing to HackShare
 
-To be Added
+All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are always welcome.
+
+A detailed overview on how to contribute on HackShare can be found in the [contributing guide](https://github.com/ekhattak/hackshare/Contributing.md).
 
 ## Authors
 
@@ -87,7 +89,7 @@ To be Added
 - **Drew Alexandar** - [Github](https://github.com/Drewbi)
 - **Rashika Karki** - [Github](https://github.com/RashikaKarki)
 
-See also the list of [contributors](https://github.com/ekhattak/hackshare/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ekhattak/hackshare/contributors).
 
 ## License
 
