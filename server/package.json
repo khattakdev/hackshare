@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "debug": "nodemon app.js"
+    "debug": "NODE_ENV=local nodemon app.js"
   },
   "keywords": [],
   "author": "Arsalan Khattak <akkhattak65@gmail.com>",

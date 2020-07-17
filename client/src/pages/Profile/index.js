@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./index.module.css";
 import Loader from "../../components/Loader";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -24,7 +24,7 @@ const Skills = (props) => {
   );
 };
 
-const Profile = (props) => {
+const Profile = ({ match: { params } }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [userSkills, setUserSkills] = useState({});
   const [dialogOpen, showDialog] = useState(false);
@@ -42,9 +42,9 @@ const Profile = (props) => {
     async function returnData() {
       const token = (await getIdTokenClaims())?.__raw;
 
-      if (props.match.params.id) {
+      if (params.id) {
         return (
-          await axiosInstance.get(`/user/${props.match.params.id}`, {
+          await axiosInstance.get(`/user/${params.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
               "Access-Control-Allow-Origin": "*",
@@ -74,15 +74,14 @@ const Profile = (props) => {
     }
 
     returnData().then(async (res) => {
-      console.log(res);
+      if (!res) return handleOpen();
       const skills = (await fetchUserSkills(res._id)).data.msg.map((exp) => {
         return exp.topic;
       });
-      if (!res) handleOpen();
       setUserProfile(res);
       setUserSkills(skills);
     });
-  }, []);
+  }, [getIdTokenClaims, params]);
 
   return (
     <div>

@@ -3,7 +3,7 @@ const userController = require("../controller/learning");
 const router = express.Router();
 
 router.post("/add", userController.addLearning);
-router.delete("/remove", userController.removeLearning);
+router.delete("/remove/:id", userController.removeLearning);
 router.put("/update", userController.updateLearning);
 router.get("/:user_id", userController.getUserLearnings);
 router.get("/", userController.getAllLearnings);

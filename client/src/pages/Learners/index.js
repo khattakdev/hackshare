@@ -24,7 +24,7 @@ const Learners = () => {
       setFetchedLearnings(true);
     }
     fetchData();
-  }, []);
+  }, [getIdTokenClaims]);
 
   return (
     <>

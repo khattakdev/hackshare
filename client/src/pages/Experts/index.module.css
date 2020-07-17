@@ -27,14 +27,6 @@
   font-size: 30px;
 }
 
-.card {
-  background-color: #1d1d1d;
-  margin: 25px;
-  margin-top: 0px;
-  border-radius: 25px;
-  padding: 20px;
-}
-
 .intro {
   padding-top: 50px;
 }
@@ -60,7 +52,7 @@
 }
 
 .bannerdetail {
-  margin-top: 20px;
+  margin-top: auto;
   text-align: center;
   font-size: 15px;
 }
