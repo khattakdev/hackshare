@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const registerSchema = joi
   .object({
     email: joi.string().email().required(),
+    name: joi.string().required(),
     timeZone: joi.string().required(),
     countryCode: joi.string().required(),
     socialLink: joi.string(),
@@ -18,7 +19,6 @@ exports.register = async (req, res) => {
     if (!(await userDB.findOne({ auth0Ref: req.user.sub }))) {
       const newUser = new userDB({
         ...userData,
-        name: req.user.name,
         auth0Ref: req.user.sub,
         picture: req.user.picture,
       });
@@ -174,7 +174,9 @@ exports.learner = async (req, res) => {
 exports.user = async (req, res) => {
   try {
     const user = req.params.userId;
-    const userData = await userDB.findOne({ _id: mongoose.Types.ObjectId(user) });
+    const userData = await userDB.findOne({
+      _id: mongoose.Types.ObjectId(user),
+    });
     res.json(userData);
   } catch (err) {
     res.status(500).json({ err: err.message || err });
