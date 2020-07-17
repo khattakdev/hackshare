@@ -34,7 +34,7 @@ const Register = ({ onClose, open }) => {
       }
     };
     getClaims();
-  }, []);
+  }, [getIdTokenClaims]);
 
   const submitData = async () => {
     const data = {

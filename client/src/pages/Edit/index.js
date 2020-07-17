@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import Loader from "../../components/Loader";
 import { useAuth0 } from "@auth0/auth0-react";
 import axiosInstance from "../../axios";
-import Loader from "../../components/Loader";
 
 const CssTextField = withStyles({
   root: {
@@ -37,7 +39,9 @@ const Edit = () => {
         },
       });
 
-      const expertise = await axiosInstance.get(
+      const {
+        data: { msg: expertise },
+      } = await axiosInstance.get(
         `/expertise/${profile.data.responseData._id}`,
         {
           headers: {
@@ -47,7 +51,9 @@ const Edit = () => {
         }
       );
 
-      const learning = await axiosInstance.get(
+      const {
+        data: { msg: learning },
+      } = await axiosInstance.get(
         `/learning/${profile.data.responseData._id}`,
         {
           headers: {
@@ -57,20 +63,13 @@ const Edit = () => {
         }
       );
 
-      const modifiedExpertise = expertise.data.msg.map((exp) => {
-        return exp.topic;
-      });
-
-      const modifiedLearning = learning.data.msg.map((exp) => {
-        return exp.topic;
-      });
       setUserProfile(profile.data.responseData);
-      setUserExpertise(modifiedExpertise);
-      setUserLearning(modifiedLearning);
+      setUserExpertise(expertise);
+      setUserLearning(learning);
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [getIdTokenClaims]);
 
   const onSubmitHandler = async () => {
     setLoading(true);
@@ -183,7 +182,7 @@ const Edit = () => {
           updateSkills={setUserExpertise}
         />
         <SkillsCard
-          heading={"Learnings"}
+          heading={"Learning"}
           skills={userLearning}
           updateSkills={setUserLearning}
         />
@@ -194,14 +193,11 @@ const Edit = () => {
 
 function SkillsCard(props) {
   const [skill, setSkill] = useState("");
+  const [loadIndex, setLoadIndex] = useState(-1);
   const { getIdTokenClaims } = useAuth0();
   const addSkillHandler = async () => {
     const token = (await getIdTokenClaims())?.__raw;
 
-    const newSkills = [...props.skills];
-    newSkills.push(skill);
-    props.updateSkills(newSkills);
-
     try {
       axiosInstance.defaults.headers.common[
         "Authorization"
@@ -210,16 +206,20 @@ function SkillsCard(props) {
         "Access-Control-Allow-Origin"
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
-      await axiosInstance.post(`/${props.heading.toLowerCase()}/add`, {
-        data: { topic: skill },
+      const {
+        data: { responseData: newSkill },
+      } = await axiosInstance.post(`/${props.heading.toLowerCase()}/add`, {
+        topic: skill,
       });
       const newSkills = [...props.skills];
-      newSkills.push(skill);
+      newSkills.push(newSkill);
+      console.log(newSkill);
       props.updateSkills(newSkills);
     } catch (err) {}
   };
 
-  const removeSkillHandler = async (id) => {
+  const removeSkillHandler = async (id, index) => {
+    setLoadIndex(index);
     const token = (await getIdTokenClaims())?.__raw;
 
     try {
@@ -230,14 +230,17 @@ function SkillsCard(props) {
         "Access-Control-Allow-Origin"
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
-      await axiosInstance.delete(`/${props.heading.toLowerCase()}/remove`, {
-        data: { expertise_id: id },
-      });
+      await axiosInstance.delete(
+        `/${props.heading.toLowerCase()}/remove/${id}`
+      );
       const newSkills = props.skills.filter((skill) => {
         return skill._id !== id;
       });
       props.updateSkills(newSkills);
-    } catch (err) {}
+      setLoadIndex(-1);
+    } catch (err) {
+      setLoadIndex(-1);
+    }
   };
   return (
     <div className={classes.card}>
@@ -246,14 +249,19 @@ function SkillsCard(props) {
         <div className={classes.formbasic}>
           <div className={classes.skill}>
             {props.skills.map((skill, index) => (
-              <div className={classes.skillname} id={index}>
-                <p>{skill}</p>
-                <h2
-                  className={classes.remove_icon}
-                  onClick={() => removeSkillHandler(skill._id)}
-                >
-                  X
-                </h2>
+              <div className={classes.skillname} key={index}>
+                <p>{skill.topic}</p>
+                {index === loadIndex ? (
+                  <Loader></Loader>
+                ) : (
+                  <IconButton
+                    onClick={() => removeSkillHandler(skill._id, index)}
+                  >
+                    <CloseIcon
+                      classes={{ root: classes.remove_icon }}
+                    ></CloseIcon>
+                  </IconButton>
+                )}
               </div>
             ))}
             <div className={classes.new_skill}>

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "../../axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   inputRoot: {
     color: "white",
     "& .MuiOutlinedInput-notchedOutline": {
@@ -40,7 +40,7 @@ function ControllableStates() {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div class={classes.searchbar}>
+    <div className={classes.searchbar}>
       <Autocomplete
         classes={classes}
         value={value}
@@ -87,7 +87,7 @@ const Experts = () => {
       setFetchedExpertise(true);
     }
     fetchData();
-  }, []);
+  }, [getIdTokenClaims]);
 
   return (
     <div className={classes.expert}>
@@ -99,7 +99,9 @@ const Experts = () => {
       {fetchedExpertise ? (
         <div className={classes.cards}>
           {allExpertise.length > 0 ? (
-            allExpertise.map((expertise) => <Card expert data={expertise} />)
+            allExpertise.map((expertise) => (
+              <Card key={expertise._id} expert data={expertise} />
+            ))
           ) : (
             <p>No Experts Available</p>
           )}

@@ -15,7 +15,7 @@
 }
 
 .card {
-  background-color: #1d1d1d;
+  background-color: #404040;
   margin: 25px;
   margin-top: 0px;
   border-radius: 25px;
@@ -24,6 +24,10 @@
 
 .intro {
   padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
 }
 
 .profileimage {
@@ -57,10 +61,11 @@
 
 .bannerdetail {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 20px;
   text-align: center;
   font-size: 15px;
+  justify-self: flex-end;
 }
 
 .disable_btn {
@@ -69,22 +74,16 @@
   background: gray !important;
   border: 2px solid gray !important;
   font-size: 10px !important;
-  margin: 30px !important;
-  margin-bottom: 10px !important;
 }
 
 .meetingrequest {
   color: #fff !important;
   border: 2px solid #fff !important;
   font-size: 10px !important;
-  margin: 30px !important;
-  margin-bottom: 10px !important;
 }
 
 .viewprofile {
   color: #fff !important;
   border: 2px solid #fff !important;
   font-size: 10px !important;
-  margin: 30px !important;
-  margin-bottom: 10px !important;
 }

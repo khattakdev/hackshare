@@ -60,7 +60,7 @@ nav {
 }
 
 .card {
-  background-color: #1d1d1d;
+  background-color: #404040;
   margin: 25px;
   margin-top: 0px;
   border-radius: 25px;
@@ -143,6 +143,7 @@ nav {
   display: inline-block;
   font-size: 16px;
   border-radius: 25px;
+  width: 40px;
 }
 
 .button {
@@ -177,7 +178,7 @@ nav {
   display: flex;
 }
 .remove_icon {
-  cursor: pointer;
+  color: #fff !important;
 }
 .submitbutton {
   display: block;
