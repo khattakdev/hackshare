@@ -34,7 +34,6 @@ const Router = () => {
   return (
     <Switch>
       <Route exact path="/" component={Landing} />
-      <Route exact path="/prof" component={Edit} />
       {routes.map((route, i) =>
         isAuthenticated ? (
           <Route {...route} key={i} />
