@@ -34,7 +34,6 @@ exports.addLearning = async (req, res) => {
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
-    level: Joi.number().min(1).max(3).required(),
   });
 
   // Schema Validation
@@ -42,7 +41,6 @@ exports.addLearning = async (req, res) => {
   try {
     await schema.validateAsync({
       topic,
-      level,
     });
   } catch (error) {
     return res.status(400).json({
@@ -57,14 +55,19 @@ exports.addLearning = async (req, res) => {
         msg: "User not Found!",
       });
     }
-    const newLearning = new learningDB({
-      user_id: user._id,
-      name: user.name,
-      topic,
-      level,
-      auth0Ref: sub,
-    });
-    await newLearning.save();
+    let newLearning = [];
+
+    for (let i = 0; i < topic.length; i++) {
+      newLearning.push(
+        new learningDB({
+          user_id: user._id,
+          name: user.name,
+          topic: topic[i],
+          auth0Ref: sub,
+        })
+      );
+    }
+    await learningDB.insertMany(newLearning);
 
     return res.status(200).json({
       msg: "Language/Skill Added",

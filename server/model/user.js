@@ -45,6 +45,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    expertise: [
+      {
+        type: String,
+      },
+    ],
+    learnings: [
+      {
+        type: String,
+      },
+    ],
     socialLink: {
       type: String,
     },

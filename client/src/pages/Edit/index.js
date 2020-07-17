@@ -1,193 +1,228 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import CloseOutlinedIcon from "@material-ui/icons/Close";
+import { useAuth0 } from "@auth0/auth0-react";
+import axiosInstance from "../../axios";
 
 const CssTextField = withStyles({
-    root: {
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "white",
+  root: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
+      },
+    },
+  },
+})(TextField);
+
+const Edit = () => {
+  const [userProfile, setUserProfile] = useState({});
+  const [userExpertise, setUserExpertise] = useState([]);
+  const [userLearning, setUserLearning] = useState([]);
+  const { getIdTokenClaims } = useAuth0();
+  useEffect(() => {
+    async function fetchData() {
+      const token = (await getIdTokenClaims())?.__raw;
+
+      const profile = await axiosInstance.get("/user/whoami", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+
+      const expertise = await axiosInstance.get(
+        `/expertise/${profile.data.responseData._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
         }
-    }
-}
-  })(TextField);
+      );
 
-class SocialCard extends Component{
-    render(){
-      return(
+      const learning = await axiosInstance.get(
+        `/learning/${profile.data.responseData._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+
+      const modifiedExpertise = expertise.data.msg
+        .map((exp) => {
+          return exp.topic;
+        })
+        .join(",");
+
+      const modifiedLearning = learning.data.msg
+        .map((exp) => {
+          return exp.topic;
+        })
+        .join(",");
+
+      console.log(modifiedExpertise, profile.data.responseData.timeZone);
+
+      setUserProfile(profile.data.responseData);
+      setUserExpertise(modifiedExpertise);
+      setUserLearning(modifiedLearning);
+    }
+    fetchData();
+  }, []);
+
+  const onSubmitHandler = async () => {
+    // Update Profile Data
+    const token = (await getIdTokenClaims())?.__raw;
+
+    const data = {
+      timeZone: userProfile.timeZone,
+      socialLink: userProfile.socialLink,
+    };
+    await axiosInstance.post("/user/edit", {
+      data: JSON.stringify(data),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    const topics = userExpertise.split(",");
+
+    await axiosInstance.post("/expertise/add", {
+      data: JSON.stringify(topics),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    const learning = userLearning.split(",");
+    await axiosInstance.post("/learning/add", {
+      data: JSON.stringify(learning),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  };
+  return (
+    <div>
+      {/* Social Cards */}
+      <div className={classes.cards}>
         <div className={classes.card}>
-            <div className={classes.profileimage}>
-                <img
-                  className={classes.bannerphoto}
-                  src="https://dummyimage.com/500/09f/fff.png"
-                  alt="Mock Name"
-                ></img>
-              </div>
-              <form class>
-            <div class = {classes.formbasic}>
+          <form class>
+            <div class={classes.formbasic}>
               <CssTextField
-                    id="outlinedreadonlyinput"
-                    label="Calendly"
-                    defaultValue="Dummy Value"
-                    variant="outlined"
-                    InputLabelProps={{style: { color: "#fff" },}}
-                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
-                    style={{ flex: 1, alignSelf:"center", width:550, margin: "20px 20px 20px 20px", color: "white"}}
-                />
-                <CssTextField
-                    id="outlinedreadonlyinput"
-                    label="Time Zone"
-                    defaultValue="NPT"
-                    variant="outlined"
-                    InputLabelProps={{style: { color: "#fff" },}}
-                    inputProps={{ style: { fontFamily: "Arial", color: "white"}}}
-                    style={{ flex: 1, alignSelf:"center", width:300, margin: "20px 20px 20px 20px", color: "white"}}
-                />
-                </div>           
-            </form>  
+                name="calendly"
+                id="outlinedreadonlyinput"
+                label="Calendly"
+                placeholder="http://calendly.com/username"
+                variant="outlined"
+                value={userProfile.socialLink}
+                onChange={(e) => {
+                  const tempProfile = {
+                    ...userProfile,
+                    socialLink: e.target.value,
+                  };
+                  setUserProfile(tempProfile);
+                }}
+                InputLabelProps={{ style: { color: "#fff" } }}
+                inputProps={{
+                  style: { fontFamily: "Arial", color: "white" },
+                }}
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 550,
+                  margin: "20px 20px 20px 20px",
+                  color: "white",
+                }}
+              />
+              <CssTextField
+                name="timeZone"
+                id="outlinedreadonlyinput"
+                label="Time Zone"
+                defaultValue=""
+                placeholder="GMT +5"
+                variant="outlined"
+                value={userProfile.timeZone}
+                onChange={(e) => {
+                  const tempProfile = {
+                    ...userProfile,
+                    timeZone: e.target.value,
+                  };
+                  setUserProfile(tempProfile);
+                }}
+                InputLabelProps={{ style: { color: "#fff" } }}
+                inputProps={{
+                  style: { fontFamily: "Arial", color: "white" },
+                }}
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 300,
+                  margin: "20px 20px 20px 20px",
+                  color: "white",
+                }}
+              />
+              <CssTextField
+                name="expertise"
+                id="outlinedreadonlyinput"
+                label="Expertise"
+                defaultValue=""
+                placeholder="Javascript, NodeJs, Python, DJango"
+                variant="outlined"
+                value={userExpertise}
+                onChange={(e) => {
+                  setUserExpertise(e.target.value);
+                }}
+                InputLabelProps={{ style: { color: "#fff" } }}
+                inputProps={{
+                  style: { fontFamily: "Arial", color: "white" },
+                }}
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 300,
+                  margin: "20px 20px 20px 20px",
+                  color: "white",
+                }}
+              />
+              <CssTextField
+                name="learning"
+                id="outlinedreadonlyinput"
+                label="Learning"
+                defaultValue=""
+                value={userLearning}
+                placeholder="Javascript, NodeJs, Python, DJango"
+                variant="outlined"
+                onChange={(e) => {
+                  setUserLearning(e.target.value);
+                }}
+                InputLabelProps={{ style: { color: "#fff" } }}
+                inputProps={{
+                  style: { fontFamily: "Arial", color: "white" },
+                }}
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 300,
+                  margin: "20px 20px 20px 20px",
+                  color: "white",
+                }}
+              />
             </div>
-      )
-    }
-  }
-
-class EditDetails extends Component {
-    render() {
-      return (        
-        <div className={classes.cards}>
-            <SocialCard/>       
-        </div>            
-      );
-    }
-  }
-
-class SubmitForm extends React.Component {
-    state = { term: "" };  handleSubmit = (e) => {
-      e.preventDefault();
-      if(this.state.term === "") return;
-      this.props.onFormSubmit(this.state.term);
-      this.setState({ term: "" });
-    }  
-    render() {
-      return(
-        <form onSubmit={this.handleSubmit}>
-          <input 
-            type="text"
-            className={classes.input}
-            placeholder="Enter Item"
-            value={this.state.term}
-            onChange={(e) => this.setState({term: e.target.value})}
-          />
-          <button className={classes.button}>Add</button>
-        </form>
-      );
-    }
-  }
-
-  const Skill = (props) => {
-    return(
-        <div>
-        <button className={classes.delete} onClick={() => {props.onDelete(props.id)}}><CloseOutlinedIcon color="disabled"/></button>
-        <div className={classes.listitem}>
-            <div className={classes.skillnamecontainer}>
-                <p className={classes.skillname}>{props.content}</p>
-            </div>
+          </form>
         </div>
       </div>
-    );
-  }
-
-  const SkillsList = (props) => {
-    
-    const skills = props.allskill.map((skills, index) => {
-        return <Skill content={skills} key={index} id={index} onDelete={props.onDelete} />
-    })
-    return( 
-      <div className={classes.listwrapper}>
-        {skills}
+      <div className={classes.submitbutton} onClick={onSubmitHandler}>
+        <Button classes={{ root: classes.meetbutton }}>Update Profile</Button>
       </div>
-    );
-  }
-
-  class LearnerCard extends Component{
-    constructor(props){
-        super(props);
-        this.state = { allskill: ["Python", "JavaScript", "Java"] };
-      }
-    handleDelete = (index) => {
-        const newArr = [...this.state.allskill];
-        newArr.splice(index, 1);
-        this.setState({allskill: newArr});
-    }
-    handleSubmit = oneskill => {
-        this.setState({allskill: [...this.state.allskill, oneskill]});
-    }
-    render(){
-      return(
-        <div className={classes.card}>
-            <div className={classes.header}>
-                <h1 className={classes.cardheadertitle}>
-                    Learner
-                </h1>
-            </div>
-            <SkillsList allskill={this.state.allskill} onDelete={this.handleDelete} />
-            <SubmitForm className={classes.submitform} onFormSubmit={this.handleSubmit} />
-        </div>
-)}}
-
-class ExpertiseCard extends Component{
-    constructor(props){
-        super(props);
-        this.state = { allskill: ["React", "Julia", "Node"] };
-      }
-    handleDelete = (index) => {
-        const newArr = [...this.state.allskill];
-        newArr.splice(index, 1);
-        this.setState({allskill: newArr});
-    }
-    handleSubmit = oneskill => {
-        this.setState({allskill: [...this.state.allskill, oneskill]});
-    }
-    render(){
-      return(
-        <div className={classes.card}>
-            <div className={classes.header}>
-                <h1 className={classes.cardheadertitle}>
-                    Expertise
-                </h1>
-            </div>
-            <SkillsList allskill={this.state.allskill} onDelete={this.handleDelete} />
-            <SubmitForm className={classes.submitform} onFormSubmit={this.handleSubmit} />
-        </div>
-)}}
-
-
-  class EditSkills extends Component {
-    render() {
-      return (
-        <div className={classes.cards}>
-          <ExpertiseCard/>
-          <LearnerCard/>         
-        </div>
-      );
-    }
-  }
-
-
-class Edit extends Component { 
-    render() {
-      return (
-        <div>
-            <EditDetails/>
-            <EditSkills/>
-            <div className = {classes.submitbutton}>
-                <Button classes={{ root: classes.meetbutton }}>Submit</Button>
-            </div>
-        </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Edit;
