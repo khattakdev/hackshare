@@ -4,7 +4,7 @@ HackShare is the ultimate knowledge sharing platform for fellows where they can 
 
 ## Getting Started
 
-This guide will help you get the project up and running on your local machine for development and testing purposes. Have a look at **[deployment](#Deployment)** for notes on how to deploy the project on a live system.
+This guide will help you get the project up and running on your local machine for development and testing purposes. Have a look at deployment for notes on how to deploy the project on a live system.
 
 ### Requirements
 
@@ -68,9 +68,9 @@ This will start NodeJs Application
 
 ## Deployment
 
-To be Added
+Find the deployment guide [here](https://create-react-app.dev/docs/deployment/)
 
-## Built with
+## Technology Stack
 
 - [ReactJs](https://reactjs.org/) - An open-source JavaScript library for building user interfaces
 - [Nodejs](https://nodejs.org/) - An open-source, cross-platform, JavaScript runtime environment

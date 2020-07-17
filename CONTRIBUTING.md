@@ -24,9 +24,9 @@ Note: When pasting code blocks or output, put triple backquotes (```) around the
 
 To any feature request, provide where possible:
 
--  If feature request is related to a problem please provide a clear and concise description of what the problem is.
+- If feature request is related to a problem please provide a clear and concise description of what the problem is.
 - A concise description of what you want to happen.
-- A concise escription of any alternative solutions or features you've considered.
+- A concise description of any alternative solutions or features you've considered.
 
 ## Contributor Checklist
 
