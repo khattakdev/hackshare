@@ -114,6 +114,25 @@ const Profile = (props) => {
                 ></img>
               </div>
               <p className={classes.bannername}>{userProfile.name}</p>
+              <div className={classes.links}>
+                <Tooltip title={this.state.profileData.timeZone}>
+                  <AccessTimeIcon />
+                </Tooltip>
+                {this.state.profileData.socialLink && (
+                  <a
+                    href={this.state.profileData.socialLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Tooltip title="Contact Link">
+                      <TodayIcon />
+                    </Tooltip>
+                  </a>
+                )}
+                <Tooltip title={this.state.profileData.email}>
+                  <MailOutlineIcon />
+                </Tooltip>
+              </div>
             </div>
             <div className={classes.links}>
               <Tooltip title={userProfile.timeZone}>
