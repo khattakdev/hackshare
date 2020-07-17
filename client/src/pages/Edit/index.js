@@ -210,7 +210,7 @@ function SkillsCard(props) {
         "Access-Control-Allow-Origin"
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
-      await axiosInstance.post("/expertise/add", {
+      await axiosInstance.post(`/${props.heading.toLowerCase()}/add`, {
         data: JSON.stringify({ topic: skill }),
       });
       const newSkills = [...props.skills];
@@ -230,7 +230,7 @@ function SkillsCard(props) {
         "Access-Control-Allow-Origin"
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
-      await axiosInstance.post("/expertise/add", {
+      await axiosInstance.delete(`/${props.heading.toLowerCase()}/remove`, {
         data: JSON.stringify({ expertise_id: id }),
       });
       const newSkills = props.skills.filter((skill) => {
