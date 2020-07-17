@@ -36,13 +36,13 @@ To any feature request, provide where possible:
 
 This will create a copy of HackShare repository which will help you experiment with changes without affecting the original project. 
 
-Detailed guide on how to fork a repository can be found (here)[https://docs.github.com/en/github/getting-started-with-github/fork-a-repo].
+Detailed guide on how to fork a repository can be found [here](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
 
 - Create a branch.
 
 You want your master branch to reflect only production-ready code, so create a feature branch for making your changes.
 
-Detailed guide on using git can be found (here)[https://git-scm.com/docs].
+Detailed guide on using git can be found [here](https://git-scm.com/docs).
 
 
-After making the changes make sure to submit a (Pull Request)[https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests]. 
+After making the changes make sure to submit a [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests). 
