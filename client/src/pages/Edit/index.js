@@ -20,8 +20,8 @@ const CssTextField = withStyles({
 
 const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
-  const [userExpertise, setUserExpertise] = useState("");
-  const [userLearning, setUserLearning] = useState("");
+  const [userExpertise, setUserExpertise] = useState([]);
+  const [userLearning, setUserLearning] = useState([]);
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const { getIdTokenClaims } = useAuth0();
@@ -57,18 +57,13 @@ const Edit = () => {
         }
       );
 
-      const modifiedExpertise = expertise.data.msg
-        .map((exp) => {
-          return exp.topic;
-        })
-        .join(",");
+      const modifiedExpertise = expertise.data.msg.map((exp) => {
+        return exp.topic;
+      });
 
-      const modifiedLearning = learning.data.msg
-        .map((exp) => {
-          return exp.topic;
-        })
-        .join(",");
-
+      const modifiedLearning = learning.data.msg.map((exp) => {
+        return exp.topic;
+      });
       setUserProfile(profile.data.responseData);
       setUserExpertise(modifiedExpertise);
       setUserLearning(modifiedLearning);
@@ -95,15 +90,6 @@ const Edit = () => {
         "Access-Control-Allow-Origin"
       ] = `*`;
       await axiosInstance.put("/user/edit", data);
-      const topics = userExpertise.split(",");
-      const topicPromises = topics.map((topic) =>
-        axiosInstance.post("/expertise/add", { topic, level: 1, tags: [] })
-      );
-      const learnings = userLearning.split(",");
-      const learningPromises = learnings.map((topic) =>
-        axiosInstance.post("/learning/add", { topic, level: 1 })
-      );
-      await Promise.all([...topicPromises, ...learningPromises]);
       setLoading(false);
       setProfileUpdated(true);
     } catch (err) {
@@ -116,9 +102,11 @@ const Edit = () => {
   return (
     <div>
       {/* Social Cards */}
+
       <div className={classes.cards}>
         <div className={classes.card}>
           <form className>
+            <h2>Basic Information</h2>
             <div className={classes.formbasic}>
               <CssTextField
                 name="calendly"
@@ -175,41 +163,110 @@ const Edit = () => {
                   color: "white",
                 }}
               />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className={classes.submitbutton} onClick={onSubmitHandler}>
+        <Button
+          className={classes.submitbutton}
+          classes={{ root: classes.meetbutton }}
+        >
+          {loading ? <Loader /> : "Update Profile"}
+        </Button>
+      </div>
+      {/* // Expertise */}
+      <div className={classes.cards}>
+        <SkillsCard
+          heading={"Expertise"}
+          skills={userExpertise}
+          updateSkills={setUserExpertise}
+        />
+        <SkillsCard
+          heading={"Learnings"}
+          skills={userLearning}
+          updateSkills={setUserLearning}
+        />
+      </div>
+    </div>
+  );
+};
+
+function SkillsCard(props) {
+  const [skill, setSkill] = useState("");
+  const { getIdTokenClaims } = useAuth0();
+  const addSkillHandler = async () => {
+    const token = (await getIdTokenClaims())?.__raw;
+
+    const newSkills = [...props.skills];
+    newSkills.push(skill);
+    props.updateSkills(newSkills);
+
+    try {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Access-Control-Allow-Origin"
+      ] = `*`;
+      // await axiosInstance.put("/user/edit", data);
+      await axiosInstance.post(`/${props.heading.toLowerCase()}/add`, {
+        data: { topic: skill },
+      });
+      const newSkills = [...props.skills];
+      newSkills.push(skill);
+      props.updateSkills(newSkills);
+    } catch (err) {}
+  };
+
+  const removeSkillHandler = async (id) => {
+    const token = (await getIdTokenClaims())?.__raw;
+
+    try {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+      axiosInstance.defaults.headers.common[
+        "Access-Control-Allow-Origin"
+      ] = `*`;
+      // await axiosInstance.put("/user/edit", data);
+      await axiosInstance.delete(`/${props.heading.toLowerCase()}/remove`, {
+        data: { expertise_id: id },
+      });
+      const newSkills = props.skills.filter((skill) => {
+        return skill._id !== id;
+      });
+      props.updateSkills(newSkills);
+    } catch (err) {}
+  };
+  return (
+    <div className={classes.card}>
+      <form className>
+        <h2>{props.heading}</h2>
+        <div className={classes.formbasic}>
+          <div className={classes.skill}>
+            {props.skills.map((skill, index) => (
+              <div className={classes.skillname} id={index}>
+                <p>{skill}</p>
+                <h2
+                  className={classes.remove_icon}
+                  onClick={() => removeSkillHandler(skill._id)}
+                >
+                  X
+                </h2>
+              </div>
+            ))}
+            <div className={classes.new_skill}>
               <CssTextField
-                name="expertise"
+                name="newSkill"
                 id="outlinedreadonlyinput"
-                label="Expertise"
+                label="Add New Skill"
                 defaultValue=""
-                placeholder="Javascript, NodeJs, Python, DJango"
+                placeholder="Python"
                 variant="outlined"
-                disabled={loading}
-                value={userExpertise}
+                value={skill}
                 onChange={(e) => {
-                  setUserExpertise(e.target.value);
-                }}
-                InputLabelProps={{ style: { color: "#fff" } }}
-                inputProps={{
-                  style: { fontFamily: "Arial", color: "white" },
-                }}
-                style={{
-                  flex: 1,
-                  alignSelf: "center",
-                  width: 300,
-                  margin: "20px 20px 20px 20px",
-                  color: "white",
-                }}
-              />
-              <CssTextField
-                name="learning"
-                id="outlinedreadonlyinput"
-                label="Learning"
-                defaultValue=""
-                disabled={loading}
-                value={userLearning}
-                placeholder="Javascript, NodeJs, Python, DJango"
-                variant="outlined"
-                onChange={(e) => {
-                  setUserLearning(e.target.value);
+                  setSkill(e.target.value);
                 }}
                 InputLabelProps={{ style: { color: "#fff" } }}
                 inputProps={{
@@ -224,16 +281,17 @@ const Edit = () => {
                 }}
               />
             </div>
-          </form>
+            <Button
+              onClick={addSkillHandler}
+              classes={{ root: classes.meetbutton }}
+            >
+              Add {props.heading}
+            </Button>
+          </div>
         </div>
-      </div>
-      <div className={classes.submitbutton} onClick={onSubmitHandler}>
-        <Button classes={{ root: classes.meetbutton }}>
-          {loading ? <Loader /> : "Update Profile"}
-        </Button>
-      </div>
+      </form>
     </div>
   );
-};
+}
 
 export default Edit;
