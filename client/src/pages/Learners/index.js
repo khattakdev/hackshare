@@ -10,17 +10,20 @@ const Learners = () => {
   const [fetchedLearnings, setFetchedLearnings] = useState(false);
 
   const { getIdTokenClaims } = useAuth0();
-  useEffect(async () => {
-    const token = (await getIdTokenClaims())?.__raw;
+  useEffect(() => {
+    async function fetchData() {
+      const token = (await getIdTokenClaims())?.__raw;
 
-    const learnings = await axios.get("/user/learner", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-    setAllLearners(learnings.data);
-    setFetchedLearnings(true);
+      const learnings = await axios.get("/user/learner", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      setAllLearners(learnings.data);
+      setFetchedLearnings(true);
+    }
+    fetchData();
   }, []);
 
   return (

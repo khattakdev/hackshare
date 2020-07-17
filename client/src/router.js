@@ -11,7 +11,7 @@ import Edit from "./pages/Edit";
 const Router = () => {
   const routes = [
     {
-      path: "/profile",
+      path: "/profile/:id?",
       component: Profile,
     },
     {

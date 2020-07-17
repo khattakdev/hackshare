@@ -73,17 +73,20 @@ const Experts = () => {
   const [fetchedExpertise, setFetchedExpertise] = useState(false);
 
   const { getIdTokenClaims } = useAuth0();
-  useEffect(async () => {
-    const token = (await getIdTokenClaims())?.__raw;
+  useEffect(() => {
+    async function fetchData() {
+      const token = (await getIdTokenClaims())?.__raw;
 
-    const expertise = await axios.get("/user/expert", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-    setAllExpertise(expertise.data);
-    setFetchedExpertise(true);
+      const expertise = await axios.get("/user/expert", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      setAllExpertise(expertise.data);
+      setFetchedExpertise(true);
+    }
+    fetchData();
   }, []);
 
   return (

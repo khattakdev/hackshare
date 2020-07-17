@@ -31,20 +31,16 @@ exports.getUserExpertise = async (req, res) => {
 
 exports.addExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level, tags } = req.body;
+  const { topic } = req.body;
 
   const schema = Joi.object().keys({
-    topic: Joi.string().required(),
-    level: Joi.number().min(1).max(3).required(),
-    tags: Joi.array().max(3).required(),
+    topic: Joi.array().required(),
   });
 
   // Schema Validation
   try {
     await schema.validateAsync({
       topic,
-      level,
-      tags,
     });
   } catch (error) {
     console.log(error.message);
@@ -60,18 +56,23 @@ exports.addExpertise = async (req, res) => {
         msg: "User not Found!",
       });
     }
-    const newExpertise = new expertiseDB({
-      user_id: user._id,
-      topic,
-      level,
-      tags,
-      auth0Ref: sub,
-    });
-    await newExpertise.save();
+
+    let newExpertise = [];
+
+    for (let i = 0; i < topic.length; i++) {
+      newExpertise.push(
+        new expertiseDB({
+          user_id: user._id,
+          name: user.name,
+          topic: topic[i],
+          auth0Ref: sub,
+        })
+      );
+    }
+    await expertiseDB.insertMany(newExpertise);
 
     return res.status(200).json({
       msg: "Expertise Added",
-      responseData: newExpertise,
     });
   } catch (error) {
     return res.status(500).json({
@@ -82,23 +83,17 @@ exports.addExpertise = async (req, res) => {
 
 exports.updateExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level, expertise_id, tags } = req.body;
+  const { topic } = req.body;
 
   const schema = Joi.object().keys({
     // topic is Require and must be String
     topic: Joi.string().required(),
-    level: Joi.number().min(1).max(3).required(),
-    expertise_id: Joi.string().required(),
-    tags: Joi.array().max(3).required(),
   });
 
   // Schema Validation
   try {
     await schema.validateAsync({
       topic,
-      level,
-      expertise_id,
-      tags,
     });
   } catch (error) {
     console.log(error.message);
@@ -116,8 +111,6 @@ exports.updateExpertise = async (req, res) => {
       {
         $set: {
           topic,
-          level,
-          tags,
         },
       },
       {
