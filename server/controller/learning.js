@@ -55,19 +55,13 @@ exports.addLearning = async (req, res) => {
         msg: "User not Found!",
       });
     }
-    let newLearning = [];
-
-    for (let i = 0; i < topic.length; i++) {
-      newLearning.push(
-        new learningDB({
-          user_id: user._id,
-          name: user.name,
-          topic: topic[i],
-          auth0Ref: sub,
-        })
-      );
-    }
-    await learningDB.insertMany(newLearning);
+    const newLearning = new learningDB({
+      user_id: user._id,
+      name: user.name,
+      topic,
+      auth0Ref: sub,
+    });
+    await newLearning.save();
 
     return res.status(200).json({
       msg: "Language/Skill Added",
