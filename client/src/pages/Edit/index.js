@@ -211,7 +211,7 @@ function SkillsCard(props) {
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
       await axiosInstance.post(`/${props.heading.toLowerCase()}/add`, {
-        data: JSON.stringify({ topic: skill }),
+        data: { topic: skill },
       });
       const newSkills = [...props.skills];
       newSkills.push(skill);
@@ -231,7 +231,7 @@ function SkillsCard(props) {
       ] = `*`;
       // await axiosInstance.put("/user/edit", data);
       await axiosInstance.delete(`/${props.heading.toLowerCase()}/remove`, {
-        data: JSON.stringify({ expertise_id: id }),
+        data: { expertise_id: id },
       });
       const newSkills = props.skills.filter((skill) => {
         return skill._id !== id;
