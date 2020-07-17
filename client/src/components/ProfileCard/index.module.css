@@ -55,6 +55,16 @@
   font-size: 15px;
 }
 
+.disable_btn {
+  cursor: not-allowed !important;
+  color: #b9b9b9 !important;
+  background: gray !important;
+  border: 2px solid gray !important;
+  font-size: 10px !important;
+  margin: 30px !important;
+  margin-bottom: 10px !important;
+}
+
 .meetingrequest {
   color: #fff !important;
   border: 2px solid #fff !important;
