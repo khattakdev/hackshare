@@ -80,7 +80,7 @@ To be Added
 
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are always welcome.
 
-A detailed overview on how to contribute on HackShare can be found in the [contributing guide](https://github.com/ekhattak/hackshare/Contributing.md).
+A detailed overview on how to contribute on HackShare can be found in the [contributing guide](https://github.com/ekhattak/hackshare/CONTRIBUTING.md).
 
 ## Authors
 
