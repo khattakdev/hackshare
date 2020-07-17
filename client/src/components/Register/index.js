@@ -42,11 +42,12 @@ const Register = ({ onClose, open }) => {
       timeZone: `GMT +${timezone}`,
       countryCode: country,
     };
+    axios.defaults.headers.common["Authorization"] = `Bearer ${claims.__raw}`;
+    axios.defaults.headers.common["Access-Control-Allow-Origin"] = `*`;
     const res = await axios.post("/user/register", {
-      data,
-      headers: {
-        Authorization: `Bearer ${claims.__raw}`,
-      },
+      email: email,
+      timeZone: `GMT +${timezone}`,
+      countryCode: country,
     });
     if (res.status === 200) handleClose();
   };

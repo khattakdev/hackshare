@@ -24,8 +24,8 @@ const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
   const [userExpertise, setUserExpertise] = useState([]);
   const [userLearning, setUserLearning] = useState([]);
-  const [profileUpdated, setProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [redirectToProfileSetup, setRedirectToProfileSetup] = useState(false);
   const { getIdTokenClaims } = useAuth0();
   useEffect(() => {
     async function fetchData() {
@@ -39,6 +39,10 @@ const Edit = () => {
         },
       });
 
+      if (profile.data.responseData == null) {
+        setRedirectToProfileSetup(true);
+        return;
+      }
       const {
         data: { msg: expertise },
       } = await axiosInstance.get(
@@ -90,12 +94,11 @@ const Edit = () => {
       ] = `*`;
       await axiosInstance.put("/user/edit", data);
       setLoading(false);
-      setProfileUpdated(true);
     } catch (err) {
       setLoading(false);
     }
   };
-  if (profileUpdated) {
+  if (redirectToProfileSetup) {
     return <Redirect to="/profile" />;
   }
   return (
