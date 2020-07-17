@@ -34,7 +34,7 @@ exports.addExpertise = async (req, res) => {
   const { topic } = req.body;
 
   const schema = Joi.object().keys({
-    topic: Joi.array().required(),
+    topic: Joi.string().required(),
   });
 
   // Schema Validation
@@ -132,16 +132,16 @@ exports.updateExpertise = async (req, res) => {
 
 exports.removeExpertise = async (req, res) => {
   const { sub } = req.user;
-  const { expertise_id } = req.body;
+  const { id } = req.params;
 
   const schema = Joi.object().keys({
-    expertise_id: Joi.string().required(),
+    id: Joi.string().required(),
   });
 
   // Schema Validation
   try {
     await schema.validateAsync({
-      expertise_id,
+      id,
     });
   } catch (error) {
     console.log(error.message);
@@ -152,7 +152,7 @@ exports.removeExpertise = async (req, res) => {
 
   try {
     const expertise = await expertiseDB.findOneAndDelete({
-      _id: expertise_id,
+      _id: id,
       auth0Ref: sub,
     });
 

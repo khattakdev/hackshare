@@ -30,7 +30,7 @@ exports.getUserLearnings = async (req, res) => {
 
 exports.addLearning = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level } = req.body;
+  const { topic } = req.body;
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
@@ -82,11 +82,10 @@ exports.addLearning = async (req, res) => {
 
 exports.updateLearning = async (req, res) => {
   const { sub } = req.user;
-  const { topic, level, learning_id } = req.body;
+  const { topic, learning_id } = req.body;
 
   const schema = Joi.object().keys({
     topic: Joi.string().required(),
-    level: Joi.number().min(1).max(3).required(),
     learning_id: Joi.string().required(),
   });
 
@@ -94,7 +93,6 @@ exports.updateLearning = async (req, res) => {
   try {
     await schema.validateAsync({
       topic,
-      level,
       learning_id,
     });
   } catch (error) {
@@ -112,7 +110,6 @@ exports.updateLearning = async (req, res) => {
       {
         $set: {
           topic,
-          level,
         },
       },
       {
@@ -139,16 +136,16 @@ exports.updateLearning = async (req, res) => {
 
 exports.removeLearning = async (req, res) => {
   const { sub } = req.user;
-  const { learning_id } = req.body;
+  const { id } = req.params;
 
   const schema = Joi.object().keys({
-    learning_id: Joi.string().required(),
+    id: Joi.string().required(),
   });
 
   // Schema Validation
   try {
     await schema.validateAsync({
-      learning_id,
+      id,
     });
   } catch (error) {
     return res.status(400).json({
@@ -158,7 +155,7 @@ exports.removeLearning = async (req, res) => {
 
   try {
     const learning = await learningDB.findOneAndDelete({
-      _id: learning_id,
+      _id: id,
       auth0Ref: sub,
     });
 
