@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./index.module.css";
 import defaultPicture from "../../assets/user_icon.png";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,18 +30,20 @@ const index = (props) => {
             <img
               className={classes.bannerphoto}
               src={data.picture ? data.picture : defaultPicture}
-              alt="Mock Name"
+              alt={data.name}
             ></img>
           </div>
-          <p
-            className={
-              props.expert
-                ? classes.bannername
-                : `${classes.bannername} ${classes.banner_margin_bottom}`
-            }
-          >
-            {data.name}
-          </p>
+          <Link to={`/profile/${data._id}`}>
+            <p
+              className={
+                props.expert
+                  ? classes.bannername
+                  : `${classes.bannername} ${classes.banner_margin_bottom}`
+              }
+            >
+              {data.name}
+            </p>
+          </Link>
           {props.expert && (
             <div className={classes.bannerdetail}>
               <p>Endorsed by 5 people</p>

@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
@@ -20,6 +21,7 @@ const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
   const [userExpertise, setUserExpertise] = useState([]);
   const [userLearning, setUserLearning] = useState([]);
+  const [profileUpdated, setProfileUpdated] = useState(false);
   const { getIdTokenClaims } = useAuth0();
   useEffect(() => {
     async function fetchData() {
@@ -64,8 +66,6 @@ const Edit = () => {
         })
         .join(",");
 
-      console.log(modifiedExpertise, profile.data.responseData.timeZone);
-
       setUserProfile(profile.data.responseData);
       setUserExpertise(modifiedExpertise);
       setUserLearning(modifiedLearning);
@@ -81,33 +81,28 @@ const Edit = () => {
       timeZone: userProfile.timeZone,
       socialLink: userProfile.socialLink,
     };
+
+    // Axios.defaults.headers()
+    axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axiosInstance.defaults.headers.common["Access-Control-Allow-Origin"] = `*`;
     await axiosInstance.post("/user/edit", {
       data: JSON.stringify(data),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
     });
 
     const topics = userExpertise.split(",");
 
     await axiosInstance.post("/expertise/add", {
       data: JSON.stringify(topics),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
     });
 
     const learning = userLearning.split(",");
     await axiosInstance.post("/learning/add", {
       data: JSON.stringify(learning),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
     });
   };
+  if (profileUpdated) {
+    return <Redirect to="/profile" />;
+  }
   return (
     <div>
       {/* Social Cards */}

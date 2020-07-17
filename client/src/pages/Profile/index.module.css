@@ -36,7 +36,6 @@ body {
 nav {
   padding-top: 30px;
   padding-left: 20px;
-  
 }
 
 .nav ul {
@@ -54,7 +53,7 @@ nav {
   height: 30px;
 }
 
-#active{
+#active {
   color: white;
   border-bottom: 2px solid aliceblue;
 }
@@ -82,6 +81,12 @@ nav {
   text-decoration: underline;
   margin-bottom: 10px;
   font-size: 30px;
+}
+
+.infos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .card {
@@ -121,17 +126,17 @@ nav {
   font-size: 15px;
 }
 
-.open{
+.open {
   float: right;
   padding: 10px;
 }
 
-.cancelmeet{
+.cancelmeet {
   float: right;
   padding: 10px;
 }
 
-.close{
+.close {
   margin-bottom: 30px;
 }
 
@@ -155,17 +160,25 @@ nav {
   padding: 20px;
 }
 
-.datetime{
-  margin:20px;
+.datetime {
+  margin: 20px;
 }
 
 button {
   float: right;
 }
 
-.meetbutton{
+.meetbutton {
   color: #fff !important;
   border: 2px solid #fff !important;
+  font-size: 10px !important;
+}
+
+.disable_btn {
+  cursor: not-allowed !important;
+  color: #b9b9b9 !important;
+  background: gray !important;
+  border: 2px solid gray !important;
   font-size: 10px !important;
 }
 
