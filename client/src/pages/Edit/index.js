@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import classes from "./index.module.css";
 import TextField from "@material-ui/core/TextField";
@@ -20,8 +20,8 @@ const CssTextField = withStyles({
 
 const Edit = () => {
   const [userProfile, setUserProfile] = useState({});
-  const [userExpertise, setUserExpertise] = useState([]);
-  const [userLearning, setUserLearning] = useState([]);
+  const [userExpertise, setUserExpertise] = useState("");
+  const [userLearning, setUserLearning] = useState("");
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const { getIdTokenClaims } = useAuth0();
@@ -97,7 +97,7 @@ const Edit = () => {
       await axiosInstance.put("/user/edit", data);
       const topics = userExpertise.split(",");
       const topicPromises = topics.map((topic) =>
-        axiosInstance.post("/expertise/add", { topic, level: 1, tags: [""] })
+        axiosInstance.post("/expertise/add", { topic, level: 1, tags: [] })
       );
       const learnings = userLearning.split(",");
       const learningPromises = learnings.map((topic) =>
@@ -105,6 +105,7 @@ const Edit = () => {
       );
       await Promise.all([...topicPromises, ...learningPromises]);
       setLoading(false);
+      setProfileUpdated(true);
     } catch (err) {
       setLoading(false);
     }
