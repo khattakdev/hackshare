@@ -43,10 +43,18 @@ const index = (props) => {
             >
               {data.name}
             </p>
+            <p className={classes.endorsment}>Endorsed by 5 people</p>
           </Link>
           {props.expert && (
             <div className={classes.bannerdetail}>
-              <p>Endorsed by 5 people</p>
+              <Link to={`/profile/${data._id}`}>
+                <Button
+                  classes={{ root: classes.viewprofile }}
+                  variant="outlined"
+                >
+                  View
+                </Button>
+              </Link>
               <a href={data.socialLink}>
                 <Button
                   classes={

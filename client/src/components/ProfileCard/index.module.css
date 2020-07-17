@@ -49,7 +49,15 @@
 .banner_margin_bottom {
   margin-bottom: 60px;
 }
+
+.endorsment {
+  font-size: 15px;
+  text-align: center;
+}
+
 .bannerdetail {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
   text-align: center;
   font-size: 15px;
@@ -66,6 +74,14 @@
 }
 
 .meetingrequest {
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  font-size: 10px !important;
+  margin: 30px !important;
+  margin-bottom: 10px !important;
+}
+
+.viewprofile {
   color: #fff !important;
   border: 2px solid #fff !important;
   font-size: 10px !important;
